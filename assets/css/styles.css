@@ -311,13 +311,19 @@ p.title{
 #navbar-hover{
     align-items: stretch;
     align-self: stretch;
-    margin: -16px 0;
 }
 
 #navbar-hover > .nav-item{
     position: relative;
-    padding-top: 15px;
+/*    padding-top: 15px;*/
 }
+
+@media only screen and (max-width: 991px) {
+    #navbar-hover > .nav-item:not(:first-child){
+    margin-top: 20px;
+}
+  }
+
 #navbar-hover > .nav-item > a{
     font-weight: bolder;
     transition: all ease-in-out .3s;
@@ -330,7 +336,7 @@ p.title{
     transition: all ease-in-out .3s;
     background-color: coral;
     position: absolute;
-    bottom: 0;
+    bottom: -16px;
     content: "";
     display: block;
     height: 2px;
