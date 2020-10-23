@@ -316,21 +316,19 @@ p.title{
 
 #navbar-hover > .nav-item{
     position: relative;
-    padding-top: 20px;
+    padding-top: 15px;
 }
 
 #navbar-hover > .nav-item:hover{
-    background-color: lightblue;
+    background-color: #e9e9e9;
 }
 
 #navbar-hover > .nav-item:hover > a{
-    color: #fff;
+    color: coral;
 }
-
-
 #navbar-hover > .nav-item:after {
     transition: all ease-in-out .3s;
-    background-color: #333;
+    background-color: coral;
     position: absolute;
     bottom: 0;
     content: "";
@@ -340,6 +338,10 @@ p.title{
 }
 #navbar-hover > .nav-item:hover:after {
     width: 100%;
+}
+
+a.active{
+    color: coral !important;
 }
 /*first navbar*/
 /*ends here*/
