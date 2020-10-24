@@ -8,6 +8,7 @@
     }
     $row=mysqli_fetch_assoc($q_res);
     $title=$row['title'];
+    $tagLine=$row['tagLine'];
 ?>
 <!--===========================-->
 <?php include "includes/header.php"; ?>
@@ -17,8 +18,8 @@
         <?php include "includes/topNav.php"; ?>
 <!--========================-->
         
-        <h1 class="text-center small" data-aos="fade" data-aos-delay="50">START YOUR</h1>
-        <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 60px;line-height: 50px;"><br><strong><?php echo $title; ?></strong><br><br></h1>
+        <h1 class="text-center small" data-aos="fade" data-aos-delay="50"><?php echo $title; ?></h1>
+        <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 60px;line-height: 50px;"><br><strong><?php echo $tagLine; ?></strong><br><br></h1>
         <div class="container">
             <form>
                 <div class="form-row" data-aos="fade" data-aos-delay="300">
@@ -54,7 +55,7 @@
         <div class="row row-fitur" style="margin-top: -5rem;">
             <div class="col-12 col-sm-12 col-md-3">
                 <div class="row">
-                    <div class="col-10 col-sm-12 col-md-11 waves-effect kolom-a" data-aos="fade" data-aos-delay="100">
+                    <div class="col-10 col-sm-12 col-md-11 waves-effect kolom-a" data-aos="fade" data-aos-delay="100" style="background-color: #3aadaa;">
                         <div class="fitur-a"><i class="far fa-gem icon"></i></div>
                         <div class="separator-fitur"></div>
                         <div>

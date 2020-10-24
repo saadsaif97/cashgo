@@ -16,38 +16,30 @@
     }
 //============================
 
+//    updating the tagline
+    if(isset($_POST['updateTagLine'])){
+        $tagLine=$_POST['tagLine'];
+        $query="UPDATE `home` SET `tagLine`='$tagLine'";
+        $q_res=mysqli_query($con,$query);
+        if(!$q_res){
+            die("query failed ".mysqli_error($con));
+        }else{
+            header("Refreash:1");
+        }
+    }
+//============================
+
 //    showing current title
     $query="SELECT * FROM `home`";
     $q_res=mysqli_query($con,$query);
     if(!$q_res){
         die("query failed ".mysqli_error($con));
     }
-    $row=mysqli_fetch_assoc($q_res);
+    $row=mysqli_fetch_assoc($q_res);   
     $currentTitle=$row['title'];
+    $currentTagLine=$row['tagLine'];
 //============================
 
-//    adding hreo bg image
-//    if (isset($_POST['updateImg'])) {
-//        // Get image name
-//        $image = $_FILES['image']['name'];
-//        // Get text
-//        $image_text = mysqli_real_escape_string($db, $_POST['image_text']);
-//
-//        // image file directory
-//        $target = "images/".basename($image);
-//
-//        $sql = "INSERT INTO images (image, image_text) VALUES ('$image', '$image_text')";
-//        // execute query
-//        mysqli_query($db, $sql);
-//
-//        if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-//            $msg = "Image uploaded successfully";
-//        }else{
-//            $msg = "Failed to upload image";
-//        }
-//    }
-//    $result = mysqli_query($db, "SELECT * FROM images");
-//================================
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,35 +74,39 @@
             </nav>
         </aside>
         <main class="col">
-            <div class="container pt-4">
-               <h3>Current title:</h3>
+            <div class="container p-3 mt-5" style="box-shadow: 0 2px 2px rgba(0,0,0,0.3); border-radius:10px;">
+               <h6>Current title:</h6>
                 <h2 class="text-muted"><?php echo $currentTitle; ?></h2>
                 <hr>
-                <h3>Update the title:</h3>
+                <h6>Update the title:</h6>
                 <form action="#" method="post">
                     <div class="form-group">
                         <label for="title">Title:</label>
                         <input type="text" name="title" id="title">
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="updateTitle" value="Update">
+                        <input type="submit" class="btn btn-info" name="updateTitle" value="Update Title">
                     </div>
                 </form>
-            </div>
-<!--
-            <div class="container pt-4">
-                <h3>Update the hero img:</h3>
+                <hr>
+                <h6>Current tagline:</h6>
+                <h2 class="text-muted"><?php echo $currentTagLine; ?></h2>
+                <hr>
+                <h6>Update the tagline:</h6>
                 <form action="#" method="post">
                     <div class="form-group">
-                        <label for="title">Title:</label>
-                        <input type="text" name="title" id="title">
+                        <label for="tagLine">Tagline:</label>
+                        <input type="text" name="tagLine" id="tagLine">
                     </div>
                     <div class="form-group">
-                        <input type="submit" name="updateImg" value="Update">
+                        <input type="submit" class="btn btn-info" name="updateTagLine" value="Update Tagline">
                     </div>
                 </form>
             </div>
--->
+            
+            
+            
+
         </main>
     </div>
 </div>
