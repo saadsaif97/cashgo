@@ -9,6 +9,14 @@
     $row=mysqli_fetch_assoc($q_res);
     $title=$row['title'];
     $tagLine=$row['tagLine'];
+    $c1t=$row['hc1t'];
+    $c1c=$row['hc1c'];
+    $c2t=$row['hc2t'];
+    $c2c=$row['hc2c'];
+    $c3t=$row['hc3t'];
+    $c3c=$row['hc3c'];
+    $c4t=$row['hc4t'];
+    $c4c=$row['hc4c'];
 ?>
 <!--===========================-->
 <?php include "includes/header.php"; ?>
@@ -59,8 +67,8 @@
                         <div class="fitur-a"><i class="far fa-gem icon"></i></div>
                         <div class="separator-fitur"></div>
                         <div>
-                            <h4 class="text-center heading-fitur" >Easy &amp; Secure </h4>
-                            <p class="text-center paragraf-fitur" >Our 2-of-3 multi-signature wallet removes all single points of failure by using 3 keys: your private key,&nbsp;</p>
+                            <h4 class="text-center heading-fitur" ><?php echo $c1t; ?> </h4>
+                            <p class="text-center paragraf-fitur" ><?php echo $c1c; ?></p>
                         </div>
                     </div>
                 </div>
@@ -71,8 +79,8 @@
                         <div class="fitur-a"><i class="fas fa-tachometer-alt icon" ></i></div>
                         <div class="separator-fitur"></div>
                         <div>
-                            <h4 class="text-center heading-fitur" >Easy &amp; Secure </h4>
-                            <p class="text-center paragraf-fitur" >Our 2-of-3 multi-signature wallet removes all single points of failure by using 3 keys: your private key,</p>
+                            <h4 class="text-center heading-fitur" ><?php echo $c2t; ?> </h4>
+                            <p class="text-center paragraf-fitur" ><?php echo $c2c; ?></p>
                         </div>
                     </div>
                 </div>
@@ -83,8 +91,8 @@
                         <div class="fitur-a"><i class="far fa-money-bill-alt icon" ></i></div>
                         <div class="separator-fitur" ></div>
                         <div>
-                            <h4 class="text-center heading-fitur" >Easy &amp; Secure </h4>
-                            <p class="text-center paragraf-fitur" >Our 2-of-3 multi-signature wallet removes all single points of failure by using 3 keys: your private key,</p>
+                            <h4 class="text-center heading-fitur" ><?php echo $c3t; ?> </h4>
+                            <p class="text-center paragraf-fitur" ><?php echo $c3t; ?></p>
                         </div>
                     </div>
                 </div>
@@ -95,8 +103,8 @@
                         <div class="fitur-a"><i class="far fa-clock icon" ></i></div>
                         <div class="separator-fitur" ></div>
                         <div>
-                            <h4 class="text-center heading-fitur" >Easy &amp; Secure </h4>
-                            <p class="text-center paragraf-fitur" >Our 2-of-3 multi-signature wallet removes all single points of failure by using 3 keys: your private key,&nbsp;</p>
+                            <h4 class="text-center heading-fitur" ><?php echo $c4t; ?> </h4>
+                            <p class="text-center paragraf-fitur" ><?php echo $c4t; ?> </p>
                         </div>
                     </div>
                 </div>
