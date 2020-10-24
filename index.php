@@ -1,15 +1,24 @@
+<?php include "includes/db.php"; ?>
+<!--getting the home title-->
+<?php
+    $query="SELECT * FROM `home`";
+    $q_res=mysqli_query($con,$query);
+    if(!$q_res){
+        die("query failed ".mysqli_error($con));
+    }
+    $row=mysqli_fetch_assoc($q_res);
+    $title=$row['title'];
+?>
+<!--===========================-->
 <?php include "includes/header.php"; ?>
-
 <body>
     <section class="text-left" id="hero" style="display: block;background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(&quot;assets/img/top.jpg&quot;);filter: blur(0px) brightness(100%);width: 100%;height: 900px;">
-<!--        including TOP NAV                   -->
-<!--        ========================            -->
+<!--including top nav-->
         <?php include "includes/topNav.php"; ?>
-<!--        ========================            -->
-<!--        including TOP NAV                   -->
+<!--========================-->
         
         <h1 class="text-center small" data-aos="fade" data-aos-delay="50">START YOUR</h1>
-        <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 60px;line-height: 50px;"><br><strong>LOAN APPLICATION</strong><br><br></h1>
+        <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 60px;line-height: 50px;"><br><strong><?php echo $title; ?></strong><br><br></h1>
         <div class="container">
             <form>
                 <div class="form-row" data-aos="fade" data-aos-delay="300">
