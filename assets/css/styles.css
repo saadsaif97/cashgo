@@ -298,11 +298,28 @@ p.title{
 
 
 /* MY STYLING STARTS HERE*/
+/***************/
+/*basic styling*/
+/*starts here*/
 
+body{
+    font-family: 'Poppins', sans-serif !important;
+}
 
+h1{ font-size: 48px !important; }
+h2{ font-size: 40px !important; }
+h3{ font-size: 32px !important; }
+h4{ font-size: 24px !important; }
+h5{ font-size: 16px !important; }
+h6{ font-size: 12px !important; }
 
+p{
+    font-size: 16px !important;
+}
 
-
+/*basic styling*/
+/*ends here*/
+/***************/
 
 
 /***************/
@@ -355,6 +372,9 @@ a.active{
 /*first navbar*/
 /*ends here*/
 /***************/
+
+
+
 
 
 

@@ -8,26 +8,33 @@
     }
     $row=mysqli_fetch_assoc($q_res);
     $title=$row['title'];
-    $tagLine=$row['tagLine'];
-    $c1t=$row['hc1t'];
-    $c1c=$row['hc1c'];
-    $c2t=$row['hc2t'];
-    $c2c=$row['hc2c'];
-    $c3t=$row['hc3t'];
-    $c3c=$row['hc3c'];
-    $c4t=$row['hc4t'];
-    $c4c=$row['hc4c'];
+    $tagLine=$row['tag_line'];
+    $heroImg=$row['hero_img'];
+    $c1t=$row['card1_title'];
+    $c1c=$row['card1_content'];
+    $c2t=$row['card2_title'];
+    $c2c=$row['card2_content'];
+    $c3t=$row['card3_title'];
+    $c3c=$row['card3_content'];
+    $c4t=$row['card4_title'];
+    $c4c=$row['card4_content'];
 ?>
 <!--===========================-->
 <?php include "includes/header.php"; ?>
 <body>
-    <section class="text-left" id="hero" style="display: block;background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(&quot;assets/img/top.jpg&quot;);filter: blur(0px) brightness(100%);width: 100%;height: 900px;">
+    <section class="text-left" id="hero" style="display: block;background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(<?php echo "assets/img/$heroImg"; ?>);filter: blur(0px) brightness(100%);width: 100%;height: 900px; background-size:cover;">
 <!--including top nav-->
         <?php include "includes/topNav.php"; ?>
 <!--========================-->
-        
-        <h1 class="text-center small" data-aos="fade" data-aos-delay="50"><?php echo $title; ?></h1>
+   <div class="my-5" style="color:#fff">   
+    <?php echo $title; ?>
+    <?php echo $tagLine; ?>
+   </div>
+<!--
+        <h3 class="text-center small" data-aos="fade" data-aos-delay="50"><?php echo $title; ?></h3>
         <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 60px;line-height: 50px;"><br><strong><?php echo $tagLine; ?></strong><br><br></h1>
+-->
+        
         <div class="container">
             <form>
                 <div class="form-row" data-aos="fade" data-aos-delay="300">
@@ -67,8 +74,8 @@
                         <div class="fitur-a"><i class="far fa-gem icon"></i></div>
                         <div class="separator-fitur"></div>
                         <div>
-                            <h4 class="text-center heading-fitur" ><?php echo $c1t; ?> </h4>
-                            <p class="text-center paragraf-fitur" ><?php echo $c1c; ?></p>
+                            <?php echo $c1t; ?>
+                            <?php echo $c1c; ?>
                         </div>
                     </div>
                 </div>
@@ -79,8 +86,8 @@
                         <div class="fitur-a"><i class="fas fa-tachometer-alt icon" ></i></div>
                         <div class="separator-fitur"></div>
                         <div>
-                            <h4 class="text-center heading-fitur" ><?php echo $c2t; ?> </h4>
-                            <p class="text-center paragraf-fitur" ><?php echo $c2c; ?></p>
+                            <?php echo $c2t; ?>
+                            <?php echo $c2c; ?>
                         </div>
                     </div>
                 </div>
@@ -91,8 +98,8 @@
                         <div class="fitur-a"><i class="far fa-money-bill-alt icon" ></i></div>
                         <div class="separator-fitur" ></div>
                         <div>
-                            <h4 class="text-center heading-fitur" ><?php echo $c3t; ?> </h4>
-                            <p class="text-center paragraf-fitur" ><?php echo $c3t; ?></p>
+                            <?php echo $c3t; ?>
+                            <?php echo $c3c; ?>
                         </div>
                     </div>
                 </div>
@@ -103,8 +110,8 @@
                         <div class="fitur-a"><i class="far fa-clock icon" ></i></div>
                         <div class="separator-fitur" ></div>
                         <div>
-                            <h4 class="text-center heading-fitur" ><?php echo $c4t; ?> </h4>
-                            <p class="text-center paragraf-fitur" ><?php echo $c4t; ?> </p>
+                            <?php echo $c4t; ?>
+                            <?php echo $c4c; ?>
                         </div>
                     </div>
                 </div>
