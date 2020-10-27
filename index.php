@@ -18,6 +18,22 @@
     $c3c=$row['card3_content'];
     $c4t=$row['card4_title'];
     $c4c=$row['card4_content'];
+    $s1line1=$row['s1_line1'];
+    $s1line2=$row['s1_line2'];
+    $s1content=$row['s1_content'];
+    $s2line1=$row['s2_line1'];
+    $s2line2=$row['s2_line2'];
+    $s3line1=$row['s3_line1'];
+    $s3line2=$row['s3_line2'];
+    $T1L=$row['t1_link'];
+    $T1C=$row['t1_content'];
+    $T1N=$row['t1_name'];
+    $T2L=$row['t2_link'];
+    $T2C=$row['t2_content'];
+    $T2N=$row['t2_name'];
+    $T3L=$row['t3_link'];
+    $T3C=$row['t3_content'];
+    $T3N=$row['t3_name'];
 ?>
 <!--===========================-->
 <?php include "includes/header.php"; ?>
@@ -26,7 +42,7 @@
 <!--including top nav-->
         <?php include "includes/topNav.php"; ?>
 <!--========================-->
-   <div class="my-5" style="color:#fff">   
+   <div class="my-5">   
     <?php echo $title; ?>
     <?php echo $tagLine; ?>
    </div>
@@ -119,17 +135,20 @@
         </div>
         <div class="row" style="margin-top: 200px;">
             <div class="col">
-                <h1 class="text-center small-dark" data-aos="fade" ><br>GETTING CASH IS<br><br></h1>
+<!--                <h1 class="text-center small-dark" data-aos="fade" ><br>GETTING CASH IS<br><br></h1>-->
+                <span class="text-center small-dark" data-aos="fade" ><?php echo $s1line1; ?></span>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="100" ><strong>EASY WITH CASHGO</strong><br></h1>
+<!--                <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="100" ><strong>EASY WITH CASHGO</strong><br></h1>-->
+                <span class="text-center big-dark" data-aos="fade" data-aos-delay="100" ><?php echo $s1line2; ?></span>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <p class="text-center small-text" data-aos="fade" data-aos-delay="200" ><br>It may look like CashGo is just in the business of loans on car titles. But for us, it’s much deeper than that. Our goal is to help you get the cash you need right when you need it most.<br><br></p>
+<!--                <p class="text-center small-text" data-aos="fade" data-aos-delay="200" ><br>It may look like CashGo is just in the business of loans on car titles. But for us, it’s much deeper than that. Our goal is to help you get the cash you need right when you need it most.<br><br></p>-->
+                <span class="text-center small-text" data-aos="fade" data-aos-delay="200"><?php echo $s1content; ?></span>
             </div>
         </div>
         <div class="row text-center" style="margin-top: 49px;">
@@ -143,12 +162,14 @@
         <div class="container">
             <div class="row">
                 <div class="col"></div>
-                <div class="col-5 col-sm-12 col-md-6">
-                    <p class="small text-left" data-aos="fade" data-aos-delay="100">STUNNING REPAYMENT FLEXIBILITY</p>
-                    <br>
-                    <h1 class="big" data-aos="fade" data-aos-delay="200"><strong>FOR YOUR LOAN</strong><br></h1>
-                    <div class="row">
-                        <div class="col" style="padding-top: 60px;">
+                <div class="col-5 col-sm-12 col-md-6 pt-5">
+<!--                    <p class="small text-left" data-aos="fade" data-aos-delay="100">STUNNING REPAYMENT FLEXIBILITY</p>-->
+                    <span class="small text-left" data-aos="fade" data-aos-delay="100"><?php echo $s2line1; ?></span>
+<!--                    <br>-->
+<!--                    <h1 class="big" data-aos="fade" data-aos-delay="200"><strong>FOR YOUR LOAN</strong><br></h1>-->
+                   <span class="big" data-aos="fade" data-aos-delay="200"><?php echo $s2line2; ?></span>
+                    <div class="row pl-3">
+                        <div class="col" style="padding-top: 30px;">
                             <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="300">
                                 <li class="lite-list" ><i class="fas fa-calendar-alt fa-li" style="background-color: #3aadaa;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Choose your preferred monthly payment</li>
                             </ul>
@@ -159,7 +180,7 @@
                                 <li class="lite-list" ><i class="fas fa-star fa-li" style="background-color: #F1B22F;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Make extra or early payments without fees<br></li>
                             </ul>
                             <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="600">
-                                <li class="lite-list" ><i class="fas fa-plane fa-li" style="background-color: #E96F34;color: rgb(255,255,255);font-size: 20px;padding-top: 5px;padding-bottom: 5px;"></i>No fees, hidden or otherwis<br></li>
+                                <li class="lite-list" ><i class="fas fa-plane fa-li" style="background-color: #E96F34;color: rgb(255,255,255);font-size: 20px;padding-top: 5px;padding-bottom: 5px;"></i>No fees, hidden or otherwise<br></li>
                             </ul>
                         </div>
                     </div>
@@ -171,12 +192,14 @@
         <div class="container" style="padding-top: 100px;padding-bottom: 100px;">
             <div class="row">
                 <div class="col">
-                    <p class="text-center small-dark" data-aos="fade" data-aos-delay="100" style="font-weight: normal;">PERSONAL<br></p>
+<!--                    <p class="text-center small-dark" data-aos="fade" data-aos-delay="100" style="font-weight: normal;">PERSONAL<br></p>-->
+                    <span class="text-center small-dark" data-aos="fade" data-aos-delay="100" style="font-weight: normal; margin-bottom: 30px;"><?php echo $s3line1; ?></span>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="200" style="margin-bottom: 30px;"><strong>LOAN COMPARISON</strong><br></h1>
+<!--                    <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="200" style="margin-bottom: 30px;"><strong>LOAN COMPARISON</strong><br></h1>-->
+                    <span class="text-center big-dark" data-aos="fade" data-aos-delay="200" style="margin-bottom: 30px;"><?php echo $s3line2; ?></span>
                 </div>
             </div>
             <div class="row">
@@ -186,7 +209,7 @@
                     </div>
                     <div class="text-center border1" style="padding: 20px 15px;">
                         <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
-                        <h1 style="font-size: 22px;color: #3aadaa;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br>5.95% – 6.99%<br><br></h1>
+                        <h4 style="font-size: 22px;color: #3aadaa;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br>5.95% – 6.99%<br><br></h4>
                         <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
                         <div>
                             <p class="card-b-t">Fees:</p>
@@ -211,7 +234,7 @@
                     </div>
                     <div class="text-center border2" style="padding: 20px 15px;">
                         <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
-                        <h1 style="font-size: 22px;color: #98b446;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;">7.50% – 12.99%</h1>
+                        <h4 style="font-size: 22px;color: #98b446;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;">7.50% – 12.99%</h4>
                         <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
                         <div>
                             <p class="card-b-t">Fees:</p>
@@ -236,7 +259,7 @@
                     </div>
                     <div class="text-center border3" style="padding: 20px 15px;">
                         <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
-                        <h1 style="font-size: 22px;color: #f1b22f;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br><br>8.00% – 15.49%<br><br></h1>
+                        <h4 style="font-size: 22px;color: #f1b22f;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br><br>8.00% – 15.49%<br><br></h4>
                         <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
                         <div>
                             <p class="card-b-t">Fees:</p>
@@ -261,7 +284,7 @@
                     </div>
                     <div class="text-center border4" style="padding: 20px 15px;">
                         <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
-                        <h1 style="font-size: 22px;color: #fd6420;;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br><br>9.00% – 14.49%<br><br></h1>
+                        <h4 style="font-size: 22px;color: #fd6420;;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br><br>9.00% – 14.49%<br><br></h4>
                         <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
                         <div>
                             <p class="card-b-t">Fees:</p>
@@ -288,7 +311,7 @@
 
 		<!-- Header of Slider -->
 		<div class="testimonial_095_header">
-			<h5>what people<span>say</span></h5>
+			<h5>what people say</h5>
 		</div>
 		<!-- /Header of Slider -->
 
@@ -306,9 +329,9 @@
 			<div class="carousel-item active">
 				<!-- Text Layer -->
 				<div class="testimonial_095_slide">
-					<a href="#"><span class="fa fa-twitter"></span></a>
-					<p>Lorem ipsum dolor sit amet <a href="#">@consectetuer</a> adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur.</p>
-					<h5><a href="#">name of consumer</a></h5>
+					<a href="<?php echo $T1L; ?>" target="_blank"><span class="fa fa-twitter"></span></a>
+					    <?php echo $T1C; ?>
+					<h5><a href="<?php echo $T1L; ?>" target="_blank"><?php echo $T1N; ?></a></h5>
 				</div> <!-- /Text Layer -->
 			</div> <!-- /item -->
 			<!-- End of First Slide -->
@@ -317,9 +340,9 @@
 			<div class="carousel-item">
 				<!-- Text Layer -->
 				<div class="testimonial_095_slide">
-					<a href="#"><span class="fa fa-twitter"></span></a>
-					<p>Lorem ipsum dolor sit amet <a href="#">@consectetuer</a> adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur.</p>
-					<h5><a href="#">name of consumer</a></h5>
+					<a href="<?php echo $T2L; ?>" target="_blank"><span class="fa fa-twitter"></span></a>
+					<?php echo $T2C; ?>
+					<h5><a href="<?php echo $T2L; ?>" target="_blank"><?php echo $T2N; ?></a></h5>
 				</div> <!-- /Text Layer -->
 			</div> <!-- /item -->
 			<!-- End of Second Slide -->
@@ -328,9 +351,9 @@
 			<div class="carousel-item">
 				<!-- Text Layer -->
 				<div class="testimonial_095_slide">
-					<a href="#"><span class="fa fa-twitter"></span></a>
-					<p>Lorem ipsum dolor sit amet <a href="#">@consectetuer</a> adipiscing elit am nibh unc varius facilisis eros ed erat in in velit quis arcu ornare laoreet urabitur.</p>
-					<h5><a href="#">name of consumer</a></h5>
+					<a href="<?php echo $T3L; ?>" target="_blank"><span class="fa fa-twitter"></span></a>
+					<?php echo $T3C; ?>
+					<h5><a href="<?php echo $T3L; ?>" target="_blank"><?php echo $T3N; ?></a></h5>
 				</div> <!-- /Text Layer -->
 			</div> <!-- /item -->
 			<!-- End of Third Slide -->
@@ -395,7 +418,7 @@
                                 </div>
                             </div>
                             <div class="text-center border2" style="padding: 20px 15px;">
-                                <h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1>
+                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h4>
                                 <div>
                                     <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
                                 </div>
@@ -424,7 +447,7 @@
                                 </div>
                             </div>
                             <div class="text-center border3" style="padding: 20px 15px;">
-                                <h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1>
+                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h4>
                                 <div>
                                     <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
                                 </div>
@@ -453,7 +476,7 @@
                                 </div>
                             </div>
                             <div class="text-center border4" style="padding: 20px 15px;">
-                                <h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1>
+                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h4>
                                 <div>
                                     <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
                                 </div>
