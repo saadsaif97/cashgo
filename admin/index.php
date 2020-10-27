@@ -367,7 +367,6 @@
 //    s3 content4
     if(isset($_POST['updateS3C4'])){
         $s3_content4=$_POST['s3_content4'];
-        $s3_content4=htmlentities($s3_content4);
         $query="UPDATE `home` SET `s3_content4`='$s3_content4'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -540,6 +539,7 @@
     $currentT3N=$row['t3_name'];
 //============================
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
