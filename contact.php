@@ -9,13 +9,7 @@
                 class="btn btn-primary" type="button" style="margin: 10px;background-color: #fd6420;border: none;">CONTACT</button>
         </div>
     </section>
-    <div class="map-clean">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center" style="font-family: Montserrat, sans-serif;">Location </h2>
-                <p class="text-center" style="font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 300;">Nunc luctus in metus eget fringilla. Aliquam sed justo ligula. Vestibulum nibh erat, pellentesque ut laoreet vitae. </p>
-            </div>
-        </div><iframe allowfullscreen="" frameborder="0" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDaEw6o8OhJvRQnTF3gI_tibMejtfasOlY&amp;q=Paris%2C+France&amp;zoom=15" width="100%" height="450"></iframe></div>
+  
     <div class="container" style="padding-top: 2rem;padding-bottom: 2rem;">
         <div class="row">
             <div class="col-8 col-sm-12 col-md-8" style="padding-top: 1rem;padding-bottom: 1rem;">

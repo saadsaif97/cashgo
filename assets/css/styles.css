@@ -353,7 +353,7 @@ p{
     transition: all ease-in-out .3s;
     background-color: coral;
     position: absolute;
-    bottom: -16px;
+    bottom: -18px;
     content: "";
     display: block;
     height: 2px;

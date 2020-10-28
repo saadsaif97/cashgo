@@ -12,11 +12,10 @@
     </section>
     <section class="index-howto-alt py-3">
         <div class="container">
-            <h2 class="text-center mb-3" style="color: #002632;font-size: 40px;font-weight: 500;font-family: Montserrat, sans-serif;">it Works in Three Steps</h2>
+            <h2 class="text-center my-3 font-weight-bolder">CASHGO WORKS IN THREE STEPS</h2>
             <div class="psd-line pos-rel" style="position:relative;">
                 <div class="row align-items-center">
                     <div class="col-12 col-sm-6 d-flex flex-row justify-content-center align-items-center intro-card-1 p-5"><img class="howto-img" src="assets/img/bulb-icon.png">
-                        <h2 class="grey-text d-none">Üyelik Tipini Seçerek Kayıt Olun</h2>
                     </div>
                     <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-left1">
                         <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong>FILL IN AN APPLICATION FORM ON OUR WEBSITE</strong><br></h1>
