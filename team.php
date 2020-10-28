@@ -1,3 +1,4 @@
+<?php $currentPage="team"; ?>
 <?php include "includes/header.php"; ?>
 
 

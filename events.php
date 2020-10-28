@@ -1,3 +1,4 @@
+<?php $currentPage="events"; ?>
 <?php include "includes/header.php"; ?>
 
 

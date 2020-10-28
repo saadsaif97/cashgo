@@ -1,3 +1,4 @@
+<?php $currentPage="profit"; ?>
 <?php include "includes/header.php"; ?>
 
   

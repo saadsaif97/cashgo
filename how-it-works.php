@@ -1,3 +1,4 @@
+<?php $currentPage="howItWorks"; ?>
 <?php include "includes/header.php"; ?>
 
 

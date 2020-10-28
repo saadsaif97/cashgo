@@ -1,3 +1,4 @@
+<?php $currentPage="plans"; ?>
 <?php include "includes/header.php"; ?>
 
 

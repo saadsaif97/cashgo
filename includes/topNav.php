@@ -17,16 +17,16 @@
             
             
             <ul class="nav navbar-nav ml-auto" id="navbar-hover">
-                <li class="nav-item" role="presentation"><a class="nav-link active" href="index.php">HOME</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="how-it-works.php">HOW IT WORKS</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="profit.php">PROFIT</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="plans.php">PLANS</a></li>
-                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false" href="#">BLOG</a>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "home"){echo 'active';} ?>" href="index.php">HOME</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "howItWorks"){echo 'active';} ?>" href="how-it-works.php">HOW IT WORKS</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "profit"){echo 'active';} ?>" href="profit.php">PROFIT</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "plans"){echo 'active';} ?>" href="plans.php">PLANS</a></li>
+                <li class="nav-item dropdown"><a class="dropdown-toggle nav-link <?php if($currentPage== "blog"){echo 'active';} ?>" data-toggle="dropdown" aria-expanded="false" href="#">BLOG</a>
                     <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="blog-grid.php">GRID BLOG</a><a class="dropdown-item" role="presentation" href="blog-post.php">POST</a></div>
                 </li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="contact.php">CONTACT</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">REGISTER</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link" href="#">LOGIN</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "contact"){echo 'active';} ?>" href="contact.php">CONTACT</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "register"){echo 'active';} ?>" href="#">REGISTER</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "login"){echo 'active';} ?>" href="#">LOGIN</a></li>
             </ul>
             
     

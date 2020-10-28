@@ -1,3 +1,4 @@
+<?php $currentPage="contact"; ?>
 <?php include "includes/header.php"; ?>
 
 <body>

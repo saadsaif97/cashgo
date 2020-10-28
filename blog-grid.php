@@ -1,3 +1,4 @@
+<?php $currentPage="blog"; ?>
 <?php include "includes/header.php"; ?>
 
 <body>
