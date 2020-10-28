@@ -553,29 +553,29 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdn.tiny.cloud/1/hbwlqpsh0tlgvyqu625rt4e09vcbkde71ygqnccn217c97ks/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <link rel="stylesheet" href="menu_bar.css">
 </head>
 
 <body>
 
+   <div class="nav_bar">
+      <a href="#">
+      <i class="fa fa-bars"></i>
+      </a>
+       <img style="width:132px;" src="../assets/img/<?php echo $currentLogo; ?>" alt="backgound image">
+   </div>
+   <div class="side_bar" id="side_bar">
+       <ul>
+           <li><a href="#" class="current">Home</a></li>
+           <li><a href="#">Contact</a></li>
+           <li><a href="#">Post</a></li>
+           <li><a href="#">Other</a></li>
+       </ul>
+   </div>
+   
     <div class="container-fluid h-100">
         <div class="row h-100">
-            <aside class="col-12 col-md-2 p-0 bg-dark">
-                <nav class="navbar navbar-expand navbar-dark bg-dark flex-md-column flex-row align-items-start">
-                    <div class="collapse navbar-collapse">
-                        <ul class="flex-md-column flex-row navbar-nav w-100 justify-content-between">
-                            <li class="nav-item">
-                                <a class="nav-link pl-0" href="#">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link pl-0" href="#">Contact</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link pl-0" href="#">Services</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </aside>
+            
             <main class="col py-5">
               <!--           000000000000000000-->
                 <!--           logo update-->
@@ -1008,7 +1008,21 @@
             </main>
         </div>
     </div>
-    <script>
+    <script>//menu bar script
+        function stopScroll(){ if(document.querySelector("#side_bar").classList.contains("active")){
+                document.querySelector("body").style.overflowY='hidden';
+            }else{
+                document.querySelector("body").style.overflowY='scroll';
+            }
+        };
+    document.querySelector(".fa-bars").addEventListener("click",()=>{
+    document.querySelector(".side_bar").classList.toggle("active");
+        stopScroll();
+    })
+        
+    document.querySelector("a.current").parentElement.style.backgroundColor='#fff';
+    </script>//menu bar script
+    <script>//opening and closing the text editor
         let editors = document.querySelectorAll(".fa-edit");
         editors.forEach(edit=>{
         edit.addEventListener("click", (e) => {
@@ -1032,7 +1046,7 @@
             tinycomments_author: 'Author name',
         });
 
-    </script>
+    </script>//opening and closing the text editor
 
 </body>
 
