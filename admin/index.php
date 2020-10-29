@@ -565,7 +565,7 @@
                     <h3 class="font-weight-bold">Hero Area</h3>
                     <hr>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">title:</h6>
                         <?php echo $currentTitle; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -574,7 +574,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 class="mt-3" style="display:inline;">tagline:</h6>
                         <?php echo $currentTagLine; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -600,7 +600,7 @@
                         <div>
                             <h5>Card 1</h5>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 style="display:inline;">title:</h6>
                             <?php echo $currentC1Title; ?>
                             <form action="#" method="post" class="mt-3" style="display:none;">
@@ -609,7 +609,7 @@
                             </form>
                             </div>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 class="mt-3" style="display:inline;">content:</h6>
                             <?php echo $currentC1Content; ?>
                             <form action="#" method="post" style="display:none;" class="mt-3">
@@ -623,7 +623,7 @@
                         <div>
                             <h5>Card 2</h5>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 style="display:inline;">title:</h6>
                             <?php echo $currentC2Title; ?>
                             <form action="#" method="post" class="mt-3" style="display:none;">
@@ -632,7 +632,7 @@
                             </form>
                             </div>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 class="mt-3" style="display:inline;">content:</h6>
                             <?php echo $currentC2Content; ?>
                             <form action="#" method="post" style="display:none;" class="mt-3">
@@ -645,7 +645,7 @@
                         <div>
                             <h5>Card 3</h5>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 style="display:inline;">title:</h6>
                             <?php echo $currentC3Title; ?>
                             <form action="#" method="post" class="mt-3" style="display:none;">
@@ -654,7 +654,7 @@
                             </form>
                             </div>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 class="mt-3" style="display:inline;">content:</h6>
                             <?php echo $currentC3Content; ?>
                             <form action="#" method="post" style="display:none;" class="mt-3">
@@ -668,7 +668,7 @@
                         <div>
                             <h5>Card 4</h5>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 style="display:inline;">title:</h6>
                             <?php echo $currentC4Title; ?>
 <!--                            <h4 class="text-muted d-block"><?php echo $currentC4Title; ?></h4>-->
@@ -678,7 +678,7 @@
                             </form>
                             </div>
                             <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                             <h6 class="mt-3" style="display:inline;">content:</h6>
                             <?php echo $currentC4Content; ?>
 <!--                            <p class="text-muted d-block"><?php echo $currentC4Content; ?></p>-->
@@ -699,7 +699,7 @@
                     <h3 class="font-weight-bold">Section 1</h3>
                     <hr>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">line 1:</h6>
                         <?php echo $currentS1Line1; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -709,7 +709,7 @@
                     </div>
                 
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">line 2:</h6>
                         <?php echo $currentS1Line2; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -719,7 +719,7 @@
                     </div>
                 
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content:</h6>
                         <span display="block">
                         <?php echo $currentS1Content; ?>
@@ -739,7 +739,7 @@
                     <h3 class="font-weight-bold">Section 2</h3>
                     <hr>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">line 1:</h6>
                         <?php echo $currentS2Line1; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -749,7 +749,7 @@
                     </div>
                 
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">line 2:</h6>
                         <?php echo $currentS2Line2; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -769,7 +769,7 @@
                     <h3 class="font-weight-bold">Section 3</h3>
                     <hr>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">line 1:</h6>
                         <?php echo $currentS3Line1; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -779,7 +779,7 @@
                     </div>
                 
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">line 2:</h6>
                         <?php echo $currentS3Line2; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -790,7 +790,7 @@
                     <hr>
 <!--                    TITLE 1 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">title 1:</h6>
                         <?php echo $currentS3Title1; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -800,7 +800,7 @@
                     </div>
 <!--                    CONTENT 1 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 1:</h6>
                         <?php echo $currentS3Content1; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -811,7 +811,7 @@
                     
 <!--                    TITLE 2 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">title 2:</h6>
                         <?php echo $currentS3Title2; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -821,7 +821,7 @@
                     </div>
 <!--                    CONTENT 2 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 2:</h6>
                         <?php echo $currentS3Content2; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -832,7 +832,7 @@
                     
 <!--                    TITLE 3 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">title 3:</h6>
                         <?php echo $currentS3Title3; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -842,7 +842,7 @@
                     </div>
 <!--                    CONTENT 3 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 3:</h6>
                         <?php echo $currentS3Content3; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -853,7 +853,7 @@
                     
 <!--                    TITLE 4 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">title 4:</h6>
                         <?php echo $currentS3Title4; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -863,7 +863,7 @@
                     </div>
 <!--                    CONTENT 4 -->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 4:</h6>
                         <?php echo $currentS3Content4; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -884,7 +884,7 @@
                     <hr>
 <!--                    testimonial 1-->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">link 1:</h6>
                         <?php echo $currentT1L; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -893,7 +893,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 1:</h6>
                         <?php echo $currentT1C; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -902,7 +902,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">name 1:</h6>
                         <?php echo $currentT1N; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -913,7 +913,7 @@
                     <hr>
 <!--                    testimonial 2-->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">link 2:</h6>
                         <?php echo $currentT2L; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -922,7 +922,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 2:</h6>
                         <?php echo $currentT2C; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -931,7 +931,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">name 2:</h6>
                         <?php echo $currentT2N; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -942,7 +942,7 @@
                     <hr>
 <!--                    testimonial 3-->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">link 3:</h6>
                         <?php echo $currentT3L; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -951,7 +951,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 3:</h6>
                         <?php echo $currentT3C; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">
@@ -960,7 +960,7 @@
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8;"></i>
+                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">name 3:</h6>
                         <?php echo $currentT3N; ?>
                         <form action="#" method="post" class="mt-3" style="display:none;">

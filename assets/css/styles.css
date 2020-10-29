@@ -83,7 +83,7 @@ body{
 
 .btn{
     background-color: #3aadaa;
-    padding: 17px 55px;
+    padding: 10px 20px;
     font-family: Montserrat, sans-serif;
     font-size: 12px;
     font-weight: 600;
@@ -302,9 +302,6 @@ p.title{
 /*basic styling*/
 /*starts here*/
 
-body{
-    font-family: 'Poppins', sans-serif !important;
-}
 
 h1{ font-size: 48px !important; }
 h2{ font-size: 40px !important; }
@@ -374,7 +371,9 @@ a.active{
 /***************/
 
 
-
+i.fa.fa-edit.icon::before{
+    font-size: 24px !important;
+}
 
 
 
