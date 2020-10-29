@@ -539,39 +539,8 @@
     $currentT3N=$row['t3_name'];
 //============================
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <title>cashgo editor</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/hbwlqpsh0tlgvyqu625rt4e09vcbkde71ygqnccn217c97ks/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-    <link rel="stylesheet" href="menu_bar.css">
-</head>
-
-<body>
-
-   <div class="nav_bar">
-      <a href="#">
-      <i class="fa fa-bars"></i>
-      </a>
-       <img style="width:132px;" src="../assets/img/<?php echo $currentLogo; ?>" alt="backgound image">
-   </div>
-   <div class="side_bar" id="side_bar">
-       <ul>
-           <li><a href="#" class="current">Home</a></li>
-           <li><a href="#">Contact</a></li>
-           <li><a href="#">Post</a></li>
-           <li><a href="#">Other</a></li>
-       </ul>
-   </div>
+<?php $currentPage="home"; ?>
+<?php include "includes/header.php"; ?>
    
     <div class="container-fluid h-100">
         <div class="row h-100">
@@ -592,7 +561,7 @@
                 <!--           000000000000000000-->
                 <!--            title, tagline and hero image-->
                 <!--           000000000000000000-->
-                <div class="container p-3 mt-5" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px; background-image:linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ),url(../assets/img/<?php echo $currentHreoImg; ?>); background-size:cover;">
+                <div class="container p-3 mt-5" style="background-image:linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ),url(../assets/img/<?php echo $currentHreoImg; ?>); background-size:cover; color:#fff; height: 400px; width:100%;">
                     <h3 class="font-weight-bold">Hero Area</h3>
                     <hr>
                     <div>
@@ -1008,46 +977,19 @@
             </main>
         </div>
     </div>
-    <script>//menu bar script
-        function stopScroll(){ if(document.querySelector("#side_bar").classList.contains("active")){
-                document.querySelector("body").style.overflowY='hidden';
-            }else{
-                document.querySelector("body").style.overflowY='scroll';
-            }
-        };
-    document.querySelector(".fa-bars").addEventListener("click",()=>{
-    document.querySelector(".side_bar").classList.toggle("active");
-        stopScroll();
-    })
-        
-    document.querySelector("a.current").parentElement.style.backgroundColor='#fff';
-    </script>//menu bar script
     <script>//opening and closing the text editor
         let editors = document.querySelectorAll(".fa-edit");
         editors.forEach(edit=>{
         edit.addEventListener("click", (e) => {
             let myForm = e.target.parentElement.querySelector("form");
-            console.log(myForm);
             if (myForm.style.display === "none") {
                 myForm.style.display = "block";
-                e.target.style.color = "#333";
             } else {
                 myForm.style.display = "none";
-                e.target.style.color = "#17a2b8";
             }
         })});
 
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'a11ychecker advcode casechange formatpainter linkchecker autolink lists checklist media mediaembed pageembed permanentpen powerpaste table advtable tinycomments tinymcespellchecker autoresize',
-            toolbar: 'a11ycheck addcomment showcomments casechange checklist code formatpainter pageembed permanentpen table',
-            toolbar_mode: 'floating',
-            tinycomments_mode: 'embedded',
-            tinycomments_author: 'Author name',
-        });
+        
 
-    </script>//opening and closing the text editor
-
-</body>
-
-</html>
+    </script>
+<?php include "includes/footer.php"; ?>

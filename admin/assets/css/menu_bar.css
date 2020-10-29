@@ -28,7 +28,7 @@ body{
     top: 0;
     padding: 100px 0;
     width: 180px;
-    background-color: #333;
+    background-color: #345165;
     height: 100vh;
     left: -180px;
     display: none;
@@ -43,6 +43,7 @@ body{
 }
 .side_bar ul li{
     padding: 10px 20px;
+    cursor: pointer;
 }
 .side_bar ul li a{
     color: #fff;
