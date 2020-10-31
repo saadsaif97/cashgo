@@ -7,6 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<!--
+    ||----------------------||
+    ||LINKING DATA TABLE CSS||
+    ||----------------------||
+-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="
+https://cdn.datatables.net/responsive/2.2.6/css/responsive.bootstrap4.min.css">
+<!--||======================||-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -14,7 +23,6 @@
 
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/menu_bar.css">
-    <link rel="stylesheet" href="assets/css/modal.css">
 </head>
 
 <body>
@@ -29,7 +37,7 @@
        <ul>
            <li><a href="index.php" class="<?php if($currentPage== "home"){echo 'current';} ?>">Home</a></li>
            <li><a href="how-it-works.php" class="<?php if($currentPage== "howItWorks"){echo 'current';} ?>">How it works</a></li>
-           <li><a href="#" class="<?php if($currentPage== "post"){echo 'current';} ?>">Post</a></li>
-           <li><a href="#" class="<?php if($currentPage== "other"){echo 'current';} ?>">Other</a></li>
+           <li><a href="posts.php" class="<?php if($currentPage== "posts"){echo 'current';} ?>">Posts</a></li>
+           <li><a href="post-categories.php" class="<?php if($currentPage== "post-categories"){echo 'current';} ?>">Post categories</a></li>
        </ul>
    </div>
