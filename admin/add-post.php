@@ -19,9 +19,12 @@
 <?php
     if(isset($_POST['create'])){
         $title=$_POST['title'];
+        $title=mysqli_real_escape_string($con,$title);
         $content=$_POST['content'];
+        $content=mysqli_real_escape_string($con,$content);
 //      handling image
         $img_name=$_FILES["img"]["name"]; 
+        $img_name=mysqli_real_escape_string($con,$img_name);
 
         //Get the content of the image and then add slashes to it 
         $imagetmp=$_FILES['img']['tmp_name'];

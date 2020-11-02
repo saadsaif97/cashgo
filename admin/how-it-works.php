@@ -179,7 +179,7 @@
 </div>
     
 <!--    title-->
-    <section style="background-image:linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ),url(../assets/img/<?php echo $currentHreoImg; ?>); background-size:cover; color:#fff; height: 400px; width:100%; display: grid; place-items:center;">
+    <section style="background-image:linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ),url(../assets/img/<?php echo $currentHeroImg; ?>); background-size:cover; color:#fff; height: 400px; width:100%; display: grid; place-items:center;">
         <h1 class="text-center" data-aos="fade" data-aos-delay="50" id="small" style="font-weight: 600;color: rgb(255,255,255);font-size: 48px;font-family: Montserrat, sans-serif;height: 1px;"><?php echo $currentTitle; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></h1>
         <div  id="editor" style="display:none; backgound-color:#fff;">
             <form action="#" method="post" class="mt-3">

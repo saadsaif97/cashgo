@@ -1,3 +1,4 @@
+<?php include "includes/db.php"; ?>
 <?php $currentPage="blog"; ?>
 <?php include "includes/header.php"; ?>
 
@@ -11,17 +12,42 @@
                 class="btn" type="button" style="margin: 10px;background-color: #fd6420;border: none;">TIMETABLE</button>
         </div>
     </section>
+    
+<!--
+||--------------------||
+||--READING THE POST--||
+||--------------------||
+-->
+<?php
+    if(isset($_GET['id'])){
+    $id=$_GET['id'];
+    $query="SELECT * FROM `posts` WHERE `id`='$id'";
+    $q_res=mysqli_query($con,$query);
+    if(!$q_res){
+        die("query failed ".mysqli_error($con));
+    }
+    $row=mysqli_fetch_assoc($q_res);
+    $title=$row['title'];
+    $author=$row['author'];
+    $content=$row['content'];
+    $img_name=$row['img_name'];
+    $date=$row['date'];
+    $category=$row['category'];
+    
+?>
+   
+    
     <section id="news" style="width: 100%;height: auto;padding-top: 50px;padding-bottom: 50px;">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12" data-aos="fade" data-aos-delay="600" style="margin-top: 1rem;margin-bottom: 1rem;">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
-                            <div><img src="assets/img/07.jpg" style="width: 100%;height: auto;"></div>
+                            <div><img src="assets/img/<?php echo $img_name; ?>" style="width: 100%;height: auto;"></div>
                             <div style="background-color: #98b446;">
                                 <div class="row" style="padding-right: 2rem;padding-left: 2rem;">
                                     <div class="col text-left" style="font-family: Montserrat, sans-serif;">
-                                        <p class="text-left" style="color: rgb(255,255,255);font-size: 20px;margin-bottom: 0px;">&nbsp; &nbsp; <span style="color: rgb(254,255,255);font-size: 32px;">17</span>&nbsp;Jul</p>
+                                        <p class="text-left" style="color: rgb(255,255,255);font-size: 20px;margin-bottom: 0px;">&nbsp; &nbsp; <span style="color: rgb(254,255,255);font-size: 32px;"><?php echo $title; ?></span></p>
                                     </div>
                                     <div class="col text-right" style="padding-right: 15px;padding-left: 15px;padding-top: 15px;"><a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i></a><a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;"></i></a>
                                         <a
@@ -33,28 +59,13 @@
                                 <div>
                                     <div class="row">
                                         <div class="col">
-                                            <p class="text-left" style="color: #98b446;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 500;">FOOD</p>
+                                            <p class="text-left" style="color: #98b446;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 500;"><?php echo $category; ?></p>
                                         </div>
                                         <div class="col">
-                                            <p class="text-right" style="color: #98b446;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 500;">STEPHAN POOLE</p>
+                                            <p class="text-right" style="color: #98b446;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 500;"><?php echo $author.' | '.$date; ?></p>
                                         </div>
                                     </div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 300;">Short ribs tenderloin corned beef pork. Picanha filet mignon cupim pastrami flank turkey jowl pork pork belly biltong venison sausage leberkas strip steak chicken. Pork chop pig prosciutto beef ribs ribeye brisket doner
-                                        corned beef cupim frankfurter. Pancetta shoulder jerky, tenderloin cupim tail ribeye bresaola short ribs pig frankfurter doner ground round andouille. Pig sausage picanha, cupim strip steak jowl alcatra turducken.<br></p>
-                                    <p
-                                        style="color: #666666;margin: 10px 0;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 300;">Short ribs tenderloin corned beef pork. Picanha filet mignon cupim pastrami flank turkey jowl pork pork belly biltong venison sausage leberkas strip steak chicken. Pork chop pig prosciutto beef ribs ribeye brisket doner
-                                        corned beef cupim frankfurter. Pancetta shoulder jerky, tenderloin cupim tail ribeye bresaola short ribs pig frankfurter doner ground round andouille. Pig sausage picanha, cupim strip steak jowl alcatra turducken.<br></p>
-                                        <p
-                                            style="color: #666666;margin: 10px 0;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 300;font-style: italic;"><em>“We are SO thrilled with the patio… thank you for making such a beautiful space. A couple of days ago one of the residents that ‘can’t’ stand up in the bathroom was standing“</em><br></p>
-                                            <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><a href="http://webdesign-finder.com/html/cashgo/blog-single-full.html#0"><strong>Raymond J. Jensen</strong></a><br></h1>
-                                            <p style="color: #666666;margin: 10px 0;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 300;font-style: italic;">CLIENT<br></p>
-                                            <p class="text-left" style="color: #666666;margin: 10px 0;font-size: 16px;font-family: Montserrat, sans-serif;font-weight: 300;font-style: normal;"><br>Leberkas venison sirloin andouille, drumstick filet mignon boudin hamburger pastrami pork chop ribeye bresaola ball tip. Alcatra turducken flank sirloin beef t-bone venison ball tip cow. Porchetta kevin
-                                                hamburger chuck. Porchetta doner drumstick, short ribs ham hock short loin salami filet mignon jowl pork chop swine bresaola cow picanha. Jowl venison swine corned beef.<br><br></p>
-                                            <ul class="list-unstyled fa-ul">
-                                                <li class="text-left" style="font-family: Montserrat, sans-serif;font-weight: 14px;"><i class="fas fa-check fa-li text-primary"></i>Brisket doner meatloaf turducke<br></li>
-                                                <li class="text-left" style="font-family: Montserrat, sans-serif;font-weight: 14px;"><i class="fas fa-check fa-li text-primary"></i>Pancetta landjaeger alcatra groun<br></li>
-                                                <li class="text-left" style="font-family: Montserrat, sans-serif;font-weight: 14px;"><i class="fas fa-check fa-li text-primary"></i>Round pork turkey boudin shank<br></li>
-                                            </ul>
+                                    <?php echo $content; ?>
                                 </div>
                             </div>
                         </div>
@@ -63,6 +74,11 @@
             </div>
         </div>
     </section>
+    <?php
+    }
+    ?>
+    
+
     <div id="empresa" style="padding:20px;margin:1px;">
         <div class="container">
             <div class="row">
@@ -95,7 +111,9 @@
                 </div>
             </div>
         </div>
-    </div><div class="container">
+    </div>
+    
+    <div class="container">
 	
 	<div class="card">
 	    <div class="card-body">

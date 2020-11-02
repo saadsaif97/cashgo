@@ -376,12 +376,34 @@ i.fa.fa-edit.icon::before{
 }
 
 
+/*=================*/
+/*BLOG POST CARD STYLING*/
+.blog_card:nth-child(odd) .card_head{
+    background-color: #98b446;
+}
+.blog_card:nth-child(odd) .card_body{
+    border: 1px solid #98b446;
+}
+.blog_card:nth-child(odd) .card_body a{
+    color: #788b40;
+}
 
 
 
+.blog_card:nth-child(even) .card_head{
+    background-color: #f1b22f;
+}
+.blog_card:nth-child(even) .card_body{
+    border: 1px solid #d09a2c;
+}
+.blog_card:nth-child(even) .card_body a{
+    color: #d49b22;
+}
 
 
 
+/*BLOG POST CARD STYLING*/
+/*=================*/
 
 
 

@@ -391,100 +391,63 @@
                         </div>
                     </div>
                 </div>
+                <!--
+                ||BRINGING LATEST||
+                -->
+                <?php
+                    //    showing current values
+                    $query="SELECT * FROM `posts`";
+                    $q_res=mysqli_query($con,$query);
+                    if(!$q_res){
+                        die("query failed ".mysqli_error($con));
+                    }
+                    while($row=mysqli_fetch_assoc($q_res)){
+                    $id=$row['id'];
+                    $title=$row['title'];
+                    $content=$row['content'];
+                    $content=substr($content,0,125)."...";
+                    $img_name=$row['img_name'];
+                    $date=$row['date'];
+                    $category=$row['category'];
+                    $author=$row['author'];
+                ?>
                 <div class="col-3 col-sm-12 col-md-3 n-card" data-aos="fade" data-aos-delay="600">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
-                            <div><img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;"></div>
+                            <div style="height:170px; width:100%; overflow:hidden;">
+                            <img src="assets/img/<?php echo $img_name; ?>" style="width: 100%;height: auto;">
+                            </div>
                             <div style="background-color: #98b446;">
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="color: rgb(255,255,255);font-size: 20px;margin-bottom: 0px;">&nbsp; &nbsp; <span style="color: rgb(254,255,255);font-size: 32px;">17</span>&nbsp;Jul</p>
+                                <div style="padding: 15px; display:flex; justify-content:space-between;">
+                                    <div style="display:flex; align-items:center;">
+                                        <p style="color: rgb(255,255,255);font-size: 14px;margin-bottom: 0px;"><?php echo $date; ?></p>
                                     </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-2"></div>
-                                            <div class="col-10" style="padding-right: 0px;padding-left: 0px;padding-top: 15px;padding-bottom: 15px;">
-                                                <a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;">
-                                                    <i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i>
-                                                </a>
-                                                <a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;">
-                                                    <i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;">
-                                                    </i>
-                                                </a>
-                                                <a href="#" style="margin: 10px;margin-right: 0;margin-left: 5px;"><i class="fas fa-share" style="color: rgb(255,255,255);font-size: 14px;"></i>
-                                                </a>
-                                            </div>
-                                        </div>
+                                    <div >
+                                        <a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;">
+                                            <i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i>
+                                        </a>
+                                        <a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;">
+                                            <i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;">
+                                            </i>
+                                        </a>
+                                        <a href="#" style="margin: 10px;margin-right: 0;margin-left: 5px;"><i class="fas fa-share" style="color: rgb(255,255,255);font-size: 14px;"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
-                            <div class="text-center border2" style="padding: 20px 15px;">
-                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h4>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div>
-                                <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div><a href="#" style="color: #98b446;">Read More</a></div>
+                            <div class="border2" style="padding: 20px 15px;">
+                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1.2;margin-bottom: 0px;"><?php echo $title; ?></h4>
+                                <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left;"><?php echo $content; ?></p>
+                                <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;">
+                                </div><a href="blog-post.php?id=<?php echo $id; ?>" style="color: #98b446;">Read More</a></div>
                         </div>
                     </div>
                 </div>
-                <div class="col-3 col-sm-12 col-md-3 n-card" data-aos="fade" data-aos-delay="700">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div><img src="assets/img/gallery2.jpg" style="width: 100%;height: auto;"></div>
-                            <div style="background-color: #f1b22f;">
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="color: rgb(255,255,255);font-size: 20px;margin-bottom: 0px;">&nbsp; &nbsp; <span style="color: rgb(254,255,255);font-size: 32px;">17</span>&nbsp;Jul</p>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-2"></div>
-                                            <div class="col-10" style="padding-right: 0px;padding-left: 0px;padding-top: 15px;padding-bottom: 15px;"><a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i></a><a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;"></i></a>
-                                                <a
-                                                    href="#" style="margin: 10px;margin-right: 0;margin-left: 5px;"><i class="fas fa-share" style="color: rgb(255,255,255);font-size: 14px;"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center border3" style="padding: 20px 15px;">
-                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h4>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div>
-                                <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div><a href="#" style="color: #F1B22F;">Read More</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-sm-12 col-md-3 n-card" data-aos="fade" data-aos-delay="800">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <div><img src="assets/img/gallery3.jpg" style="width: 100%;height: auto;"></div>
-                            <div style="background-color: #FD6420;">
-                                <div class="row">
-                                    <div class="col">
-                                        <p style="color: rgb(255,255,255);font-size: 20px;margin-bottom: 0px;">&nbsp; &nbsp; <span style="color: rgb(254,255,255);font-size: 32px;">17</span>&nbsp;Jul</p>
-                                    </div>
-                                    <div class="col">
-                                        <div class="row">
-                                            <div class="col-2"></div>
-                                            <div class="col-10" style="padding-right: 0px;padding-left: 0px;padding-top: 15px;padding-bottom: 15px;"><a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i></a><a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;"></i></a>
-                                                <a
-                                                    href="#" style="margin: 10px;margin-right: 0;margin-left: 5px;"><i class="fas fa-share" style="color: rgb(255,255,255);font-size: 14px;"></i></a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="text-center border4" style="padding: 20px 15px;">
-                                <h4 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h4>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div>
-                                <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div><a href="#" style="color: #FD6420;">Read More</a></div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                ?>
+                
+                
             </div>
         </div>
     </section>

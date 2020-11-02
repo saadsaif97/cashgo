@@ -33,8 +33,7 @@
                         <label for="email">EMAIL</label>
                     </div>
                     <div class="col-sm-12 col-md-12 form-div">
-                        <textarea name="first-name" rows="10" ></textarea>
-                        <label for="fname" >MASSEGE</label>
+                        <textarea name="first-name" rows="10" placeholder="MESSAGE"></textarea>
                     </div>
                     <div class="col-sm-12 col-md-12">
                         <button class="btn" type="button">SEND</button>

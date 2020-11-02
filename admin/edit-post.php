@@ -19,15 +19,15 @@
     $edit_id=$_GET['edit'];
     if(isset($_POST['update'])){
         $title=$_POST['title'];
+        $title=mysqli_real_escape_string($con,$title);
         $content=$_POST['content'];
-//      handling image
+        $content=mysqli_real_escape_string($con,$content);
         $img_name=$_FILES["img"]["name"]; 
-
-        //Get the content of the image and then add slashes to it 
-        $imagetmp=$_FILES['img']['tmp_name'];
+        $img_name=mysqli_real_escape_string($con,$img_name);
         
+        $imagetmp=$_FILES['img']['tmp_name'];
         move_uploaded_file($imagetmp, "../assets/img/$img_name");
-//      ==========================================================
+        
         $date=date('Y/m/d');
         $category=$_POST['category'];
         $author= "admin";
