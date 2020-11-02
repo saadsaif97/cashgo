@@ -1,4 +1,5 @@
 <?php include "includes/db.php"; ?>
+
 <!--getting the home title-->
 <?php
     $query="SELECT * FROM `home`";
@@ -25,8 +26,12 @@
                     <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="blog-grid.php">GRID BLOG</a><a class="dropdown-item" role="presentation" href="blog-post.php">POST</a></div>
                 </li>
                 <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "contact"){echo 'active';} ?>" href="contact.php">CONTACT</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "register"){echo 'active';} ?>" href="#">REGISTER</a></li>
-                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "login"){echo 'active';} ?>" href="#">LOGIN</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "register"){echo 'active';} ?>" href="register.php">REGISTER</a></li>
+                <?php if($_SESSION['logged_in']): ?>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="logout.php">LOGOUT</a></li>
+                <?php else: ?>
+                    <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "login"){echo 'active';} ?>" href="login.php">LOGIN</a></li>
+                <?php endif; ?>
             </ul>
             
     

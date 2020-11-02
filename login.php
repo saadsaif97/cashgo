@@ -1,3 +1,5 @@
+<?php include "includes/db.php"; ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +35,6 @@
     <link rel="stylesheet" href="assets/css/Feature-Section-MD.css">
     <link rel="stylesheet" href="assets/css/Featured-Section.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
@@ -56,9 +57,71 @@
     <link rel="stylesheet" href="assets/css/Timer-darkknight145.css">
     
 
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/custom-styling.css">
     
     <link rel="stylesheet" href="assets/css/calender.css">
 
 </head>
+
+<!--including top nav-->
+        <?php $currentPage="login"; ?>
+        <?php include "includes/topNav.php"; ?>
+<!--========================-->
+<?php
+    if(isset($_POST['login'])){
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        if($email && $password){
+            $query = "SELECT * from `users` WHERE `email`='$email'";
+            $q_res = mysqli_query($con, $query);
+            if(!$q_res){
+                die("query failed ".mysqli_error($con));
+            }else{
+                if(mysqli_num_rows($q_res) == 1){
+                        $password = mysqli_real_escape_string($con,sha1($password));
+                        $row=mysqli_fetch_assoc($q_res);
+                        $username = $row['username'];
+                        $email = $row['email'];
+                        $upass = $row['password'];
+                        if($upass!==$password){
+                            echo "password missmatch";
+                        }else{
+                            echo "Welcome";
+                            $_SESSION['username']= $username;
+                            $_SESSION['email']= $email;
+                            $_SESSION['logged_in']= TRUE;
+                        }
+                }else{
+                    echo "User does not exits!";
+                }
+            }
+        }else{
+            echo "please fill all the fileds";
+        }
+    }
+ 
+?>
+
+
+
+<body>
+
+    <div class="container">
+       <div class="row py-5">
+        <div class="col col-4 offset-4">
+            <h3 class="font-weight-bolder">Login:</h3>
+            <form action="login.php" method="post" class="my-5">
+                <div class="form-group">
+                    <input type="email" name="email" id="email" placeholder="Enter email" class="form-control" required>
+                  </div>
+                 <div class="form-group">
+                    <input type="password" name="password" id="password" placeholder="password" class="form-control" required>
+                  </div>
+                  <input type="submit" name="login" class="btn btn-primary" value="Login">
+            </form>
+        </div>
+       </div>
+    </div>
+
+</body>
+</html>

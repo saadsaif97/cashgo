@@ -1,3 +1,4 @@
+<?php include "includes/db.php"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -33,7 +34,6 @@
     <link rel="stylesheet" href="assets/css/Feature-Section-MD.css">
     <link rel="stylesheet" href="assets/css/Featured-Section.css">
     <link rel="stylesheet" href="assets/css/Footer-Basic.css">
-    <link rel="stylesheet" href="assets/css/Google-Style-Text-Input.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
@@ -56,9 +56,77 @@
     <link rel="stylesheet" href="assets/css/Timer-darkknight145.css">
     
 
-    <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/custom-styling.css">
     
     <link rel="stylesheet" href="assets/css/calender.css">
 
 </head>
+
+<!--including top nav-->
+        <?php $currentPage="register"; ?>
+        <?php include "includes/topNav.php"; ?>
+<!--========================-->
+<?php
+    if(isset($_POST['register'])){
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $cpass = $_POST['cpass'];
+        if($username && $email && $password){
+            $query = "SELECT * from `users` WHERE `email`='$email'";
+            $q_res = mysqli_query($con, $query);
+            if(!$q_res){
+                die("query failed ".mysqli_error($con));
+            }else{
+                
+                if(mysqli_num_rows($q_res) == 1){
+                    echo "User exists! you can't login with this email";
+                }else{
+                    if($password==$cpass){
+                        $password = mysqli_real_escape_string($con,sha1($password));
+                        $query = "INSERT INTO `users`(`username`, `email`, `password`) VALUES ('$username','$email','$password')";
+                        $q_res = mysqli_query($con, $query);
+                        if(!$q_res){
+                            die("query failed ".mysqli_error($con));
+                        }else{
+                            echo "Registered successfully";
+                        }
+                    }else{
+                        echo "password missmatch";
+                    }
+                }
+            }
+        }else{
+            echo "please fill all the fileds";
+        }
+    }
+?>
+
+
+<body>
+
+    <div class="container">
+       <div class="row py-5">
+        <div class="col col-4 offset-4">
+            <h3 class="font-weight-bolder">Register:</h3>
+            <form action="register.php" method="post" class="my-5">
+               <div class="form-group">
+                    <input type="text" id="text" name="username" placeholder="username" class="form-control" required>
+                  </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder="email" class="form-control" required>
+                  </div>
+                 <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="password" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="password" id="cpass" name="cpass" placeholder="confirm password" class="form-control" required>
+                  </div>
+                  <input type="submit" name="register" class="btn btn-primary" value="Register">
+            </form>
+        </div>
+       </div>
+    </div>
+
+</body>
+</html>
