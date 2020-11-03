@@ -1,5 +1,11 @@
+<?php
+ob_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php include "includes/db.php"; ?>
-
 <!DOCTYPE html>
 <html>
 
@@ -61,6 +67,7 @@
     
     <link rel="stylesheet" href="assets/css/calender.css">
 
+
 </head>
 
 <!--including top nav-->
@@ -84,25 +91,29 @@
                         $email = $row['email'];
                         $upass = $row['password'];
                         if($upass!==$password){
-                            echo "password missmatch";
+                            echo "<div class='alert alert-warning' role='alert'>
+                                  <strong>Either password or username is invalid!</strong>
+                                </div>";
                         }else{
-                            echo "Welcome";
                             $_SESSION['username']= $username;
                             $_SESSION['email']= $email;
                             $_SESSION['logged_in']= TRUE;
+                            header("Location: index.php");
                         }
                 }else{
-                    echo "User does not exits!";
+                    echo "<div class='alert alert-warning' role='alert'>
+                      <strong>User does not exists!</strong>
+                    </div>";
                 }
             }
         }else{
-            echo "please fill all the fileds";
+            echo "<div class='alert alert-warning' role='alert'>
+                      <strong>Please fill all the fields!</strong>
+                    </div>";
         }
     }
  
 ?>
-
-
 
 <body>
 

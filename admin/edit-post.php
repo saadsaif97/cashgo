@@ -19,8 +19,10 @@
     $edit_id=$_GET['edit'];
     if(isset($_POST['update'])){
         $title=$_POST['title'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $title=mysqli_real_escape_string($con,$title);
         $content=$_POST['content'];
+        $content=preg_replace('/<[h123456p*\/]*>/','',$content);
         $content=mysqli_real_escape_string($con,$content);
         $img_name=$_FILES["img"]["name"]; 
         $img_name=mysqli_real_escape_string($con,$img_name);
@@ -81,11 +83,11 @@
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input type="text" class="form-control form-control-sm" name="title" id="title" value="<?php echo $title; ?>" required>
+                    <textarea name="title" id="title" style="width:100%;" rows="10" required><?php echo $title; ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="content">Content:</label>
-                    <input type="text" class="form-control form-control-sm" name="content" id="content" value="<?php echo $content; ?>" required>
+                    <textarea name="content" id="content" style="width:100%;" rows="10" required> <?php echo $content; ?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="img"><img style="width:200px;" src="../assets/img/<?php echo $img_name; ?>" alt="current image">

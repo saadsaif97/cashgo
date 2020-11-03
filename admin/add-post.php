@@ -11,6 +11,7 @@
     $row=mysqli_fetch_assoc($q_res);   
     $currentLogo=$row['logo'];
 ?>
+<?php include "includes/header.php"; ?>
 <!--
 ||-------------------------||
 ||--CREATING THE NEW POST--||
@@ -19,8 +20,10 @@
 <?php
     if(isset($_POST['create'])){
         $title=$_POST['title'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $title=mysqli_real_escape_string($con,$title);
         $content=$_POST['content'];
+        $content=preg_replace('/<[h123456p*\/]*>/','',$content);
         $content=mysqli_real_escape_string($con,$content);
 //      handling image
         $img_name=$_FILES["img"]["name"]; 
@@ -43,24 +46,23 @@
                 header("Location: posts.php");
             }
         }else{
-            echo "some field is missing";
+            echo "<div class='alert alert-warning' role='alert'>
+                  <strong>Please fill all the fields!</strong>
+                </div>";
         }
     }
 ?>
-
-<?php include "includes/header.php"; ?>
-
 <div class="container">
     <div class="row py-5">
         <div class="col col-6 offset-3">
             <form action="#" method="post" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="title">Title:</label>
-                    <input type="text" class="form-control form-control-sm" name="title" id="title" required>
+                    <textarea name="title" id="title" style="width:100%;" rows="10"><?php if(isset($title)){echo $title;};?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="content">Content:</label>
-                    <input type="text" class="form-control form-control-sm" name="content" id="content" required>
+                    <textarea name="content" id="content" style="width:100%;" rows="10"><?php if(isset($content)){echo $content;};?></textarea>
                 </div>
                 <div class="form-group">
                     <label for="img">Image:</label>
@@ -81,7 +83,7 @@
                             }
                             while($row=mysqli_fetch_assoc($q_res)){
                             $category=$row['category'];
-                                echo "<option value='$category'>$category</option>";
+                                echo "<option value='$category' >$category</option>";
                             }
                         ?>
                     </select>

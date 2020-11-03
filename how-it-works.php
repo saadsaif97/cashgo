@@ -1,3 +1,10 @@
+<?php
+ob_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php $currentPage="howItWorks"; ?>
 <?php include "includes/db.php"; ?>
 <?php include "includes/header.php"; ?>

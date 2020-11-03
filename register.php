@@ -1,3 +1,11 @@
+
+<?php
+ob_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php include "includes/db.php"; ?>
 <!DOCTYPE html>
 <html>
@@ -73,31 +81,45 @@
         $password = $_POST['password'];
         $cpass = $_POST['cpass'];
         if($username && $email && $password){
-            $query = "SELECT * from `users` WHERE `email`='$email'";
-            $q_res = mysqli_query($con, $query);
-            if(!$q_res){
-                die("query failed ".mysqli_error($con));
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+              echo "<div class='alert alert-warning' role='alert'>
+                  <strong>Please enter the valid email!</strong>
+                </div>";
             }else{
-                
-                if(mysqli_num_rows($q_res) == 1){
-                    echo "User exists! you can't login with this email";
+                $query = "SELECT * from `users` WHERE `email`='$email'";
+                $q_res = mysqli_query($con, $query);
+                if(!$q_res){
+                    die("query failed ".mysqli_error($con));
                 }else{
-                    if($password==$cpass){
-                        $password = mysqli_real_escape_string($con,sha1($password));
-                        $query = "INSERT INTO `users`(`username`, `email`, `password`) VALUES ('$username','$email','$password')";
-                        $q_res = mysqli_query($con, $query);
-                        if(!$q_res){
-                            die("query failed ".mysqli_error($con));
-                        }else{
-                            echo "Registered successfully";
-                        }
+
+                    if(mysqli_num_rows($q_res) == 1){
+                        echo "<div class='alert alert-warning' role='alert'>
+                              <strong>User already exists with this email!</strong> You cannot register with this email.
+                            </div>";
                     }else{
-                        echo "password missmatch";
+                        if($password==$cpass){
+                            $password = mysqli_real_escape_string($con,sha1($password));
+                            $query = "INSERT INTO `users`(`username`, `email`, `password`) VALUES ('$username','$email','$password')";
+                            $q_res = mysqli_query($con, $query);
+                            if(!$q_res){
+                                die("query failed ".mysqli_error($con));
+                            }else{
+                                echo "<div class='alert alert-success' role='alert'>
+                                      <strong>User registered successfully!</strong> Now please confirm your email to login.
+                                    </div>";
+                            }
+                        }else{
+                            echo "<div class='alert alert-warning' role='alert'>
+                                      <strong>Password does not matches!</strong>
+                                </div>";
+                        }
                     }
                 }
             }
         }else{
-            echo "please fill all the fileds";
+            echo "<div class='alert alert-warning' role='alert'>
+                  <strong>All fields are required!</strong>
+                </div>";
         }
     }
 ?>

@@ -1,3 +1,10 @@
+<?php
+ob_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php include "includes/db.php"; ?>
 <?php $currentPage="blog"; ?>
 <?php include "includes/header.php"; ?>
@@ -43,16 +50,15 @@
                 <div class="col-12 col-sm-12 col-md-12" data-aos="fade" data-aos-delay="600" style="margin-top: 1rem;margin-bottom: 1rem;">
                     <div class="row">
                         <div class="col-sm-12 col-md-12">
-                            <div><img src="assets/img/<?php echo $img_name; ?>" style="width: 100%;height: auto;"></div>
-                            <div style="background-color: #98b446;">
-                                <div class="row" style="padding-right: 2rem;padding-left: 2rem;">
-                                    <div class="col text-left" style="font-family: Montserrat, sans-serif;">
-                                        <p class="text-left" style="color: rgb(255,255,255);font-size: 20px;margin-bottom: 0px;">&nbsp; &nbsp; <span style="color: rgb(254,255,255);font-size: 32px;"><?php echo $title; ?></span></p>
-                                    </div>
-                                    <div class="col text-right" style="padding-right: 15px;padding-left: 15px;padding-top: 15px;"><a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i></a><a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;"></i></a>
-                                        <a
-                                            href="#" style="margin: 10px;margin-right: 0;margin-left: 5px;"><i class="fas fa-share" style="color: rgb(255,255,255);font-size: 14px;"></i></a>
-                                    </div>
+                            <div><img src="assets/img/<?php echo $img_name; ?>" style="width: 100%;height: auto;">
+                            </div>
+                            <div style="background-color: #98b446; display:flex; align-items:center; justify-content:space-between; padding: 15px 20px;">
+                                <div style="font-family: Montserrat, sans-serif;">
+                                    <p class="text-left" style="color: #fff; font-size: 32px; margin-bottom:0px;"><?php echo $title; ?></p>
+                                </div>
+                                <div ><a class="text-center" href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="far fa-eye" style="color: rgb(255,255,255);font-size: 14px;"></i></a><a href="#" style="margin: 10px;margin-right: 5px;margin-left: 5px;"><i class="fas fa-star" style="color: rgb(251,251,251);font-size: 14px;"></i></a>
+                                    <a
+                                        href="#" style="margin: 10px;margin-right: 0;margin-left: 5px;"><i class="fas fa-share" style="color: rgb(255,255,255);font-size: 14px;"></i></a>
                                 </div>
                             </div>
                             <div class="text-center border2" style="padding: 20px 15px;">
@@ -65,7 +71,9 @@
                                             <p class="text-right" style="color: #98b446;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 500;"><?php echo $author.' | '.$date; ?></p>
                                         </div>
                                     </div>
+                                    <p style="text-align:left; font-weight:normal;">
                                     <?php echo $content; ?>
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -77,93 +85,127 @@
     <?php
     }
     ?>
-    
+    <!--
+                ||BRINGING LATEST POSTS||
+                -->
+                <?php
+                    //    showing current values
+//                    $query="SELECT * FROM `posts`";
+                    $query="SELECT * FROM (SELECT * FROM `posts` ORDER BY id DESC LIMIT 3) as r ORDER BY id DESC";
+                    $q_res=mysqli_query($con,$query);
+                    if(!$q_res){
+                        die("query failed ".mysqli_error($con));
+                    }
+                    while($row=mysqli_fetch_assoc($q_res)){
+                    $id=$row['id'];
+                    $title=$row['title'];
+                    $content=$row['content'];
+                    $content=substr($content,0,300)."...";
+                    $img_name=$row['img_name'];
+                    $date=$row['date'];
+                    $category=$row['category'];
+                    $author=$row['author'];
+                ?>
 
     <div id="empresa" style="padding:20px;margin:1px;">
         <div class="container">
             <div class="row">
-                <div class="col-sm-6 col-md-5 col-lg-5"><img src="assets/img/law-document.jpeg"></div>
-                <div class="col-sm-6 col-md-7 col-lg-7">
-                    <p style="color: #666666;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 300;margin-bottom: 0px;"><br>Beef ribs sirloin jowl kielbasa tri-tip andouille, capicola ham frankfurter cupim pig turducken pork. Jowl spare ribs kielbasa pork pancetta pork belly corned beef ham hock cow chicken cupim drumstick sirloin venison. Prosciutto
-                        t-bone cow shank capicola andouille.<br><br></p>
-                    <p style="color: #666666;font-size: 14px;font-family: Montserrat, sans-serif;font-weight: 300;"><br>Shoulder turducken andouille hamburger chicken. Short loin chuck fatback rump short ribs pancetta brisket ball tip capicola strip steak t-bone bresaola landjaeger ribeye. Bresaola pork belly ball tip spare ribs flank kielbasa drumstick
-                        porchetta turkey pork loin doner sausage.<br></p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="empresa" style="padding:20px;margin:1px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-md-5 col-lg-5"><img src="assets/img/law-document.jpeg"></div>
+                <div class="col-sm-6 col-md-5 col-lg-5"><img src="assets/img/<?php echo $img_name; ?>"></div>
                 <div class="col-sm-6 col-md-7 col-lg-7">
                     <h1 style="color: #002632;font-family: Montserrat, sans-serif;font-weight: 500;font-size: 24px;">
-                        <strong>Lusie Benching</strong>
+                        <strong><?php echo $title; ?></strong>
                         <br></h1>
-                        <span style="color: #ff0000;font-size: 12px;font-weight: 300;">CLIENT<br>
+                        <span style="color: #ff0000;font-size: 12px;font-weight: 300;"><?php echo $author; ?><br>
                         </span>
-                    <p class="text-left" style="font-size: 14px;color: #666666;font-weight: 300;font-family: Montserrat, sans-serif;"><br>Tail burgdoggen pork loin strip steak rump pastrami ground round tongue kielbasa chicken. Pancetta filet mignon t-bone brisket ham, corned beef pork chop cow picanha biltong.<br></p>
-                    <div class="d-flex"><a class="social-link" href="#" style="margin: 0px 5px;"><i class="fa fa-facebook social-link-icon"></i><div class="social-link-effect"></div></a><a class="social-link" href="#" style="margin: 0px 5px;"><i class="fa fa-twitter social-link-icon"></i><div class="social-link-effect"></div></a>
-                        <a
-                            class="social-link" href="#" style="margin: 0px 5px;"><i class="fa fa-instagram social-link-icon"></i>
-                            <div class="social-link-effect"></div>
-                            </a><a class="social-link" href="#" style="margin: 0px 5px;"><i class="fa fa-github social-link-icon"></i><div class="social-link-effect"></div></a></div>
+                    <p class="text-left" style="font-size: 14px;color: #666666;font-weight: 300;font-family: Montserrat, sans-serif;"><br><?php echo $content; ?><br></p>
+                    <a href="blog-post.php?id=<?php echo $id; ?>" style="color: blue;">Read more</a>
                 </div>
             </div>
         </div>
     </div>
     
+<?php
+}
+?>
+<!-------------------------->
+<!--COMMENT SECTION STARTS-->
+<!-------------------------->
+    <hr>
+    
     <div class="container">
+    <h4 style="font-weight:bolder;">Comments:</h4>
 	
 	<div class="card">
 	    <div class="card-body">
-	        <div class="row">
-        	    <div class="col-md-2">
-        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-        	        <p class="small-text text-center">15 Minutes Ago</p>
-        	    </div>
-        	    <div class="col-md-10">
-        	        <p>
-        	            <a class="chat-name" href="#">Maniruzzaman Akash</a>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-                        <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
-        	            <span class="float-right"><i class="text-warning fa fa-star"></i></span>
+                <!--
+                ||BRINGING COMMENTS||
+                -->
+                <?php
+                    $id=$_GET['id'];
+//                    $query="SELECT * FROM `posts`";
+                    $query="SELECT * FROM `post_comments` WHERE `post_id`='$id' AND `status`='1'";
+                    $q_res=mysqli_query($con,$query);
+                    if(!$q_res){
+                        die("query failed ".mysqli_error($con));
+                    }
+                    
+                    if(mysqli_num_rows($q_res) == 0){
+                        echo "This post has no approved comment";
+                    }else{
+                    while($row=mysqli_fetch_assoc($q_res)){
+                    $id=$row['id'];
+                    $comment=$row['comment'];
+                    $cmnt_author=$row['cmnt_author'];
+                    $time_stamp=$row['time_stamp'];
+                    
+                    function timeago($date) {
+                       $timestamp = strtotime($date);	
 
-        	       </p>
-        	       <div class="clearfix"></div>
-        	        <p class="small-text">Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-        	        <p>
-                        <br>
-        	            <a class="float-right btn btn-outline-primary ml-2"> <i class="fa fa-reply"></i> Reply</a>
-        	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                   </p>
+                       $strTime = array("second", "minute", "hour", "day", "month", "year");
+                       $length = array("60","60","24","30","12","10");
+
+                       $currentTime = time();
+                       if($currentTime >= $timestamp) {
+                            $diff     = time()- $timestamp;
+                            for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+                            $diff = $diff / $length[$i];
+                            }
+
+                            $diff = round($diff);
+                            return $diff . " " . $strTime[$i] . "(s) ago ";
+                       }
+                    }
+                        
+                        $strTimeAgo=timeago($time_stamp);
+                    ?>
+
+	        <div class="row" style="align-items:center;">
+        	    <div style="display:flex; flex-direction:column; justify-content:center; margin-right: 50px;">
+        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg"  class="mb-3" style="width:60px; align-self:center;"/>
+        	        <p class="small-text" style="text-align:center; margin:0;"><?php echo $cmnt_author; ?></p>
+                    <p class="small-text" style="text-align:left; margin:0;">
+                        <small>
+                            <?php echo $strTimeAgo; ?>
+                        </small>
+                    </p>
+        	    </div>
+        	    <div>
+        	        <p class="small-text"><?php echo $comment; ?></p>
                    <br>
                 </div>
-                
 	        </div>
-	        	<div class="card card-inner">
-            	    <div class="card-body">
-            	        <div class="row">
-                    	    <div class="col-md-2">
-                    	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg" class="img img-rounded img-fluid"/>
-                    	        <p class="small-text">15 Minutes Ago</p>
-                    	    </div>
-                    	    <div class="col-md-10">
-                    	        <p><a class="chat-name" href="https://maniruzzaman-akash.blogspot.com/p/contact.html">Maniruzzaman Akash</a></p>
-                    	        <p class="small-text">Lorem Ipsum is simply dummy text of the pr make  but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                    	        <p>
-                                    <br>
-                    	            <a class="float-right btn btn-outline-primary ml-2">  <i class="fa fa-reply"></i> Reply</a>
-                    	            <a class="float-right btn text-white btn-danger"> <i class="fa fa-heart"></i> Like</a>
-                    	       </p>
-                    	    </div>
-            	        </div>
-            	    </div>
-	            </div>
+                <?php
+                    }//while
+                    }//else
+                ?>
+
 	    </div>
 	</div>
 </div>
+   
+<!------------------------>
+<!--COMMENT SECTION ENDS-->
+<!------------------------>
     <div class="footer-basic" style="background-color: #002632;">
         <footer>
             <div class="social"><a href="#"><i class="icon ion-social-instagram" style="color: rgb(255,255,255);"></i></a><a href="#"><i class="icon ion-social-google" style="color: rgb(255,255,255);"></i></a><a href="#"><i class="icon ion-social-twitter" style="color: rgb(255,255,255);"></i></a>

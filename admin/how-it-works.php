@@ -251,8 +251,7 @@
                             </form>
                         </div>
 <!--                        editor-->
-                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;">Tenderloin burgdoggen kielbasa chicken, ground round meatloaf ball tip cow bresaola ribeye porchetta tri-tip. Shoulder tail pork belly meatloaf ball tip bresaola. Pork fatback kevin prosciutto boudin drumstick swine ham hock short
-                            loin hamburger chicken porchetta alcatra bresaola.<sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></p>
+                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;"><?php echo $currentS2Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></p>
 <!--                        editor-->
                         <div  id="editor" style="display:none; backgound-color:#fff;">
                             <form action="#" method="post" class="mt-3">
@@ -268,7 +267,6 @@
                         </ul>
                     </div>
                     <div class="col-12 col-sm-6 d-flex flex-row justify-content-center align-items-center intro-card-2 p-5"><img class="howto-img" src="assets/img/phone-icon.png">
-                        <h2 class="grey-text d-none">Neye İhtiyacınız Varsa Belirtin</h2>
                     </div>
                 </div>
 <!--                SECTION 2-->
@@ -287,8 +285,7 @@
                             </form>
                         </div>
 <!--                        editor-->
-                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;">Cupim sirloin shankle flank short ribs pork belly tenderloin boudin frankfurter doner. Pork pork chop andouille, meatball alcatra capicola corned beef tail kevin flank hamburger landjaeger shank. Tongue bresaola fatback hamburger
-                            tri-tip jowl. Brisket spare ribs pig ham hock tongue picanha.<sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></p>
+                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;"><?php echo $currentS3Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></p>
 <!--                        editor-->
                         <div  id="editor" style="display:none; backgound-color:#fff;">
                             <form action="#" method="post" class="mt-3">

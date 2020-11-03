@@ -1,3 +1,10 @@
+<?php
+ob_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php $currentPage="plans"; ?>
 <?php include "includes/header.php"; ?>
 

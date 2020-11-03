@@ -1,3 +1,10 @@
+<?php
+ob_start();
+    if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
+?>
 <?php include "includes/db.php"; ?>
 <!--getting the home title-->
 <?php
@@ -396,7 +403,8 @@
                 -->
                 <?php
                     //    showing current values
-                    $query="SELECT * FROM `posts`";
+//                    $query="SELECT * FROM `posts`";
+                    $query="SELECT * FROM (SELECT * FROM `posts` ORDER BY id DESC LIMIT 3) as r ORDER BY id DESC";
                     $q_res=mysqli_query($con,$query);
                     if(!$q_res){
                         die("query failed ".mysqli_error($con));
