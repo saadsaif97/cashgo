@@ -18,7 +18,7 @@
    <div class="col col-6 offset-3">
    <h4>Plan card:</h4>
    <hr>
-    <form action="#" id="app">
+    <form action="#" method="post" id="app">
         <div class="form-group">
             <input type="text" name="title" id="title" class="form-control" placeholder="title">
         </div>
@@ -29,16 +29,17 @@
             <a id="insert" class="btn" @click="rows++" style="background-color:gray;">+ Add row</a>
             <a id="insert" class="btn" @click="rows--" style="background-color:gray;">- Remove row</a>
         </div>
-        <div v-for="count in rows" v-html="list">
+<!--        rendring the lists-->
+<!--
+        <div v-for="count in rows" v-html="list" class="form-group">
         </div>
+-->
+       <my-list></my-list>
         
 <!--        row-->
 <!--
         <div class="form-group">
              <div class="form-group">
-             <small>
-            <a id="delete" style="background-color:orange; padding:5px; cursor:pointer; float:right;">Delete Row</a>
-             </small>
                 <select class="form-control" id="exampleFormControlSelect1">
                     <?php
                     $query="SELECT * FROM `plan_card_rows`";
@@ -66,32 +67,53 @@
     </div>
 </div>
 
-<script>
-    var vm = new Vue({
-      el: '#app',
-      data: {
-        rows: 3,
-        list: `<div class="form-group">
-                         <div class="form-group">
-                            <select class="form-control">
-                                <?php
-                                $query="SELECT * FROM `plan_card_rows`";
-                                $q_res=mysqli_query($con,$query);
-                                if(!$q_res){
-                                    die("query failed ".mysqli_error($con));
-                                }
-                                while($row=mysqli_fetch_assoc($q_res)){
-                                $content=$row['content'];
-                                $content=htmlspecialchars_decode($content);
-
-                                    echo "<option>$content</option>";
-                                } 
-                                ?>
-                            </select>
-                          </div>
-                    </div>`
+<?php
+    if(isset($_POST['create'])){
+        $title=$_POST['title'];
+        $content=$_POST['content'];
+       
     }
+?>
+
+<script>
+
+    Vue.component('my-list', {
+      template: 
+        `<div class="form-group">
+             <div class="form-group">
+                <select class="form-control" >
+                    <?php
+                    $query="SELECT * FROM `plan_card_rows`";
+                    $q_res=mysqli_query($con,$query);
+                    if(!$q_res){
+                        die("query failed ".mysqli_error($con));
+                    }
+                    while($row=mysqli_fetch_assoc($q_res)){
+                    $content=$row['content'];
+                    $content=htmlspecialchars_decode($content);
+
+                        echo "<option>$content</option>";
+                    } 
+                    ?>
+                </select>
+              </div>
+        </div>`
+    })
+    
+    
+    var vm = new Vue({
+        el: '#app',
+        data:{
+            rows:1
+        },
+        components:{
+            "my-list":'my-list'
+        }
     });
+    
+    
+    
+    
 </script>
 
 
