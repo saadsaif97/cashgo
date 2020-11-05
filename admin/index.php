@@ -23,6 +23,7 @@
 //    updating the title
     if(isset($_POST['updateTitle'])){
         $title=$_POST['title'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `title`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -36,6 +37,7 @@
 //    updating the tagline
     if(isset($_POST['updateTagLine'])){
         $tagLine=$_POST['tag_line'];
+        $tagLine=preg_replace('/<[h123456p*\/]*>/','',$tagLine);
         $query="UPDATE `home` SET `tag_line`='$tagLine'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -77,6 +79,7 @@
 //    card one title
     if(isset($_POST['updateC1Title'])){
         $title=$_POST['hc1t'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card1_title`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -105,6 +108,7 @@
 //    card two title
     if(isset($_POST['updateC2Title'])){
         $title=$_POST['hc2t'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card2_title`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -116,6 +120,7 @@
 //    card two content
     if(isset($_POST['updateC2Conent'])){
         $title=$_POST['hc2c'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card2_content`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -133,6 +138,7 @@
 //    card three title
     if(isset($_POST['updateC3Title'])){
         $title=$_POST['hc3t'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card3_title`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -144,6 +150,7 @@
 //    card three content
     if(isset($_POST['updateC3Conent'])){
         $title=$_POST['hc3c'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card3_content`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -161,6 +168,7 @@
 //    card four title
     if(isset($_POST['updateC4Title'])){
         $title=$_POST['hc4t'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card4_title`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -172,6 +180,7 @@
 //    card four content
     if(isset($_POST['updateC4Conent'])){
         $title=$_POST['hc4c'];
+        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card4_content`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -201,6 +210,7 @@
 //    s1 line2
     if(isset($_POST['updateS1L2'])){
         $s1_line2=$_POST['s1_line2'];
+        $s1_line2=preg_replace('/<[h123456p*\/]*>/','',$s1_line2);
         $query="UPDATE `home` SET `s1_line2`='$s1_line2'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -213,6 +223,7 @@
 //    s1 content
     if(isset($_POST['updateS1Content'])){
         $s1_content=$_POST['s1_content'];
+        $s1_content=preg_replace('/<[h123456p*\/]*>/','',$s1_content);
         $query="UPDATE `home` SET `s1_content`='$s1_content'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -230,6 +241,7 @@
 //    s2 line1
     if(isset($_POST['updateS2L1'])){
         $s2_line1=$_POST['s2_line1'];
+        $s2_line1=preg_replace('/<[h123456p*\/]*>/','',$s2_line1);
         $query="UPDATE `home` SET `s2_line1`='$s2_line1'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -242,6 +254,7 @@
 //    s2 line2
     if(isset($_POST['updateS2L2'])){
         $s2_line2=$_POST['s2_line2'];
+        $s2_line2=preg_replace('/<[h123456p*\/]*>/','',$s2_line2);
         $query="UPDATE `home` SET `s2_line2`='$s2_line2'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -259,6 +272,7 @@
 //    s3 line1
     if(isset($_POST['updateS3L1'])){
         $s3_line1=$_POST['s3_line1'];
+        $s3_line1=preg_replace('/<[h123456p*\/]*>/','',$s3_line1);
         $query="UPDATE `home` SET `s3_line1`='$s3_line1'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -271,6 +285,7 @@
 //    s3 line2
     if(isset($_POST['updateS3L2'])){
         $s3_line2=$_POST['s3_line2'];
+        $s3_line2=preg_replace('/<[h123456p*\/]*>/','',$s3_line2);
         $query="UPDATE `home` SET `s3_line2`='$s3_line2'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -283,6 +298,7 @@
 //    s3 title1
     if(isset($_POST['updateS3T1'])){
         $s3_title1=$_POST['s3_title1'];
+        $s3_title1=preg_replace('/<[h123456p*\/]*>/','',$s3_title1);
         $query="UPDATE `home` SET `s3_title1`='$s3_title1'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -295,6 +311,7 @@
 //    s3 content1
     if(isset($_POST['updateS3C1'])){
         $s3_content1=$_POST['s3_content1'];
+        $s3_content1=preg_replace('/<[h123456p*\/]*>/','',$s2_content1);
         $query="UPDATE `home` SET `s3_content1`='$s3_content1'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -307,6 +324,7 @@
 //    s3 title2
     if(isset($_POST['updateS3T2'])){
         $s3_title2=$_POST['s3_title2'];
+        $s3_title2=preg_replace('/<[h123456p*\/]*>/','',$s3_title2);
         $query="UPDATE `home` SET `s3_title2`='$s3_title2'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -319,6 +337,7 @@
 //    s3 content2
     if(isset($_POST['updateS3C2'])){
         $s3_content2=$_POST['s3_content2'];
+        $s3_content2=preg_replace('/<[h123456p*\/]*>/','',$s3_content2);
         $query="UPDATE `home` SET `s3_content2`='$s3_content2'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -331,6 +350,7 @@
 //    s3 title3
     if(isset($_POST['updateS3T3'])){
         $s3_title3=$_POST['s3_title3'];
+        $s3_title3=preg_replace('/<[h123456p*\/]*>/','',$s3_title3);
         $query="UPDATE `home` SET `s3_title3`='$s3_title3'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -343,6 +363,7 @@
 //    s3 content3
     if(isset($_POST['updateS3C3'])){
         $s3_content3=$_POST['s3_content3'];
+        $s3_content3=preg_replace('/<[h123456p*\/]*>/','',$s3_content3);
         $query="UPDATE `home` SET `s3_content3`='$s3_content3'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -355,6 +376,7 @@
 //    s3 title4
     if(isset($_POST['updateS3T4'])){
         $s3_title4=$_POST['s3_title4'];
+        $s3_title4=preg_replace('/<[h123456p*\/]*>/','',$s3_title4);
         $query="UPDATE `home` SET `s3_title4`='$s3_title4'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -367,6 +389,7 @@
 //    s3 content4
     if(isset($_POST['updateS3C4'])){
         $s3_content4=$_POST['s3_content4'];
+        $s3_content4=preg_replace('/<[h123456p*\/]*>/','',$s3_content4);
         $query="UPDATE `home` SET `s3_content4`='$s3_content4'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -385,6 +408,7 @@
 //    t1 link
     if(isset($_POST['updateT1L'])){
         $t1_link=$_POST['t1_link'];
+        $t1_link=preg_replace('/<[h123456p*\/]*>/','',$t1_link);
         $query="UPDATE `home` SET `t1_link`='$t1_link'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -397,6 +421,7 @@
 //    t1 content
     if(isset($_POST['updateT1C'])){
         $t1_content=$_POST['t1_content'];
+        $t1_contetn=preg_replace('/<[h123456p*\/]*>/','',$t1_contetn);
         $query="UPDATE `home` SET `t1_content`='$t1_content'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -409,6 +434,7 @@
 //    t1 name
     if(isset($_POST['updateT1N'])){
         $t1_name=$_POST['t1_name'];
+        $t1_name=preg_replace('/<[h123456p*\/]*>/','',$t1_name);
         $query="UPDATE `home` SET `t1_name`='$t1_name'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -422,6 +448,7 @@
 //    t2 link
     if(isset($_POST['updateT2L'])){
         $t2_link=$_POST['t2_link'];
+        $t2_link=preg_replace('/<[h123456p*\/]*>/','',$t2_link);
         $query="UPDATE `home` SET `t2_link`='$t2_link'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -434,6 +461,7 @@
 //    t2 content
     if(isset($_POST['updateT2C'])){
         $t2_content=$_POST['t2_content'];
+        $t2_content=preg_replace('/<[h123456p*\/]*>/','',$t2_content);
         $query="UPDATE `home` SET `t2_content`='$t2_content'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -446,6 +474,7 @@
 //    t2 name
     if(isset($_POST['updateT2N'])){
         $t2_name=$_POST['t2_name'];
+        $t2_name=preg_replace('/<[h123456p*\/]*>/','',$t2_name);
         $query="UPDATE `home` SET `t2_name`='$t2_name'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -459,6 +488,7 @@
 //    t3 link
     if(isset($_POST['updateT3L'])){
         $t3_link=$_POST['t3_link'];
+        $t3_link=preg_replace('/<[h123456p*\/]*>/','',$t3_link);
         $query="UPDATE `home` SET `t3_link`='$t3_link'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -471,6 +501,7 @@
 //    t3 content
     if(isset($_POST['updateT3C'])){
         $t3_content=$_POST['t3_content'];
+        $t3_content=preg_replace('/<[h123456p*\/]*>/','',$t3_content);
         $query="UPDATE `home` SET `t3_content`='$t3_content'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -483,6 +514,7 @@
 //    t3 name
     if(isset($_POST['updateT3N'])){
         $t3_name=$_POST['t3_name'];
+        $t3_name=preg_replace('/<[h123456p*\/]*>/','',$t3_name);
         $query="UPDATE `home` SET `t3_name`='$t3_name'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){

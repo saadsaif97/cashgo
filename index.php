@@ -50,14 +50,14 @@ ob_start();
         <?php $currentPage="home"; ?>
         <?php include "includes/topNav.php"; ?>
 <!--========================-->
+<!--
    <div class="my-5">   
     <?php echo $title; ?>
     <?php echo $tagLine; ?>
    </div>
-<!--
+-->
         <h3 class="text-center small" data-aos="fade" data-aos-delay="50"><?php echo $title; ?></h3>
         <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 60px;line-height: 50px;"><br><strong><?php echo $tagLine; ?></strong><br><br></h1>
--->
         
         <div class="container">
             <form>

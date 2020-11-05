@@ -148,6 +148,7 @@ body{
     margin: 20px 0;
 }
 
+/*
 input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"],  select {
     height: 50px;
     background-color: transparent;
@@ -168,6 +169,8 @@ input[type="text"], input[type="email"], input[type="tel"], input[type="number"]
 option{
     color: #000;
 }
+*/
+/*
 
 input[type="date"]{
     color: #fff;
@@ -178,6 +181,7 @@ input[type="text" ]::placeholder, input[type="email"]::placeholder, input[type="
     color: #fff;
     font-style: italic;
 }
+*/
 
 .form-control-btn{
     width: 100%;
@@ -222,12 +226,14 @@ input[type="text" ]::placeholder, input[type="email"]::placeholder, input[type="
     margin: 1rem auto;
 }
 
+/*
 .form-div label{
     color: #666666;
     font-weight: 500;
     font-size: 16px;
     margin: 0  0 1.5rem 1rem;
 }
+*/
 
 textarea{
     width: 100%;

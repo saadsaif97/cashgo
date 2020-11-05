@@ -18,158 +18,173 @@ ob_start();
                 class="btn btn-primary" type="button" style="margin: 10px;background-color: #fd6420;border: none;">TIMETABLE</button>
         </div>
     </section>
-    <section id="news" style="width: 100%;height: auto;padding-top: 50px;padding-bottom: 50px;">
-        <div class="container">
-            <div class="row">
-                <div class="col-3 col-sm-12 col-md-3 b-post" data-aos="fade" data-aos-delay="600">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 ">
-                            <div>
-                                <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
-                            </div>
-                            <div class="text-center border1" style="padding: 20px 15px;">
-                                <a href="#" style="text-decoration: none;"><h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1></a>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div></div>
-                        </div>
+    
+    <section>
+        <div class="container" style="padding: 20px 0;">
+           
+           <h2 style="font-weight:bolder; text-align:center;">Investment Plans</h2>
+           
+            <div class="my_grid" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); grid-gap:20px; padding: 20px 0;">
+                
+                
+                
+                <div class="plan_card" data-aos="fade" data-aos-delay="600">
+                    <div>
+                        <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
+                    </div>
+                    <div class="plan_card_body" style="padding: 20px 15px;">
+                        <h4 style="font-weight:bolder;">Top 8 Easy Ways To Get Rapid Cash</h4>
+                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;">There may be any number of reasons why you need some cash in hand quickly.</p>
+                        <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
+                        <table class="plan_table">
+                            <tr>
+                                <th>Investment Bonus</th>
+                                <th>Profit Bonus</th>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="col-3 col-sm-12 col-md-3 b-post" data-aos="fade" data-aos-delay="600">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 ">
-                            <div>
-                                <img src="assets/img/gallery2.jpg" style="width: 100%;height: auto;">
-                            </div>
-                            <div class="text-center border2" style="padding: 20px 15px;">
-                                <a href="#" style="text-decoration: none;"><h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1></a>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div></div>
-                        </div>
+                
+                
+                <div class="plan_card" data-aos="fade" data-aos-delay="600">
+                    <div>
+                        <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
+                    </div>
+                    <div class="plan_card_body" style="padding: 20px 15px;">
+                        <h4 style="font-weight:bolder;">Top 8 Easy Ways To Get Rapid Cash</h4>
+                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;">There may be any number of reasons why you need some cash in hand quickly.</p>
+                        <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
+                        <table class="plan_table">
+                            <tr>
+                                <th>Investment Bonus</th>
+                                <th>Profit Bonus</th>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="col-3 col-sm-12 col-md-3 b-post" data-aos="fade" data-aos-delay="600">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 ">
-                            <div>
-                                <img src="assets/img/gallery3.jpg" style="width: 100%;height: auto;">
-                            </div>
-                            <div class="text-center border3" style="padding: 20px 15px;">
-                                <a href="#" style="text-decoration: none;"><h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1></a>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div></div>
-                        </div>
+                
+                <div class="plan_card" data-aos="fade" data-aos-delay="600">
+                    <div>
+                        <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
+                    </div>
+                    <div class="plan_card_body" style="padding: 20px 15px;">
+                        <h4 style="font-weight:bolder;">Top 8 Easy Ways To Get Rapid Cash</h4>
+                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;">There may be any number of reasons why you need some cash in hand quickly.</p>
+                        <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
+                        <table class="plan_table">
+                            <tr>
+                                <th>Investment Bonus</th>
+                                <th>Profit Bonus</th>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-                <div class="col-3 col-sm-12 col-md-3 b-post" data-aos="fade" data-aos-delay="600">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12 ">
-                            <div>
-                                <img src="assets/img/gallery2.jpg" style="width: 100%;height: auto;">
-                            </div>
-                            <div class="text-center border4" style="padding: 20px 15px;">
-                                <a href="#" style="text-decoration: none;"><h1 style="font-size: 18px;color: #002632;font-family: Montserrat, sans-serif;font-weight: 700;line-height: 1;margin-bottom: 0px;margin-top: -30px;"><br><br>Top 8 Easy Ways&nbsp; To Get Rapid Cash</h1></a>
-                                <div>
-                                    <p style="color: #666666;margin: 10px 0;font-size: 14px;">There may be any number of reasons why you need some cash in hand quickly.</p>
-                                </div></div>
-                        </div>
+                
+                
+                <div class="plan_card" data-aos="fade" data-aos-delay="600">
+                    <div>
+                        <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
+                    </div>
+                    <div class="plan_card_body" style="padding: 20px 15px;">
+                        <h4 style="font-weight:bolder;">Top 8 Easy Ways To Get Rapid Cash</h4>
+                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;">There may be any number of reasons why you need some cash in hand quickly.</p>
+                        <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
+                        <table class="plan_table">
+                            <tr>
+                                <th>Investment Bonus</th>
+                                <th>Profit Bonus</th>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
-              
-               
-               
+                
+                <div class="plan_card" data-aos="fade" data-aos-delay="600">
+                    <div>
+                        <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
+                    </div>
+                    <div class="plan_card_body" style="padding: 20px 15px;">
+                        <h4 style="font-weight:bolder;">Top 8 Easy Ways To Get Rapid Cash</h4>
+                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;">There may be any number of reasons why you need some cash in hand quickly.</p>
+                        <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
+                        <table class="plan_table">
+                            <tr>
+                                <th>Investment Bonus</th>
+                                <th>Profit Bonus</th>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                            <tr>
+                                <td>First Line <span>0.3%</span></td>
+                                <td>Second Line <span>0.3%</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                
+                
+                
+                
             </div>
         </div>
     </section>
-    <section data-aos="fade" id="feature" style="background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%,
-    rgba(20,18,19,0.6) 90%, #141213 100% ),
-    url(&quot;assets/img/features.jpg&quot;);
-     ">
-        <div class="container">
-            <div class="row">
-                <div class="col"></div>
-                <div class="col-5 col-sm-12 col-md-6">
-                    <p class="small text-left" data-aos="fade" data-aos-delay="100">STUNNING REPAYMENT FLEXIBILITY</p>
-                    <br>
-                    <h1 class="big" data-aos="fade" data-aos-delay="200"><strong>FOR YOUR LOAN</strong><br></h1>
-                    <div class="row">
-                        <div class="col" style="padding-top: 60px;">
-                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="300">
-                                <li class="lite-list" ><i class="fas fa-calendar-alt fa-li" style="background-color: #3aadaa;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Choose your preferred monthly payment</li>
-                            </ul>
-                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="400">
-                                <li class="lite-list" ><i class="far fa-arrow-alt-circle-up fa-li" style="background-color: #98B446;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Increase your payment amount anytime<br></li>
-                            </ul>
-                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="500">
-                                <li class="lite-list" ><i class="fas fa-star fa-li" style="background-color: #F1B22F;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Make extra or early payments without fees<br></li>
-                            </ul>
-                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="600">
-                                <li class="lite-list" ><i class="fas fa-plane fa-li" style="background-color: #E96F34;color: rgb(255,255,255);font-size: 20px;padding-top: 5px;padding-bottom: 5px;"></i>No fees, hidden or otherwis<br></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    
+ 
+   
 
-    <section class="index-howto-alt py-3">
-        <div class="container">
-            <div class="psd-line pos-rel" style="position:relative;">
-                <div class="row align-items-center">
-                    <div class="col-12 col-sm-6 d-flex flex-row justify-content-center align-items-center intro-card-1 p-5">
-                        <img  src="assets/img/10.jpg">
-                        <h2 class="grey-text d-none">SECURE PROCESS</h2>
-                    </div>
-                    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-left1">
-                        <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong>FILL IN AN APPLICATION FORM ON OUR WEBSITE</strong><br></h1>
-                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;">Cupim sirloin shankle flank short ribs pork belly tenderloin boudin frankfurter doner. Pork pork chop andouille, meatball alcatra capicola corned beef tail kevin flank hamburger landjaeger shank. Tongue bresaola fatback hamburger
-                            tri-tip jowl. Brisket spare ribs pig ham hock tongue picanha.<br></p>
-                        <ul class="list-unstyled fa-ul" style="margin-top: 1rem;">
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Ham hock boudin shank chicken<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Jowl bacon doner biltong turkey<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Prosciutto capicola ham hock beef</li>
-                        </ul>
-                        <button class="btn">READ MORE</button>
-                    </div>
-                </div>
-                <div class="row flex-column-reverse align-items-center flex-sm-row">
-                    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-right1">
-                        <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong>NO PAYMENT PENALTY</strong><br></h1>
-                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;">Tenderloin burgdoggen kielbasa chicken, ground round meatloaf ball tip cow bresaola ribeye porchetta tri-tip. Shoulder tail pork belly meatloaf ball tip bresaola. Pork fatback kevin prosciutto boudin drumstick swine ham hock short
-                            loin hamburger chicken porchetta alcatra bresaola.<br></p>
-                        <ul class="list-unstyled fa-ul" style="margin-top: 1rem;">
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Pork chop beef sausage biltong<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Turkey t-bone ham rump ball tip<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Pancetta pig jowl pancetta ham<br></li>
-                        </ul>
-                        <button class="btn">READ MORE</button>
-                    </div>
-                    <div class="col-12 col-sm-6 d-flex flex-row justify-content-center align-items-center intro-card-2 p-5"><img  src="assets/img/10.jpg">
-                        <h2 class="grey-text d-none">Neye İhtiyacınız Varsa Belirtin</h2>
-                    </div>
-                </div>
-                <div class="row align-items-center">
-                    <div class="col-12 col-sm-6 d-flex flex-row justify-content-center align-items-center intro-card-3 p-5"><img src="assets/img/10.jpg">
-                        <h2 class="grey-text d-none">QUICK AND EASY</h2>
-                    </div>
-                    <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-left2">
-                        <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong>RECEIVE YOUR MONEY IN THE MOST CONVENIENT WAY IN 15 MINUTES</strong><br></h1>
-                        <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;">Cupim sirloin shankle flank short ribs pork belly tenderloin boudin frankfurter doner. Pork pork chop andouille, meatball alcatra capicola corned beef tail kevin flank hamburger landjaeger shank. Tongue bresaola fatback hamburger
-                            tri-tip jowl. Brisket spare ribs pig ham hock tongue picanha.<br></p>
-                        <ul class="list-unstyled fa-ul" style="margin-top: 1rem;">
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Cupim leberkas t-bone pastrami<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Brisket corned beef kielbasa burg<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Doggen venison tongue strip steak<br></li>
-                        </ul>
-                        <button class="btn">READ MORE</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     <div class="footer-basic" style="background-color: #002632;">
         <footer>
             <div class="social"><a href="#"><i class="icon ion-social-instagram" style="color: rgb(255,255,255);"></i></a><a href="#"><i class="icon ion-social-google" style="color: rgb(255,255,255);"></i></a><a href="#"><i class="icon ion-social-twitter" style="color: rgb(255,255,255);"></i></a>

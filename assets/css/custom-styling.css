@@ -106,3 +106,55 @@ i.fa.fa-edit.icon::before{
 
 /*BLOG POST CARD STYLING*/
 /*=================*/
+
+/*=================*/
+/*BLOG PLAN CARD STYLING*/
+
+.plan_card .plan_card_body{
+    border: 2px solid #3aadaa;
+}
+.plan_card:nth-child(2n+0) .plan_card_body{
+    border: 2px solid #98b446;
+}
+.plan_card:nth-child(3n+0) .plan_card_body{
+    border: 2px solid #f1b22f;
+}
+.plan_card:nth-child(4n+0) .plan_card_body{
+    border: 2px solid #fd6420;
+}
+
+/*BLOG PLAN CARD STYLING*/
+/*=================*/
+
+/*=================*/
+/*PLAN TABLE STYLING*/
+
+table.plan_table{
+    width: 100%;
+}
+.plan_table th{
+    color: #554b4b;
+}
+
+.plan_table tr td{
+    padding: 5px;
+}
+.plan_table tr:nth-child(even){
+    background-color: #d9d9d9;
+}
+.plan_table tr td span{
+    color: green;
+    font-size: 0.9rem;
+    margin-left: 5px;
+}
+
+/*PLAN TABLE STYLING*/
+/*=================*/
+
+
+
+
+
+
+
+

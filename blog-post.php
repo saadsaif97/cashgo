@@ -13,6 +13,27 @@ ob_start();
 <body>
     <section class="text-left" style="display: block;background-image:linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(&quot;assets/img/top.jpg&quot;);filter: blur(0px) brightness(100%);width: 100%;height: 500px;">
         <?php include "includes/topNav.php"; ?>
+        
+<!--        flash message -->
+        <?php
+            if(isset($_SESSION['msg'])){
+                echo "<div class='alert alert-success' role='alert'>
+                        <strong>Your message has submitted successfully and will appear here after approval from the admin!</strong>
+                    </div>";
+        ?>
+                <script>
+                    setTimeout(function() {
+                        let alert = document.querySelector(".alert");
+                            alert.remove();
+                    }, 5000);
+                </script>
+        <?php
+                unset($_SESSION['msg']);
+            }
+        ?>
+<!--        ==================-->
+        
+        
         <h1 class="text-center" data-aos="fade" data-aos-delay="50" id="small" style="font-weight: 600;color: rgb(255,255,255);font-size: 32px;font-family: Montserrat, sans-serif;height: 1px;margin-top: 110px;">BLOG</h1>
         <div class="container text-center" style="margin-top: 6rem;"><button class="btn " type="button" style="margin: 10px;background-color: #3aadaa;border: none;">HOME</button><button class="btn" type="button" style="margin: 10px;background-color: #98b446;border: none;">PAGES</button>
             <button
@@ -125,7 +146,7 @@ ob_start();
     </div>
     
 <?php
-}
+} if(isset($_GET['id'])){
 ?>
 <!-------------------------->
 <!--COMMENT SECTION STARTS-->
@@ -158,50 +179,90 @@ ob_start();
                     $cmnt_author=$row['cmnt_author'];
                     $time_stamp=$row['time_stamp'];
                     
-                    function timeago($date) {
-                       $timestamp = strtotime($date);	
+//                  making the time stamp legible
+                    if(!function_exists('timeago')){
+                        function timeago($date) {
+                           $timestamp = strtotime($date);	
 
-                       $strTime = array("second", "minute", "hour", "day", "month", "year");
-                       $length = array("60","60","24","30","12","10");
+                           $strTime = array("second", "minute", "hour", "day", "month", "year");
+                           $length = array("60","60","24","30","12","10");
 
-                       $currentTime = time();
-                       if($currentTime >= $timestamp) {
-                            $diff     = time()- $timestamp;
-                            for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
-                            $diff = $diff / $length[$i];
-                            }
+                           $currentTime = time();
+                           if($currentTime >= $timestamp) {
+                                $diff     = time()- $timestamp;
+                                for($i = 0; $diff >= $length[$i] && $i < count($length)-1; $i++) {
+                                $diff = $diff / $length[$i];
+                                }
 
-                            $diff = round($diff);
-                            return $diff . " " . $strTime[$i] . "(s) ago ";
-                       }
+                                $diff = round($diff);
+                                return $diff . " " . $strTime[$i] . "(s) ago ";
+                           }
+                        }
                     }
                         
                         $strTimeAgo=timeago($time_stamp);
                     ?>
-
-	        <div class="row" style="align-items:center;">
-        	    <div style="display:flex; flex-direction:column; justify-content:center; margin-right: 50px;">
-        	        <img src="https://image.ibb.co/jw55Ex/def_face.jpg"  class="mb-3" style="width:60px; align-self:center;"/>
-        	        <p class="small-text" style="text-align:center; margin:0;"><?php echo $cmnt_author; ?></p>
-                    <p class="small-text" style="text-align:left; margin:0;">
-                        <small>
-                            <?php echo $strTimeAgo; ?>
-                        </small>
-                    </p>
-        	    </div>
-        	    <div>
-        	        <p class="small-text"><?php echo $comment; ?></p>
-                   <br>
+                <div class="media border p-3">
+                  <img src="https://image.ibb.co/jw55Ex/def_face.jpg" alt="<?php echo $cmnt_author; ?>" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+                  <div class="media-body">
+                    <h4><span style="font-weight:bolder;"><?php echo $cmnt_author; ?></span> <small><i><?php echo $strTimeAgo; ?></i></small></h4>
+                    <p style="text-align:left; font-weight:normal;"><?php echo $comment; ?></p>
+                  </div>
                 </div>
-	        </div>
+
                 <?php
                     }//while
-                    }//else
+                    }//while cover
                 ?>
 
 	    </div>
 	</div>
+	
+	<div class="card">
+	    <div class="card-body">
+<?php
+        if(isset($_SESSION['logged_in'])){
+?>
+<!--	FORM TO ADD COMMENTS-->
+   <?php $post_id=$_GET['id']; ?>
+	<form action="blog-post.php?id=<?php echo $post_id; ?>" id="commentBox" method="post">
+        <h5 style="font-weight:bolder;">Add new comment:</h5>
+	    <div class="form-group">
+	        <textarea name="comment" id="comment" class="form-control" placeholder="comment" rows="5" required></textarea>
+	    </div>
+	    <div class="form-group">
+	        <input type="submit" name="add_comment" style="width:auto;" class="btn btn-primary" value="Comment">
+	    </div>
+	</form>     
+  
+<?php         
+        }else{
+            echo "You can only comment when logged in";
+        }
+?>
+       </div>
+    </div>
 </div>
+  
+
+<?php
+//    comments rendring end if
+}
+?>
+<?php
+    if(isset($_POST['add_comment'])){
+        $post_id=$_GET['id'];
+        $comment=$_POST['comment'];
+        $cmnt_author=$_SESSION['username'];
+        $comment_add_query="INSERT INTO `post_comments`(`post_id`, `comment`, `cmnt_author`) VALUES ('$post_id','$comment','$cmnt_author')";
+        $comment_add_res=mysqli_query($con,$comment_add_query);
+        if(!$comment_add_res){
+            die("query failed ".mysqli_error($con));
+        }else{
+            $_SESSION['msg']='render the content';
+        }
+    } 
+?>
    
 <!------------------------>
 <!--COMMENT SECTION ENDS-->
@@ -236,6 +297,8 @@ ob_start();
     <script src="assets/js/Testimonial-Slider-9.js"></script>
     <script src="assets/js/testimonialSlider.js"></script>
     <script src="assets/js/Timer-darkknight145.js"></script>
+    
+
 </body>
 
 </html>
