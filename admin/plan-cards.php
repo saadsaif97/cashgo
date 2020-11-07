@@ -20,7 +20,7 @@
 <div class="container py-5">
 <div class="d-flex justify-content-between mb-5">    
 <h4>All posts in database↓</h4>
-<a href="add-post.php" class="btn btn-primary d-flex align-items-center"><i class="fa fa-plus mr-2"></i>CREATE NEW POST</a>
+<a href="add-plan-card.php" class="btn btn-primary d-flex align-items-center"><i class="fa fa-plus mr-2"></i>CREATE NEW PLAN CARD</a>
 </div>
     
 <table id="posts" class="table table-striped table-bordered dt-responsive nowrap" style="width:100%;">
@@ -50,8 +50,8 @@
                     echo "<tr>";
                     echo "<td>$title</td>";
                     echo "<td>$content</td>";
-                    echo "<td><a href='edit-post.php?edit=$id'><i style='color:skyblue;' class='fa fa-edit mr-2'></i></a></td>";
-                    echo "<td><a href='delete-post.php?delete=$id'><i style='color:red;' class='fa fa-times mr-2'></i></a></td>";
+                    echo "<td><a href='plan-card-edit.php?edit=$id'><i style='color:skyblue;' class='fa fa-edit mr-2'></i></a></td>";
+                    echo "<td><a href='plan-card-delete.php?delete=$id'><i style='color:red;' class='fa fa-times mr-2'></i></a></td>";
                     echo "</tr>";
 
                 }

@@ -47,22 +47,14 @@ ob_start();
                     <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-left1">
                         <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong><?php echo $currentS1Title; ?></strong><br></h1>
                         <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;"><?php echo $currentS1Content; ?><br></p>
-                        <ul class="list-unstyled fa-ul" style="margin-top: 1rem;">
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Ham hock boudin shank chicken<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Jowl bacon doner biltong turkey<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Prosciutto capicola ham hock beef</li>
-                        </ul>
+                        
                     </div>
                 </div>
                 <div class="row flex-column-reverse align-items-center flex-sm-row">
                     <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-right1">
                         <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong><?php echo $currentS2Title; ?></strong><br></h1>
                         <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;"><?php echo $currentS2Content; ?><br></p>
-                        <ul class="list-unstyled fa-ul" style="margin-top: 1rem;">
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Pork chop beef sausage biltong<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Turkey t-bone ham rump ball tip<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Pancetta pig jowl pancetta ham<br></li>
-                        </ul>
+                        
                     </div>
                     <div class="col-12 col-sm-6 d-flex flex-row justify-content-center align-items-center intro-card-2 p-5"><img class="howto-img" src="assets/img/phone-icon.png">
                         <h2 class="grey-text d-none">Neye İhtiyacınız Varsa Belirtin</h2>
@@ -75,11 +67,7 @@ ob_start();
                     <div class="col-12 col-sm-6 d-flex flex-column justify-content-center p-5 psd-left2">
                         <h1 style="color: #002632;font-size: 24px;font-family: Montserrat, sans-serif;font-weight: 500;"><strong><?php echo $currentS3Title; ?></strong><br></h1>
                         <p class="m-0 text-center text-sm-left" style="color: #666666;font-size: 14px;line-height: 24px;font-family: Montserrat, sans-serif;"><?php echo $currentS3Content; ?><br></p>
-                        <ul class="list-unstyled fa-ul" style="margin-top: 1rem;">
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Cupim leberkas t-bone pastrami<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Brisket corned beef kielbasa burg<br></li>
-                            <li style="font-family: Montserrat, sans-serif;color: #666666;"><i class="fas fa-check fa-li text-primary"></i>Doggen venison tongue strip steak<br></li>
-                        </ul>
+                        
                     </div>
                 </div>
             </div>

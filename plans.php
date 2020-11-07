@@ -26,37 +26,39 @@ ob_start();
            
             <div class="my_grid" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); grid-gap:20px; padding: 20px 0;">
                 
-                
+                <?php
+                    $query="SELECT * FROM `plan_card`";
+                    $q_res=mysqli_query($con,$query);
+                    if(!$q_res){
+                        die("query failed ".mysqli_error($con));
+                    }
+                    while($row=mysqli_fetch_assoc($q_res)){
+                    $title=$row['title'];
+                    $content=$row['content'];
+                    $my_rows=$row['my_rows'];
+                ?>
                 
                 <div class="plan_card" data-aos="fade" data-aos-delay="600">
                     <div>
                         <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
                     </div>
                     <div class="plan_card_body" style="padding: 20px 15px;">
-                        <h4 style="font-weight:bolder;">Top 8 Easy Ways To Get Rapid Cash</h4>
-                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;">There may be any number of reasons why you need some cash in hand quickly.</p>
+                        <h4 style="font-weight:bolder;"><?php echo $title; ?></h4>
+                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;"><?php echo $content; ?></p>
                         <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
                         <table class="plan_table">
                             <tr>
                                 <th>Investment Bonus</th>
                                 <th>Profit Bonus</th>
                             </tr>
-                            <tr>
-                                <td>First Line <span>0.3%</span></td>
-                                <td>Second Line <span>0.3%</span></td>
-                            </tr>
-                            <tr>
-                                <td>First Line <span>0.3%</span></td>
-                                <td>Second Line <span>0.3%</span></td>
-                            </tr>
-                            <tr>
-                                <td>First Line <span>0.3%</span></td>
-                                <td>Second Line <span>0.3%</span></td>
-                            </tr>
+                            <?php echo $my_rows; ?>
                         </table>
                     </div>
                 </div>
                 
+                <?php
+                    }
+                ?>
                 
                 <div class="plan_card" data-aos="fade" data-aos-delay="600">
                     <div>

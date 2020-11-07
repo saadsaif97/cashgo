@@ -20,7 +20,7 @@
             
             
             <ul class="nav navbar-nav ml-auto" id="navbar-hover">
-                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "home"){echo 'active';} ?>" href="index.php">HOME</a></li>
+                <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "home"){echo 'active';} ?>" href="home.php">HOME</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "howItWorks"){echo 'active';} ?>" href="how-it-works.php">HOW IT WORKS</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "profit"){echo 'active';} ?>" href="profit.php">PROFIT</a></li>
                 <li class="nav-item" role="presentation"><a class="nav-link <?php if($currentPage== "plans"){echo 'active';} ?>" href="plans.php">PLANS</a></li>
