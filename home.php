@@ -53,7 +53,7 @@ ob_start();
 <!--===========================-->
 <?php include "includes/header.php"; ?>
 <body>
-    <section class="text-left" id="hero" style="display: block;background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(&quot;assets/img/top.jpg&quot;);filter: blur(0px) brightness(100%);width: 100%;height: 900px; background-size:cover;">
+    <section class="text-left" id="hero" style="display: block;background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(assets/img/<?php echo $heroImg; ?>);filter: blur(0px) brightness(100%);width: 100%;height: 900px; background-size:cover;">
 <!--including top nav-->
         <?php $currentPage="home"; ?>
         <?php include "includes/topNav.php"; ?>

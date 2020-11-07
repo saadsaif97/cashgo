@@ -91,7 +91,6 @@
 //    card one content
     if(isset($_POST['updateC1Conent'])){
         $title=$_POST['hc1c'];
-        $title=preg_replace('/<[h123456p*\/]*>/','',$title);
         $query="UPDATE `home` SET `card1_content`='$title'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -313,7 +312,7 @@
 //    s3 content1
     if(isset($_POST['updateS3C1'])){
         $s3_content1=$_POST['s3_content1'];
-        $s3_content1=preg_replace('/<[h123456p*\/]*>/','',$s3_content1);
+        $s3_content1=preg_replace('/<[h123456p*\/]*>/','',$s2_content1);
         $query="UPDATE `home` SET `s3_content1`='$s3_content1'";
         $q_res=mysqli_query($con,$query);
         if(!$q_res){
@@ -575,148 +574,143 @@
 ?>
 <?php $currentPage="home"; ?>
 <?php include "includes/header.php"; ?>
+ 
+<!--    UPDATE LOGO-->
+     <div class="container my-3">
+         <div class="container p-3" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px;">
+            <h6 >logo:</h6>
+            <img style="width:132px;" class="mb-3" src="../assets/img/<?php echo $currentLogo; ?>" alt="backgound image">
+            <form action="#" method="post" enctype="multipart/form-data">
+                <input type="file" name="logo">
+                <input type="submit" name="update_logo" class="btn btn-info btn-sm my-3" value="Update logo">
+            </form>
+        </div>
+     </div>
+  
+<!--     UPDATING TITLE AND TAGLINE-->
+      <section class="text-left" id="hero" style="display: block;background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ), url(../assets/img/<?php echo $currentHreoImg; ?>);filter: blur(0px) brightness(100%);width: 100%;height: 900px; padding:100px 0; background-size:cover;">
+
+       
+        <h4 class="text-center small" data-aos="fade" data-aos-delay="50" style="margin:0;"><?php echo $currentTitle; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></h4>
+        <div  id="editor" style="display:none; backgound-color:#fff;">
+            <form action="#" method="post" class="mt-3">
+                <textarea name="title" id="title"><?php echo $currentTitle; ?></textarea>
+                <input type="submit" class="btn btn-info btn-sm my-3" name="updateTitle" value="Update Title">
+            </form>
+        </div>
+        <h1 class="text-center big" data-aos="fade" data-aos-delay="200"  style="color: rgb(255,255,255);font-family: Montserrat, sans-serif;font-size: 70px;line-height: 50px;"><br><strong><?php echo $currentTagLine; ?></strong><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></h1>
+        <div  id="editor" style="display:none; backgound-color:#fff;">
+            <form action="#" method="post" class="mt-3">
+                <textarea name="tag_line" id="tag_line" ><?php echo $currentTagLine; ?></textarea>
+                <input type="submit" class="btn btn-info btn-sm my-3" name="updateTagLine" value="Update Tagline">
+            </form>
+        </div>
+        
+        <div class="card" style="width:300px; margin:0 auto; padding:20px; background-color:rgb(255, 255, 255);">
+            <h5 class="mt-3">background image:</h5>
+            <form action="#" method="post" enctype="multipart/form-data">
+                <input type="file" name="myimage">
+                <input type="submit" name="submit_image" class="btn btn-info btn-sm my-3" value="Update Image">
+            </form>
+        </div>
+        
+        
+        
+    </section>
    
-    <div class="container-fluid h-100">
-        <div class="row h-100">
-            
-            <main class="col py-5">
-              <!--           000000000000000000-->
-                <!--           logo update-->
-                <!--           000000000000000000-->
-                <div class="container p-3" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px;">
-                    <h6 >logo:</h6>
-                    <img style="width:132px;" class="mb-3" src="../assets/img/<?php echo $currentLogo; ?>" alt="backgound image">
-                    <form action="#" method="post" enctype="multipart/form-data">
-                        <input type="file" name="logo">
-                        <input type="submit" name="update_logo" class="btn btn-info btn-sm my-3" value="Update logo">
-                    </form>
-                </div>
-               
-                <!--           000000000000000000-->
-                <!--            title, tagline and hero image-->
-                <!--           000000000000000000-->
-                <div class="container p-3 mt-5" style="background-image:linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%, rgba(20,18,19,0.6) 90%, #141213 100% ),url(../assets/img/<?php echo $currentHreoImg; ?>); background-size:cover; color:#fff; height: 400px; width:100%;">
-                    <h3 class="font-weight-bold">Hero Area</h3>
-                    <hr>
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">title:</h6>
-                        <?php echo $currentTitle; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
-                            <textarea name="title" id="title" style="width:100%;" rows="10"><?php echo $currentTitle; ?></textarea>
-                            <input type="submit" class="btn btn-info btn-sm my-3" name="updateTitle" value="Update Title">
-                        </form>
-                    </div>
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 class="mt-3" style="display:inline;">tagline:</h6>
-                        <?php echo $currentTagLine; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
-                            <textarea name="tag_line" id="tag_line" style="width:100%;" rows="10"><?php echo $currentTagLine; ?></textarea>
-                            <input type="submit" class="btn btn-info btn-sm my-3" name="updateTagLine" value="Update Tagline">
-                        </form>
-                    </div>
-                    <h6 class="mt-3">background image:</h6>
-<!--                    <img style="width:200px;" class="mb-3" src="../assets/img/<?php echo $currentHreoImg; ?>" alt="backgound image">-->
-                    <form action="#" method="post" enctype="multipart/form-data">
-                        <input type="file" name="myimage">
-                        <input type="submit" name="submit_image" class="btn btn-info btn-sm my-3" value="Update Image">
-                    </form>
-                </div>
-                <!--           00000000000000-->
-                <!--            cards control-->
-                <!--           00000000000000-->
-                <div class="container p-3 mt-5" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px;">
-                    <h3 class="font-weight-bold">Cards</h3>
-                    <hr>
-                    <div style="display:grid; grid-template-columns: repeat( auto-fit, minmax(410px, 1fr)); grid-gap:50px;">
-                        <!--               CARD ONE-->
+   <!--    cards section-->
+    <div class="container" data-aos="fade" style="padding-bottom: 150px;">
+        <div class="row row-fitur" style="margin-top: -5rem;">
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="row">
+                    <div class="col-10 col-sm-12 col-md-11 waves-effect kolom-a" data-aos="fade" data-aos-delay="100" style="background-color:#3aadaa; text-align:center; padding:30px 20px;">
+                       
+                        <div class="fitur-a"><i class="far fa-gem icon"></i></div>
+                        <hr>
                         <div>
-                            <h5>Card 1</h5>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 style="display:inline;">title:</h6>
-                            <?php echo $currentC1Title; ?>
-                            <form action="#" method="post" class="mt-3" style="display:none;">
-                                <textarea name="hc1t" id="hc1t" style="width:100%;" rows="10"><?php echo $currentC1Title; ?></textarea>
-                                <input type="submit" class="btn btn-info btn-sm my-3" name="updateC1Title" value="Update Title">
-                            </form>
+                            <h4 class="text-center heading-fitur" ><?php echo $currentC1Title; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                                <form action="#" method="post" class="mt-3">
+                                    <textarea name="hc1t" id="hc1t" style="width:100%;" rows="10"><?php echo $currentC1Title; ?></textarea>
+                                    <input type="submit" class="btn btn-info btn-sm my-3" name="updateC1Title" value="Update Title">
+                                </form>
                             </div>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 class="mt-3" style="display:inline;">content:</h6>
-                            <?php echo $currentC1Content; ?>
-                            <form action="#" method="post" style="display:none;" class="mt-3">
+                            
+                            <p class="text-center paragraf-fitur" ><?php echo $currentC1Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></p>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc1c" id="hc1c" style="width:100%;" rows="10"><?php echo $currentC1Content; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC1Conent" value="Update Title">
                             </form>
                             </div>
                         </div>
-
-                        <!--               CARD TWO-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="row">
+                    <div class="col-11 col-sm-12 col-md-11 waves-effect kolom-a" data-aos="fade" data-aos-delay="200" style="background-color: #98b446; text-align:center; padding:30px 20px;">
+                        <div class="fitur-a"><i class="fas fa-tachometer-alt icon" ></i></div>
+                        <hr>
                         <div>
-                            <h5>Card 2</h5>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 style="display:inline;">title:</h6>
-                            <?php echo $currentC2Title; ?>
-                            <form action="#" method="post" class="mt-3" style="display:none;">
+                            <h4 class="text-center heading-fitur" ><?php echo $currentC2Title; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc2t" id="hc2t" style="width:100%;" rows="10"><?php echo $currentC2Title; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC2Title" value="Update Title">
                             </form>
                             </div>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 class="mt-3" style="display:inline;">content:</h6>
-                            <?php echo $currentC2Content; ?>
-                            <form action="#" method="post" style="display:none;" class="mt-3">
+                            <p class="text-center paragraf-fitur" ><?php echo $currentC2Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></p>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc2c" id="hc2c" style="width:100%;" rows="10"><?php echo $currentC2Content; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC2Conent" value="Update Title">
                             </form>
                             </div>
                         </div>
-                        <!--               CARD THREE-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="row">
+                    <div class="col-11 col-sm-12 col-md-11 waves-effect kolom-a" data-aos="fade" data-aos-delay="300" style="background-color: #F1B22F; text-align:center; padding:30px 20px;">
+                        <div class="fitur-a"><i class="far fa-money-bill-alt icon" ></i></div>
+                        <hr>
                         <div>
-                            <h5>Card 3</h5>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 style="display:inline;">title:</h6>
-                            <?php echo $currentC3Title; ?>
-                            <form action="#" method="post" class="mt-3" style="display:none;">
+                            <h4 class="text-center heading-fitur" ><?php echo $currentC3Title; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc3t" id="hc3t" style="width:100%;" rows="10"><?php echo $currentC3Title; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC3Title" value="Update Title">
                             </form>
                             </div>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 class="mt-3" style="display:inline;">content:</h6>
-                            <?php echo $currentC3Content; ?>
-                            <form action="#" method="post" style="display:none;" class="mt-3">
+                            <p class="text-center paragraf-fitur" ><?php echo $currentC3Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></p>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc3c" id="hc3c" style="width:100%;" rows="10"><?php echo $currentC3Content; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC3Conent" value="Update Title">
                             </form>
                             </div>
                         </div>
-
-                        <!--               CARD FOUR-->
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-3">
+                <div class="row">
+                    <div class="col-11 col-sm-12 col-md-11 waves-effect kolom-a" data-aos="fade" data-aos-delay="400" style="background-color: #FD6420; text-align:center; padding:30px 20px;">
+                        <div class="fitur-a"><i class="far fa-clock icon" ></i></div>
+                        <hr>
                         <div>
-                            <h5>Card 4</h5>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 style="display:inline;">title:</h6>
-                            <?php echo $currentC4Title; ?>
-<!--                            <h4 class="text-muted d-block"><?php echo $currentC4Title; ?></h4>-->
-                            <form action="#" method="post" class="mt-3" style="display:none;">
+                            <h4 class="text-center heading-fitur" ><?php echo $currentC4Title; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc4t" id="hc4t" style="width:100%;" rows="10"><?php echo $currentC4Title; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC4Title" value="Update Title">
                             </form>
                             </div>
-                            <div>
-                            <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                            <h6 class="mt-3" style="display:inline;">content:</h6>
-                            <?php echo $currentC4Content; ?>
-<!--                            <p class="text-muted d-block"><?php echo $currentC4Content; ?></p>-->
-                            <form action="#" method="post" style="display:none;" class="mt-3">
+                            <p class="text-center paragraf-fitur" ><?php echo $currentC4Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></p>
+                            <div  id="editor" style="display:none; backgound-color:#fff;">
+                            <form action="#" method="post"  class="mt-3">
                                 <textarea name="hc4c" id="hc4c" style="width:100%;" rows="10"><?php echo $currentC4Content; ?></textarea>
                                 <input type="submit" class="btn btn-info btn-sm my-3" name="updateC4Conent" value="Update Title">
                             </form>
@@ -724,190 +718,254 @@
                         </div>
                     </div>
                 </div>
-                
-                <!--           00000000000000-->
-                <!--            section 1-->
-                <!--           00000000000000-->
-                
-                <div class="container p-3 mt-5" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px;">
-                    <h3 class="font-weight-bold">Section 1</h3>
-                    <hr>
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">line 1:</h6>
-                        <?php echo $currentS1Line1; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
-                            <textarea name="s1_line1" id="s1_line1" style="width:100%;" rows="10"><?php echo $currentS1Line1; ?></textarea>
-                            <input type="submit" class="btn btn-info btn-sm my-3" name="updateS1L1" value="Update s1_line1">
-                        </form>
-                    </div>
-                
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">line 2:</h6>
-                        <?php echo $currentS1Line2; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
-                            <textarea name="s1_line2" id="s1_line2" style="width:100%;" rows="10"><?php echo $currentS1Line2; ?></textarea>
-                            <input type="submit" class="btn btn-info btn-sm my-3" name="updateS1L2" value="Update s1_line2">
-                        </form>
-                    </div>
-                
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">content:</h6>
-                        <span display="block">
-                        <?php echo $currentS1Content; ?>
-                        </span>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
-                            <textarea name="s1_content" id="s1_content" style="width:100%;" rows="10"><?php echo $currentS1Content; ?></textarea>
-                            <input type="submit" class="btn btn-info btn-sm my-3" name="updateS1Content" value="Update s1_content">
-                        </form>
-                    </div>
+            </div>
+        </div>
+<!--        cards section ends-->
+<!--  section one starts-->
+        
+        <div class="row" style="margin-top: 200px;">
+            <div class="col">
+                <h4 class="text-center small-dark" data-aos="fade" style="margin:0; padding-bottom:20px;"><?php echo $currentS1Line1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></h4>
+                <div  id="editor" style="display:none; backgound-color:#fff;">
+                <form action="#" method="post" class="mt-3">
+                    <textarea name="s1_line1" id="s1_line1" style="width:100%;" rows="10"><?php echo $currentS1Line1; ?></textarea>
+                    <input type="submit" class="btn btn-info btn-sm my-3" name="updateS1L1" value="Update s1_line1">
+                </form>
                 </div>
-                
-                <!--           00000000000000-->
-                <!--            section 2-->
-                <!--           00000000000000-->
-                
-                <div class="container p-3 mt-5" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px;">
-                    <h3 class="font-weight-bold">Section 2</h3>
-                    <hr>
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">line 1:</h6>
-                        <?php echo $currentS2Line1; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center big-dark display-1" data-aos="fade" data-aos-delay="100" ><?php echo $currentS1Line2; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></h1>
+                <div  id="editor" style="display:none; backgound-color:#fff;">
+                <form action="#" method="post" class="mt-3">
+                    <textarea name="s1_line2" id="s1_line2" style="width:100%;" rows="10"><?php echo $currentS1Line2; ?></textarea>
+                    <input type="submit" class="btn btn-info btn-sm my-3" name="updateS1L2" value="Update s1_line2">
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-center small-text" data-aos="fade" data-aos-delay="200" ><br><?php echo $currentS1Content; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i></a></sup></p>
+                <div  id="editor" style="display:none; backgound-color:#fff;">
+                <form action="#" method="post" class="mt-3" >
+                    <textarea name="s1_content" id="s1_content" style="width:100%;" rows="10"><?php echo $currentS1Content; ?></textarea>
+                    <input type="submit" class="btn btn-info btn-sm my-3" name="updateS1Content" value="Update s1_content">
+                </form>
+                </div>
+            </div>
+        </div>
+        
+   </div>
+<!--  section one ends-->
+   
+   
+<!--    section two starts here-->
+    
+    <section data-aos="fade" id="feature" style="background-image: linear-gradient(to bottom, rgb(29 36 127 / 50%) 0%,
+    rgba(20,18,19,0.6) 90%, #141213 100% ),
+    url(&quot;assets/img/features.jpg&quot;);
+     ">
+        <div class="container">
+            <div class="row">
+                <div class="col"></div>
+                <div class="col-5 col-sm-12 col-md-6 pt-5">
+                    <p class="small text-left" data-aos="fade" data-aos-delay="100"><?php echo $currentS2Line1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></p>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s2_line1" id="s2_line1" style="width:100%;" rows="10"><?php echo $currentS2Line1; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS2L1" value="Update s2_line1">
                         </form>
                     </div>
-                
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">line 2:</h6>
-                        <?php echo $currentS2Line2; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+
+                    <h1 class="big" data-aos="fade" data-aos-delay="200"><strong><?php echo $currentS2Line2; ?></strong><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h1>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s2_line2" id="s2_line2" style="width:100%;" rows="10"><?php echo $currentS2Line2; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS2L2" value="Update s2_line2">
                         </form>
                     </div>
-                
+
+                    <div class="row pl-3">
+                        <div class="col" style="padding-top: 30px;">
+                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="300">
+                                <li class="lite-list" ><i class="fas fa-calendar-alt fa-li" style="background-color: #3aadaa;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Choose your preferred monthly payment</li>
+                            </ul>
+                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="400">
+                                <li class="lite-list" ><i class="far fa-arrow-alt-circle-up fa-li" style="background-color: #98B446;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Increase your payment amount anytime<br></li>
+                            </ul>
+                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="500">
+                                <li class="lite-list" ><i class="fas fa-star fa-li" style="background-color: #F1B22F;color: rgb(255,255,255);padding-top: 5px;padding-bottom: 5px;"></i>Make extra or early payments without fees<br></li>
+                            </ul>
+                            <ul class="list-unstyled fa-ul" data-aos="fade" data-aos-delay="600">
+                                <li class="lite-list" ><i class="fas fa-plane fa-li" style="background-color: #E96F34;color: rgb(255,255,255);font-size: 20px;padding-top: 5px;padding-bottom: 5px;"></i>No fees, hidden or otherwise<br></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                
-                
-                <!--           00000000000000-->
-                <!--            section 3-->
-                <!--           00000000000000-->
-                
-                <div class="container p-3 mt-5" style="box-shadow: 0 0 2px 2px rgba(0,0,0,0.2); border-radius:10px;">
-                    <h3 class="font-weight-bold">Section 3</h3>
-                    <hr>
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">line 1:</h6>
-                        <?php echo $currentS3Line1; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+            </div>
+        </div>
+    </section>
+<!--    section two ends here-->
+<!--    section three starts here-->
+    <section data-aos="fade" id="pricing">
+        <div class="container" style="padding-top: 100px;padding-bottom: 100px;">
+            <div class="row">
+                <div class="col">
+                   
+                    <h4 class="text-center small-dark" data-aos="fade" data-aos-delay="100" style="font-weight: normal; margin:0; padding:0;"><?php echo $currentS3Line1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup></h4>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_line1" id="s3_line1" style="width:100%;" rows="10"><?php echo $currentS3Line1; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3L1" value="Update s3_line1">
                         </form>
                     </div>
-                
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">line 2:</h6>
-                        <?php echo $currentS3Line2; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                   
+                    <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="200" style="margin-bottom: 30px;"><strong><?php echo $currentS3Line2; ?></strong><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup></h1>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_line2" id="s3_line2" style="width:100%;" rows="10"><?php echo $currentS3Line2; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3L2" value="Update s3_line2">
                         </form>
                     </div>
-                    <hr>
-<!--                    TITLE 1 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">title 1:</h6>
-                        <?php echo $currentS3Title1; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+
+                </div>
+            </div>
+            
+            
+<!--            pricing cards-->
+            <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(200px, 1fr)); grid-gap:20px;">
+               
+                <div class="l-card" data-aos="fade-right" style="width:100%;">
+                    <div class="color-div" style="background-color: #3aadaa;">
+                        <h4 class="text-center card-title" ><?php echo $currentS3Title1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_title1" id="s3_title1" style="width:100%;" rows="10"><?php echo $currentS3Title1; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3T1" value="Update s3_title1">
                         </form>
                     </div>
-<!--                    CONTENT 1 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">content 1:</h6>
-                        <?php echo $currentS3Content1; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                    </div>
+                    <div class="text-center border1" style="padding: 20px 15px;">
+                        <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
+                        <h4 style="font-size: 22px;color: #3aadaa;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br>5.95% – 6.99%<br><br></h4>
+                        <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
+                        <p>
+                            <?php echo $currentS3Content1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup>
+                        </p>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_content1" id="s3_content1" style="width:100%;" rows="10"><?php echo $currentS3Content1; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3C1" value="Update s3_content1">
                         </form>
                     </div>
-                    
-<!--                    TITLE 2 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">title 2:</h6>
-                        <?php echo $currentS3Title2; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <br>
+                    </div>
+                </div>
+                
+                <div class="l-card" data-aos="fade-right" data-aos-delay="100" style="width:100%;">
+                    <div class="color-div " style="background-color: #98b446;">
+                        <h4 class="text-center card-title" ><?php echo $currentS3Title2; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_title2" id="s3_title2" style="width:100%;" rows="10"><?php echo $currentS3Title2; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3T2" value="Update s3_title2">
                         </form>
                     </div>
-<!--                    CONTENT 2 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">content 2:</h6>
-                        <?php echo $currentS3Content2; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                    </div>
+                    <div class="text-center border2" style="padding: 20px 15px;">
+                        <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
+                        <h4 style="font-size: 22px;color: #98b446;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;">7.50% – 12.99%</h4>
+                        <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
+                        <p style="text-align:center; max-length:max-content;">
+                            <?php echo $currentS3Content2; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup>
+                        </p>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_content2" id="s3_content2" style="width:100%;" rows="10"><?php echo $currentS3Content2; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3C2" value="Update s3_content2">
                         </form>
                     </div>
-                    
-<!--                    TITLE 3 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">title 3:</h6>
-                        <?php echo $currentS3Title3; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <br>
+                    </div>
+                </div>
+                
+                
+                <div class="l-card" data-aos="fade-left" data-aos-delay="100" style="width:100%;">
+                    <div class="color-div" style="background-color: #f1b22f;">
+                        <h4 class="text-center card-title" ><?php echo $currentS3Title3; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_title3" id="s3_title3" style="width:100%;" rows="10"><?php echo $currentS3Title3; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3T3" value="Update s3_title3">
                         </form>
                     </div>
-<!--                    CONTENT 3 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">content 3:</h6>
-                        <?php echo $currentS3Content3; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                    </div>
+                    <div class="text-center border3" style="padding: 20px 15px;">
+                        <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
+                        <h4 style="font-size: 22px;color: #f1b22f;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br><br>8.00% – 15.49%<br><br></h4>
+                        <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
+                        <p>
+                            <?php echo $currentS3Content3; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup>
+                        </p>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_content3" id="s3_content3" style="width:100%;" rows="10"><?php echo $currentS3Content3; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3C3" value="Update s3_content3">
                         </form>
                     </div>
-                    
-<!--                    TITLE 4 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">title 4:</h6>
-                        <?php echo $currentS3Title4; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <br>
+                    </div>
+                </div>
+                
+                
+                
+                <div class="l-card" data-aos="fade-left" style="width:100%;">
+                    <div class="color-div" style="background-color: #fd6420;">
+                        <h4 class="text-center card-title"><?php echo $currentS3Title4; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#fff; font-size:24px;"></i></a></sup></h4>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_title4" id="s3_title4" style="width:100%;" rows="10"><?php echo $currentS3Title4; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3T4" value="Update s3_title4">
                         </form>
                     </div>
-<!--                    CONTENT 4 -->
-                    <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
-                        <h6 style="display:inline;">content 4:</h6>
-                        <?php echo $currentS3Content4; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                    </div>
+                    <div class="text-center border4" style="padding: 20px 15px;">
+                        <p style="color: rgb(102,102,102);font-family: Montserrat, sans-serif;font-size: 14px;"><br>APR range:<br></p>
+                        <h4 style="font-size: 22px;color: #fd6420;;font-family: Montserrat, sans-serif;font-weight: 500;line-height: 0;"><br><br>9.00% – 14.49%<br><br></h4>
+                        <div style="background-color: rgba(111,108,108,0.42);height: 1px;margin: 30px 0;"></div>
+                        <p>
+                            <?php echo $currentS3Content4; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup>
+                        </p>
+                        <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_content4" id="s3_content4" style="width:100%;" rows="10"><?php echo $currentS3Content4; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3C4" value="Update s3_content4">
                         </form>
                     </div>
-
-                
+                        <br>
+                    </div>
                 </div>
+<!--                pricing cards-->
+                
+                
+            </div>
+        </div>
+    </section>
+    
+<!--    section three ends here-->
+   
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            
+            <div class="col py-5">
+                
                 
                 <!--           00000000000000-->
                 <!--            Testimonials-->
@@ -959,7 +1017,7 @@
                         <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 2:</h6>
                         <?php echo $currentT2C; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                     index   <form action="#" method="post" class="mt-3" style="display:none;">
                             <textarea name="t2_content" id="t2_content" style="width:100%;" rows="10"><?php echo $currentT2C; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT2C" value="Update t2_content">
                         </form>
@@ -1008,22 +1066,21 @@
                 
                 
 
-            </main>
+            </div>
         </div>
     </div>
-    <script>//opening and closing the text editor
-        let editors = document.querySelectorAll(".fa-edit");
+ <script>//opening and closing the text editor
+        let editors = document.querySelectorAll("#editorBtn");
         editors.forEach(edit=>{
         edit.addEventListener("click", (e) => {
-            let myForm = e.target.parentElement.querySelector("form");
+            let myForm = e.target.parentElement.parentElement.parentElement.nextElementSibling;
+            console.log(myForm);
             if (myForm.style.display === "none") {
                 myForm.style.display = "block";
             } else {
                 myForm.style.display = "none";
             }
         })});
+</script>
 
-        
-
-    </script>
 <?php include "includes/footer.php"; ?>
