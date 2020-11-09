@@ -1,51 +1,9 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
-
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>BlogTube - Get Paid By Writing Articles</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!--Default CSS-->
-    <link href="css/default.css" rel="stylesheet" type="text/css">
-    <!--Custom CSS-->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <!--Flaticons CSS-->
-    <link href="font/flaticon.html" rel="stylesheet" type="text/css">
-    <!--Plugin CSS-->
-    <link href="css/plugin.css" rel="stylesheet" type="text/css">
-    <!--Dashboard CSS-->
-    <link href="css/dashboard.css" rel="stylesheet" type="text/css">
-    <link href="css/icons.css" rel="stylesheet" type="text/css">
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-</head>
-
-<body>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div id="status"></div>
-    </div>
-    <!-- Preloader Ends -->
-
-    <!-- start Container Wrapper -->
-    <div id="container-wrapper">
-        <!-- Dashboard -->
-        <div id="dashboard">
-
             <!-- Responsive Navigation Trigger -->
             <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
 
-              <div class="dashboard-sticky-nav">
+           <div class="dashboard-sticky-nav">
                 <div class="content-left pull-left">
-                    <a href="index.html"><img src="images/logo.png" alt="logo"></a>
+                    <a href="index.php"><img src="images/logo.png" alt="logo"></a>
                 </div>
                 <div class="content-right pull-right">
                     <div class="search-bar">
@@ -57,7 +15,7 @@
                         </form>
                     </div>
                     <div class="dropdown">
-                        <a href="profile.html">
+                        <a href="profile.php">
                             <div class="profile-sec">
                                 <div class="dash-image">
                                     <img  src="images/comment.jpg" alt="">
@@ -124,69 +82,37 @@
             </div>
             <div class="dashboard-nav">
                 <div class="dashboard-nav-inner">
-                    <ul>
-                        <li><a href="index.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+                     <ul>
+                        <li <?php echo $thisPage=='index'? "class='active'" : ""; ?> ><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 
-                        <li><a href="deposite.html"><i class="sl sl-icon-plus"></i> Deposits</a></li>
-                        <li><a href="Donations.html"><i class="fas fa-donate"></i>Donations</a></li>
-                        <li><a href="Withdraw.html"><i class="far fa-folder-open"></i> Withdrawals</a></li>
-                        <li><a href="Sold.html"><i class="fas fa-coins"></i>Sold</a></li>
-                        <li><a href="Investmentplans.html"><i class="fas fa-cog"></i> Investment plans</a></li>
-                        <li><a href="profitcalculator.html"><i class="fas fa-cog"></i>Profit Calculator</a></li>
-                        <li><a href="Referusers.html"><i class="fas fa-users"></i> Refer Users</a></li>
-                        <li><a href="ReferralPartners.html"><i class="fas fa-users"></i> Your Partners</a></li>
+                        <li <?php echo $thisPage=='deposite'? "class='active'" : ""; ?> ><a href="deposite.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
                         
-                        <li class="active">
+                        <li <?php echo $thisPage=='donations'? "class='active'" : ""; ?> ><a href="Donations.php"><i class="fas fa-donate"></i>Donations</a></li>
+                        
+                        <li <?php echo $thisPage=='withdraw'? "class='active'" : ""; ?> ><a href="Withdraw.php"><i class="far fa-folder-open"></i> Withdrawals</a></li>
+                        
+                        <li <?php echo $thisPage=='sold'? "class='active'" : ""; ?> ><a href="Sold.php"><i class="fas fa-coins"></i>Sold</a></li>
+                        
+                        <li <?php echo $thisPage=='investmentplans'? "class='active'" : ""; ?> ><a href="Investmentplans.php"><i class="fas fa-cog"></i> Investment plans</a></li>
+                        
+                        <li <?php echo $thisPage=='profitcalculator'? "class='active'" : ""; ?> ><a href="profitcalculator.php"><i class="fas fa-cog"></i>Profit Calculator</a></li>
+                        
+                        <li <?php echo $thisPage=='referusers'? "class='active'" : ""; ?> ><a href="Referusers.php"><i class="fas fa-users"></i> Refer Users</a></li>
+                        
+                        <li <?php echo $thisPage=='referralpartners'? "class='active'" : ""; ?> ><a href="ReferralPartners.php"><i class="fas fa-users"></i> Your Partners</a></li>
+                        
+                        <li <?php echo $thisPage=='promotions'? "class='active'" : ""; ?> >
                             <a><i class="sl sl-icon-layers"></i>Promotions
 </a>
                             <ul>
-                                <li><a href="Promotions.html">SixMonth Promo Invesment</a></li>
-                                <li><a href="Promotions.html">SixMonth Promo List</a></li>
+                                <li><a href="Promotions.php">SixMonth Promo Invesment</a></li>
+                                <li><a href="Promotions.php">SixMonth Promo List</a></li>
                             </ul>
                         </li>
-                        <li><a href="index.html"><i class="sl sl-icon-power"></i> Logout</a></li>
+                        
+                        <li><a href="index.php"><i class="sl sl-icon-power"></i> Logout</a></li>
+                        
                     </ul>
                 </div>
             </div>
-
-            <div class="dashboard-content">
-               <h3 class="title1">TOP Promo Achievers</h3>
-                <div class="row">
-                    <div class="container-fluid" style="width: 100%;">
-                       <iframe src="Datatable.html" style="height: 360px; width: 100%;">
-                        </iframe>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Content / End -->
-            <!-- Copyrights -->
-            <div class="copyrights">
-                <p>2019 <i class="fa fa-copyright" aria-hidden="true"></i> BlogTube by <a href="#" target="_blank">Shawaiz khan</a></p>
-            </div>
-        </div>
-        <!-- Dashboard / End -->
-    </div>
-    <!-- end Container Wrapper -->
-
-
-    <!-- Back to top start -->
-    <div id="back-to-top">
-        <a href="#"></a>
-    </div>
-    <!-- Back to top ends -->
-
-    <!-- *Scripts* -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/bootstrap.min.html"></script>
-    <script src="js/preloader.html"></script>
-    <script src="js/plugin.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/dashboard-custom.js"></script>
-    <script src="js/jpanelmenu.min.js"></script>
-    <script src="js/counterup.min.js"></script>
-    
-</body>
-
-</html>
+            

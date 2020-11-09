@@ -1,31 +1,6 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zxx">
+<!--incuding the header-->
+<?php include_once"inc/header.php"; ?>
 
-<head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>BlogTube - Get Paid By Writing Articles</title>
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.png">
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <!--Default CSS-->
-    <link href="css/default.css" rel="stylesheet" type="text/css">
-    <!--Custom CSS-->
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <!--Flaticons CSS-->
-    <link href="font/flaticon.html" rel="stylesheet" type="text/css">
-    <!--Plugin CSS-->
-    <link href="css/plugin.css" rel="stylesheet" type="text/css">
-    <!--Dashboard CSS-->
-    <link href="css/dashboard.css" rel="stylesheet" type="text/css">
-    <link href="css/icons.css" rel="stylesheet" type="text/css">
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="../../../../cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
 <body>
@@ -40,114 +15,9 @@
         <!-- Dashboard -->
         <div id="dashboard">
 
-            <!-- Responsive Navigation Trigger -->
-            <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
-
-               <div class="dashboard-sticky-nav">
-                <div class="content-left pull-left">
-                    <a href="index.html"><img src="images/logo.png" alt="logo"></a>
-                </div>
-                <div class="content-right pull-right">
-                    <div class="search-bar">
-                        <form>
-                            <div class="form-group">
-                                <input type="text" class="form-control" id="search" placeholder="Search Now">
-                                <a href="#"><span class="search_btn"><i class="fa fa-search" aria-hidden="true"></i></span></a>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="dropdown">
-                        <a href="profile.html">
-                            <div class="profile-sec">
-                                <div class="dash-image">
-                                    <img  src="images/comment.jpg" alt="">
-                                </div>
-                                <div class="dash-content">
-                                    <h4>Loural Teak</h4>
-                                    <span>Post Manager</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    
-                    <div class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            <div class="dropdown-item">
-                                <i class="sl sl-icon-bell"></i>
-                                <span class="notify">3</span>
-                            </div>
-                        </a>
-                        <div class="dropdown-menu notification-menu">
-                            <h4> 599 Notifications</h4>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        <div class="notification-item">
-                                            <div class="notification-image">
-                                                <img src="images/comment.jpg" alt="">
-                                            </div>
-                                            <div class="notification-content">
-                                                <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="notification-item">
-                                            <div class="notification-image">
-                                                <img src="images/comment.jpg" alt="">
-                                            </div>
-                                            <div class="notification-content">
-                                                <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <div class="notification-item">
-                                            <div class="notification-image">
-                                                <img src="images/comment.jpg" alt="">
-                                            </div>
-                                            <div class="notification-content">
-                                                <p>You have a notification.</p><span class="notification-time">2 hours ago</span>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                            <p class="all-noti"><a href="#">See all notifications</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="dashboard-nav">
-                <div class="dashboard-nav-inner">
-                    <ul>
-                        <li><a href="index.html"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
-
-                        <li><a href="deposite.html"><i class="sl sl-icon-plus"></i> Deposits</a></li>
-                        <li><a href="Donations.html"><i class="fas fa-donate"></i>Donations</a></li>
-                        <li><a href="Withdraw.html"><i class="far fa-folder-open"></i> Withdrawals</a></li>
-                        <li><a href="Sold.html"><i class="fas fa-coins"></i>Sold</a></li>
-                        <li><a href="Investmentplans.html"><i class="fas fa-cog"></i> Investment plans</a></li>
-                        <li><a href="profitcalculator.html"><i class="fas fa-cog"></i>Profit Calculator</a></li>
-                        <li><a href="Referusers.html"><i class="fas fa-users"></i> Refer Users</a></li>
-                        <li><a href="ReferralPartners.html"><i class="fas fa-users"></i> Your Partners</a></li>
-
-                        <li>
-                            <a><i class="sl sl-icon-layers"></i>Promotions
-                            </a>
-                            <ul>
-                                <li><a href="Promotions.html">SixMonth Promo Invesment</a></li>
-                                <li><a href="Promotions.html">SixMonth Promo List</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="index.html"><i class="sl sl-icon-power"></i> Logout</a></li>
-                    </ul>
-                </div>
-            </div>
+            <!-- navigations -->
+            <?php $thisPage = 'profile'; ?>
+            <?php include_once"inc/nav.php"; ?>
 
             <div class="dashboard-content">
                 <h3 class="title1">Profile</h3>
@@ -707,10 +577,10 @@
 
 
             <!-- Content / End -->
+            
             <!-- Copyrights -->
-            <div class="copyrights">
-                <p>2019 <i class="fa fa-copyright" aria-hidden="true"></i> BlogTube by <a href="#" target="_blank">Shawaiz khan</a></p>
-            </div>
+            <?php include_once"inc/copyrights.php"; ?>
+            
         </div>
         <!-- Dashboard / End -->
     </div>
