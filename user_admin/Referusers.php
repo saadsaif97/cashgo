@@ -1,6 +1,12 @@
 <!--incuding the header-->
 <?php include_once"inc/header.php"; ?>
-
+<?php
+    if(isset($_SESSION['username'])){
+        header("Location: index.php");
+    }else{
+        
+    }
+?>
 </head>
 
 <body>

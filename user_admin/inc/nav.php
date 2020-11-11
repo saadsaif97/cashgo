@@ -1,3 +1,4 @@
+
             <!-- Responsive Navigation Trigger -->
             <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
 
@@ -83,36 +84,34 @@
             <div class="dashboard-nav">
                 <div class="dashboard-nav-inner">
                      <ul>
-                        <li <?php echo $thisPage=='index'? "class='active'" : ""; ?> ><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
+                        <li <?php echo 'index' == $thisPage ? "class='active'" : ''; ?> ><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 
-                        <li <?php echo $thisPage=='deposite'? "class='active'" : ""; ?> ><a href="deposite.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
+                        <li <?php echo 'deposite' == $thisPage ? "class='active'" : ''; ?> ><a href="deposite.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
                         
-                        <li <?php echo $thisPage=='donations'? "class='active'" : ""; ?> ><a href="Donations.php"><i class="fas fa-donate"></i>Donations</a></li>
+                        <li <?php echo 'donations' == $thisPage ? "class='active'" : ''; ?> ><a href="Donations.php"><i class="fas fa-donate"></i>Donations</a></li>
                         
-                        <li <?php echo $thisPage=='withdraw'? "class='active'" : ""; ?> ><a href="Withdraw.php"><i class="far fa-folder-open"></i> Withdrawals</a></li>
+                        <li <?php echo 'withdraw' == $thisPage ? "class='active'" : ''; ?> ><a href="Withdraw.php"><i class="far fa-folder-open"></i> Withdrawals</a></li>
                         
-                        <li <?php echo $thisPage=='sold'? "class='active'" : ""; ?> ><a href="Sold.php"><i class="fas fa-coins"></i>Sold</a></li>
+                        <li <?php echo 'sold' == $thisPage ? "class='active'" : ''; ?> ><a href="Sold.php"><i class="fas fa-coins"></i>Sold</a></li>
                         
-                        <li <?php echo $thisPage=='investmentplans'? "class='active'" : ""; ?> ><a href="Investmentplans.php"><i class="fas fa-cog"></i> Investment plans</a></li>
+                        <li <?php echo 'investmentplans' == $thisPage ? "class='active'" : ''; ?> ><a href="Investmentplans.php"><i class="fas fa-cog"></i> Investment plans</a></li>
                         
-                        <li <?php echo $thisPage=='profitcalculator'? "class='active'" : ""; ?> ><a href="profitcalculator.php"><i class="fas fa-cog"></i>Profit Calculator</a></li>
+                        <li <?php echo 'profitcalculator' == $thisPage ? "class='active'" : ''; ?> ><a href="profitcalculator.php"><i class="fas fa-cog"></i>Profit Calculator</a></li>
                         
-                        <li <?php echo $thisPage=='referusers'? "class='active'" : ""; ?> ><a href="Referusers.php"><i class="fas fa-users"></i> Refer Users</a></li>
+                        <li <?php echo 'referusers' == $thisPage ? "class='active'" : ''; ?> ><a href="Referusers.php"><i class="fas fa-users"></i> Refer Users</a></li>
                         
-                        <li <?php echo $thisPage=='referralpartners'? "class='active'" : ""; ?> ><a href="ReferralPartners.php"><i class="fas fa-users"></i> Your Partners</a></li>
+                        <li <?php echo 'referralpartners' == $thisPage ? "class='active'" : ''; ?> ><a href="ReferralPartners.php"><i class="fas fa-users"></i> Your Partners</a></li>
                         
-                        <li <?php echo $thisPage=='promotions'? "class='active'" : ""; ?> >
-                            <a><i class="sl sl-icon-layers"></i>Promotions
-</a>
+                        <li <?php echo 'promotions' == $thisPage ? "class='active'" : ''; ?> >
+                            <a><i class="sl sl-icon-layers"></i>Promotions</a>
                             <ul>
                                 <li><a href="Promotions.php">SixMonth Promo Invesment</a></li>
                                 <li><a href="Promotions.php">SixMonth Promo List</a></li>
                             </ul>
                         </li>
                         
-                        <li><a href="index.php"><i class="sl sl-icon-power"></i> Logout</a></li>
+                        <li><a href="logout.php"><i class="sl sl-icon-power"></i> Logout</a></li>
                         
                     </ul>
                 </div>
             </div>
-            

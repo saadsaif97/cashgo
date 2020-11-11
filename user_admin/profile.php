@@ -1,6 +1,11 @@
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php'; ?>
+<?php
+    if (isset($_SESSION['username'])) {
+        header('Location: index.php');
+    }
 
+?>
 </head>
 
 <body>
@@ -17,7 +22,7 @@
 
             <!-- navigations -->
             <?php $thisPage = 'profile'; ?>
-            <?php include_once"inc/nav.php"; ?>
+            <?php include_once 'inc/nav.php'; ?>
 
             <div class="dashboard-content">
                 <h3 class="title1">Profile</h3>
@@ -579,7 +584,7 @@
             <!-- Content / End -->
             
             <!-- Copyrights -->
-            <?php include_once"inc/copyrights.php"; ?>
+            <?php include_once 'inc/copyrights.php'; ?>
             
         </div>
         <!-- Dashboard / End -->

@@ -1,6 +1,12 @@
 <!--incuding the header-->
 <?php include_once"inc/header.php"; ?>
-    
+<?php
+    if(isset($_SESSION['username'])){
+        header("Location: index.php");
+    }else{
+        
+    }
+?>    
     
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>

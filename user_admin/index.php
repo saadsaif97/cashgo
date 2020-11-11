@@ -1,5 +1,14 @@
+<!--incuding the database -->
+<?php include_once 'inc/user_profile_db.php'; ?>
+<?php
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
+    }
+
+?>
+
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php'; ?>
 
 <!--getting data from crypto api-->
 <?php
@@ -21,37 +30,48 @@ $coins = json_decode(file_get_contents($url), true);
             
             <!-- navigations -->
             <?php $thisPage = 'index'; ?>
-            <?php include_once"inc/nav.php"; ?>
+            <?php include_once 'inc/nav.php'; ?>
             
             <div class="dashboard-content">
-                <div class="container" style="width: 100%;
-    background-color: white;">
-                    <div >
+                <div class="container" style="width: 100%; background-color: white;">
+                    
+                    <!--LOGIN FLASH MESSAGE-->
+                    <?php if (isset($_SESSION['login_message'])) { ?>
+                             <div class="alert alert-success">
+                             <i class="fas fa-check-circle"></i>
+                             <?php echo $_SESSION['login_message']; ?>
+                             </div>
+                    <?php } ?>
+                    <?php unset($_SESSION['login_message']); ?>
+                    <!--LOGIN FLASH MESSAGE-->
+                    
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr));">
                        
-                        <div class="col-md-2 col-sm-6" style="font-size:18px; border-right: 1px solid #655c5c1a;">
+                        <div  style="font-size:18px; border-right: 1px solid #655c5c1a; color:#fff; background-color:#666; align-self:start;">
                             <h4 style="text-align:center; margin-top: 15px;">
                                 <label style="font-weight: 800; 
                             font-size: 11px;
-                            color: #444141e0;
+                            color:white;
                             margin: 0px;
                             ">Today's Exchange Rates</label>
 
-                                <small><?php echo date("j F Y"); ?></small>
+                                <small style="color:white;"><?php echo date('j F Y'); ?></small>
                             </h4>
                         </div>
                         
                         <?php
-                        foreach($coins as $coin){
-                            if($coin['id']=='bitcoin' || $coin['id']=='bitcoin-cash' || $coin['id']=='ethereum' || $coin['id']=='litecoin' || $coin['id']=='ripple' || $coin['id']=='dash' || $coin['id']=='zcash'){
-                        ?>
-                            <div class="col-md-2 col-sm-3" style="border-right: 1px solid #655c5c1a;">
+                        foreach ($coins as $coin) {
+                            if ('bitcoin' == $coin['id'] || 'bitcoin-cash' == $coin['id'] || 'ethereum' == $coin['id'] || 'litecoin' == $coin['id'] || 'ripple' == $coin['id'] || 'dash' == $coin['id'] || 'zcash' == $coin['id']) {
+                                ?>
+                            <div  style="border-right: 1px solid #655c5c1a;">
                                 <h4 style="text-align:center; margin-top: 15px;">
                                     <label style="font-weight: 800; 
                                 font-size: 12px;
                                 color: #444141e0;
-                                margin: 0px;">$ <?php echo $coin['current_price'] ?></label>
+                                margin: 0px;">$ <?php echo $coin['current_price']; ?></label>
 
-                                    <small><?php echo $coin['name'] ?></small>
+                                    <small><?php echo $coin['name']; ?></small>
                                 </h4>
                             </div>
                         <?php
@@ -317,7 +337,7 @@ $coins = json_decode(file_get_contents($url), true);
             <!-- Content / End -->
             
             <!-- Copyrights -->
-            <?php include_once"inc/copyrights.php"; ?>
+            <?php include_once 'inc/copyrights.php'; ?>
             
         </div>
         <!-- Dashboard / End -->
@@ -420,7 +440,12 @@ $coins = json_decode(file_get_contents($url), true);
     </script>
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
     <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-
+    <script>    
+    setTimeout(function() {
+        let alert = document.querySelector(".alert");
+            alert.remove();
+    }, 3000);
+    </script>
 </body>
 
 </html>

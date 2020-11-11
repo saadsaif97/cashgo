@@ -1,3 +1,10 @@
+<?php
+    if(isset($_SESSION['username'])){
+        header("Location: index.php");
+    }else{
+        
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,8 +15,8 @@
    <link href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.bootstrap.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    <h3 class="title" style="text-align:center;"><font color="red" align="center"> Top
-                                Investors</font></h3>
+    <h3 class="title" style="text-align:center;"><span style="color='red'; align='center';" > Top
+                                Investors</span></h3>
      <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
                             <thead>
                                 <tr>
