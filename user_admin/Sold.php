@@ -1,11 +1,11 @@
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if(isset($_SESSION['username'])){
-        header("Location: index.php");
-    }else{
-        
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
     }
+
 ?>
 </head>
 
@@ -22,7 +22,7 @@
 
             <!-- navigations -->
             <?php $thisPage = 'sold'; ?>
-            <?php include_once"inc/nav.php"; ?>
+            <?php include_once 'inc/nav.php'; ?>
             
             <div class="dashboard-content">
              <h3 class="title1" style="margin-bottom: 35px;">Manage All Sold Trades</h3>
@@ -68,7 +68,7 @@
             <!-- Content / End -->
             
             <!-- Copyrights -->
-            <?php include_once"inc/copyrights.php"; ?>
+            <?php include_once 'inc/copyrights.php'; ?>
             
         </div>
         <!-- Dashboard / End -->

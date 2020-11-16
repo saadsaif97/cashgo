@@ -1,31 +1,109 @@
 <!--incuding the header-->
-<?php include_once 'inc/header.php'; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if (isset($_SESSION['username'])) {
-        header('Location: index.php');
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
+    } else {
+        $username = $_SESSION['username'];
+        $user_data = $pdo->query("SELECT * FROM `user_profile` WHERE `username`='{$username}'")->fetch(PDO::FETCH_ASSOC);
+        $id = $user_data['id'];
+        $user_id = $user_data['user_id'];
+        $user_parent_id = $user_data['parent_id'];
+        $user_email = $user_data['email'];
+        $user_contact = $user_data['contact'];
+        $user_country = $user_data['country'];
     }
 
 ?>
+
+<?php
+    //   image upload
+    if (isset($_POST['uImage']) && (!empty($_FILES['user_image']['type']))) {
+        $errors = [];
+        $maxsize = 2097152;
+        $acceptable = [
+            'image/jpeg',
+            'image/jpg',
+            'image/png'
+        ];
+
+        if (($_FILES['user_image']['size'] >= $maxsize) || ($_FILES['user_image']['size'] == 0)) {
+            $errors[] = 'File too large. File must be less than 2 megabytes.';
+        }
+
+        if ((!in_array($_FILES['user_image']['type'], $acceptable)) && (!empty($_FILES['user_image']['type']))) {
+            $errors[] = 'Invalid file type. Only JPG and PNG types are accepted.';
+        }
+
+        if (count($errors) === 0) {
+            $extension = substr($_FILES['user_image']['name'], strpos($_FILES['user_image']['name'], '.'));
+            $image_name = $user_id . $extension;
+            move_uploaded_file($_FILES['user_image']['tmp_name'], 'images/user_img/' . $image_name);
+
+            $user_img_update = $pdo->prepare("UPDATE `user_profile` SET `user_img`='$image_name' WHERE id='$id' ")->execute();
+
+            $_SESSION['success_message'] = 'Image updated successfully';
+        } else {
+            foreach ($errors as $error) {
+                $_SESSION['warning_message'] = $error . '<br/>';
+            }
+        }
+    }
+?>
+
 </head>
 
 <body>
     <!-- Preloader -->
-    <div id="preloader">
+    <!-- <div id="preloader">
         <div id="status"></div>
-    </div>
+    </div> -->
     <!-- Preloader Ends -->
 
     <!-- start Container Wrapper -->
+
     <div id="container-wrapper">
+
+   
+
         <!-- Dashboard -->
         <div id="dashboard">
+
+
 
             <!-- navigations -->
             <?php $thisPage = 'profile'; ?>
             <?php include_once 'inc/nav.php'; ?>
 
             <div class="dashboard-content">
+                
+
                 <h3 class="title1">Profile</h3>
+
+                <!--success FLASH MESSAGE-->
+                <?php if (isset($_SESSION['success_message'])) { ?>
+                            <div class="alert alert-success">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <?php echo $_SESSION['success_message']; ?>
+                            </div>
+                    <?php } ?>
+                    <?php unset($_SESSION['success_message']); ?>
+                    <!--success FLASH MESSAGE-->
+
+
+
+                    <!--warning FLASH MESSAGE-->
+                    <?php if (isset($_SESSION['warning_message'])) { ?>
+                            <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <?php echo $_SESSION['warning_message']; ?>
+                            </div>
+                    <?php } ?>
+                    <?php unset($_SESSION['warning_message']); ?>
+                    <!--warning FLASH MESSAGE-->
+
+
                 <div class="container" style="width: 100%;">
                     <div class="row">
                         <div class="sign-up  widget-shadow col-md-8 " style="padding: 20px">
@@ -83,45 +161,47 @@
                         <div class="col-md-4">
                             <div class="sign-up  widget-shadow col-md-10">
                                 <div class="card-body">
-                                    <img src="images/btc.png">
+                                    <!-- <img src="images/btc.png">
                                     <div class="text-center">
                                         <div class="avatar avatar-md">
 
                                         </div>
                                     </div>
-                                    <hr>
+                                    <hr> -->
 
                                     <div class="mb-3">
 
-                                        <div class="small text-muted text-uppercase" style="float: right;">
-
-
+                                        <div class="small text-muted text-uppercase">
                                             <span class="badge badge-primary">Customer</span>
                                         </div><br>
-                                        <div class="small text-muted text-uppercase"><strong>User Id: </strong><span>B4U00193287</span></div>
+                                        <div class="small text-muted text-uppercase"><strong>User Id: </strong><span><?php echo $user_id; ?></span></div>
 
 
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="small text-muted text-uppercase"><strong>Parent Id: </strong><span>B4U0001</span></div>
+                                        <div class="small text-muted text-uppercase"><strong>Parent Id: </strong><span><?php if ($user_parent_id) {
+    echo $user_parent_id;
+} else {
+    echo 'null';
+} ?></span></div>
 
                                     </div>
 
 
 
                                     <div class="mb-3">
-                                        <div class="small text-muted text-uppercase"><strong>Name: </strong><span>M Shawaiz khan</span></div>
+                                        <div class="small text-muted text-uppercase"><strong>Name: </strong><span><?php echo $username; ?></span></div>
 
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="small text-muted text-uppercase"><strong>Email:</strong><span style="font-size: 12px;">shawaiz.itsaboutall@gmail.com</span></div>
+                                        <div class="small text-muted text-uppercase"><strong>Email:</strong><span style="font-size: 12px;"><?php echo $user_email; ?></span></div>
 
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="small text-muted text-uppercase"><strong>Contact:</strong><span>+923233008451</span></div>
+                                        <div class="small text-muted text-uppercase"><strong>Contact:</strong><span><?php echo $user_contact; ?></span></div>
 
                                     </div>
 
@@ -146,7 +226,7 @@
                                     </div>
 
                                     <div class="mb-3">
-                                        <div class="small text-muted text-uppercase">Country<strong> <span>Pakistan</span></strong></div>
+                                        <div class="small text-muted text-uppercase">Country<strong> <span><?php echo $user_country; ?></span></strong></div>
 
                                     </div>
                                 </div>
@@ -161,23 +241,21 @@
                             </div>
                             <hr>
                             <form class="form-horizontal" method="post" action="" enctype="multipart/form-data">
-
-
-
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3">Name:</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" type="text" name="name" required="" value="M Shawaiz khan">
+                                        <input class="form-control" type="text" name="name" required value="<?php echo $username; ?>">
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3">Phone No :</label>
                                     <div class="col-sm-9">
-                                       <input type="text" value="" placeholder="Enter your number">
+                                       <input type="text" id="contact" value="<?php if ($user_contact) {
+    echo $user_contact;
+} ?>" placeholder="Your contact number">
                                     </div>
+                                <p id="invalid_contact" style="color:red; text-align:right;"></p>
                                 </div>
-
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3">Country :</label>
                                     <div class="col-sm-9">
@@ -433,7 +511,6 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3">Bank Name:</label>
                                     <div class="col-sm-9">
@@ -471,35 +548,24 @@
                                         </select>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3">Account Title:</label>
                                     <div class="col-sm-9">
-
                                         <input class="form-control" type="text" name="account_name" value="">
-
-
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3"> IBAN
                                         : <small><a href="#" onclick="Ibanimg();">(What is this?)</a></small> </label>
                                     <div class="col-sm-9">
-
                                         <input class="form-control" type="text" name="account_no" value="" placeholder="Example: PK12ABCD1234567891234567" style="text-transform:uppercase;">
-
-
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label style="text-align:left;" class="control-label col-sm-3">Acc. Holder Ph#:</label>
                                     <div class="col-sm-9">
-
                                         <input class="form-control" type="text" name="acc_hold_No" placeholder="Example: 03331234567" value="">
-
-
                                     </div>
                                 </div>
 
@@ -517,10 +583,6 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-9">
-                                        <input type="hidden" name="id" value="">
-                                        <input type="hidden" name="_key" value="">
-
-                                        <input type="hidden" name="_token" value=""><br>
                                         <button type="submit" class="btn btn-sm btn-primary">Update Information</button>
                                         <a href="index.html" class="btn btn-sm btn-info">Update KYC</a>
                                     </div>
@@ -531,45 +593,75 @@
 
 
                         </div>
+
                         <div class="sign-up col-md-4">
+                        
+                       
+
+                        
 
                             <div class="sign-up widget-shadow col-md-10" style="padding: 20px;">
                                 <label>Change Avatar</label>
                                 <hr>
                                 <div class="card-body">
-                                    <form method="post" action="" enctype="multipart/form-data">
-                                        <input type="hidden" name="id" value="">
-                                        <input type="hidden" name="_key" value="">
-                                        <input type="hidden" name="_token" value="">
-                                        <input type="file" required="">
-                                        <input type="hidden" name="fileurl">
-                                        <br>
-                                        <button type="submit" class="mt-3 btn btn-sm btn-primary">Upload</button>
+                                    <form method="post" action="#" enctype="multipart/form-data" style="text-align:center;">
+                                        <small>.jpg, .jpeg or .png only</small>
+                                        <input type="file" name="user_image" id="user_image">
+                                        <input type="submit" name="uImage" class="mt-3 btn btn-sm btn-primary" value="Update image">
                                     </form>
                                 </div>
-
-
                             </div>
 
-                            <div class="sign-up  widget-shadow col-md-10" style="padding: 30px;   margin-top: 10px;  ">
+
+                            <?php 
+                                if(isset($_POST['update_password'])){
+                                    $curr_pass = $_POST['curr_pass'];
+                                    $pass = $_POST['pass'];
+                                    $cpass = $_POST['cpass'];
+                                    if($curr_pass && $pass && $cpass){
+                                        $user_q = $pdo->query("SELECT * FROM `user_profile` WHERE `user_id`='{$user_id}'");
+                                        $row = $user_q->fetch(PDO::FETCH_ASSOC);
+                                        $user_q = null;
+                                        $user_curr_pass = $row['password'];
+                                        if(password_verify($curr_pass, $user_curr_pass)){
+                                            if($pass===$cpass){
+                                                //The hash of the password that can be stored in the database
+                                                $hash = password_hash($password, PASSWORD_DEFAULT);
+                                                
+                                                $user_pass_update = $pdo->prepare("UPDATE `user_profile` SET `password`='$hash' WHERE user_id='$user_id' ")->execute();
+
+                                                $_SESSION['success_message'] = 'Password updated successfully';
+                                                header("Refresh:0");
+                                            }else{
+                                                $_SESSION['warning_message'] = 'please validate your new password';
+                                                header("Refresh:0");
+                                            }
+                                        }else{
+                                            $_SESSION['warning_message'] = 'current password mismatched';
+                                            header("Refresh:0");
+                                        }
+                                    }else{
+                                        $_SESSION['warning_message'] = 'all fields required';
+                                        header("Refresh:0");
+                                    }
+                                }
+                            
+                            ?>
+
+
+                            <div class="sign-up  widget-shadow col-md-10" style="padding: 10px;   margin-top: 10px;  ">
                                 <label>Change Password</label>
                                 <hr>
                                 <div class="card-body">
-                                    <form method="post" action="">
-
+                                    <form method="post" action="#">
                                         <div class="form-group">
-                                            <label>Password</label>
-                                            <br>
-                                            <input class="form-control" type="password" name="old_password" placeholder="Old Password" required="">
-                                            <br>
-                                            <input class="form-control" type="password" name="password" placeholder="New Password*" required="">
-                                            <br>
-                                            <input class="form-control" type="password" name="password_confirmation" placeholder="Confirm Password*" required="">
+                                            <input class="form-control" type="password" name="curr_pass" placeholder="Current Password" required>
+                                            
+                                            <input class="form-control" type="password" name="pass" placeholder="New Password*" required>
+                                            
+                                            <input class="form-control" type="password" name="cpass" placeholder="Confirm Password*" required>
                                         </div>
-                                        <input type="hidden" name="id" value="194047">
-                                        <input type="hidden" name="current_password" value="">
-                                        <input type="hidden" name="_token" value="">
-                                        <button type="submit" class="btn btn-sm btn-primary float-right">Change Password</button>
+                                        <input type="submit" name="update_password" class="mt-3 btn btn-sm btn-primary" value="Update password">
                                     </form>
                                 </div>
 
@@ -602,7 +694,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.html"></script>
     <script src="js/preloader.html"></script>
-    <script src="js/plugin.js"></script>
+    <!-- <script src="js/plugin.js"></script> -->
     <script src="js/main.js"></script>
     <script src="js/dashboard-custom.js"></script>
     <script src="js/jpanelmenu.min.js"></script>
@@ -654,6 +746,25 @@
         }
 
     </script>
+    <!--Validating the phone number-->
+<script>
+    let contact = document.getElementById('contact');
+    contact.addEventListener('keyup', function(e) {
+		let validNum = e.target.value.match(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g);
+        let len = e.target.value.length;
+        if(!validNum && (len > 0)){
+            document.getElementById('invalid_contact').innerHTML = "Please input the valid phone number!";
+        }else{
+            document.getElementById('invalid_contact').innerHTML = "";
+        }
+	});
+</script>
+<script>    
+    setTimeout(function() {
+        let alert = document.querySelector(".alert");
+            alert.remove();
+    }, 3000);
+</script>
 </body>
 
 </html>

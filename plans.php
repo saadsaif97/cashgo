@@ -36,11 +36,12 @@ ob_start();
                     $title=$row['title'];
                     $content=$row['content'];
                     $my_rows=$row['my_rows'];
+                    $card_image=$row['img_name'];
                 ?>
                 
                 <div class="plan_card" data-aos="fade" data-aos-delay="600">
                     <div>
-                        <img src="assets/img/gallery1.jpg" style="width: 100%;height: auto;">
+                        <img src="assets/img/cards_img/<?php echo $card_image; ?>" style="width: 100%;height: auto;" alt="<?php echo $title; ?>">
                     </div>
                     <div class="plan_card_body" style="padding: 20px 15px;">
                         <h4 style="font-weight:bolder;"><?php echo $title; ?></h4>

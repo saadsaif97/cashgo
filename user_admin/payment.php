@@ -1,11 +1,115 @@
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if(isset($_SESSION['username'])){
-        header("Location: index.php");
-    }else{
-        
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
     }
+
+?>
+<?php 
+    if(isset($_GET['myform'])){
+
+        if(!preg_match("/^((0?\.((0[1-9])|\d{2}))|([1-9]\d*(\.\d{2})?))$/",$_GET['amount'])){
+            $_SESSION['warning_message'] = 'Please fill in the correct amount!';
+            header("Location: deposit.php");
+            exit();
+        }
+
+        $_SESSION['deposit_mode'] = $_GET['deposit_mode'];
+        $_SESSION['currency'] = $_GET['currency'];
+        $_SESSION['amount'] = $_GET['amount'];
+    }
+
+?>
+
+<?php 
+    if (isset($_POST['payment_submit']) && (!empty($_FILES['recipt_img']['type']))) {
+
+        $errors = [];
+        $maxsize = 2097152;
+        $acceptable = [
+            'image/jpeg',
+            'image/jpg',
+            'image/png'
+        ];
+
+        if (($_FILES['recipt_img']['size'] >= $maxsize) || ($_FILES['recipt_img']['size'] == 0)) {
+            $errors[] = 'File too large. File must be less than 2 megabytes.';
+        }
+
+        if ((!in_array($_FILES['recipt_img']['type'], $acceptable)) && (!empty($_FILES['recipt_img']['type']))) {
+            $errors[] = 'Invalid file type. Only JPG and PNG types are accepted.';
+        }
+
+        if (count($errors) === 0) {
+
+            $transection_id = $_POST['trans_id'];
+            $payment_type = $_SESSION['deposit_mode'];
+            $currency = $_SESSION['currency'];
+            $amount = $_SESSION['amount'];
+            $deposite_fee = floatval($amount);
+            $rate = "1";
+            $user_id = $_SESSION['user_id'];// getting user id from the seesion set after login
+            $previous_amount = $pdo->query("SELECT SUM(amount) FROM `user_deposits` WHERE `user_id`='$user_id' ")->fetchColumn();
+            $sr_no = $pdo->query("SELECT `sr_no` FROM `user_deposits` WHERE `user_id`='$user_id' ORDER BY `sr_no` DESC LIMIT 1")->fetchColumn() +1;
+
+            if($transection_id && (!empty($_FILES['recipt_img']['type']))){
+
+                if(preg_match_all("/[a-zA-Z0-9]{12,18}/",$transection_id)){
+
+                    $extension = substr($_FILES['recipt_img']['name'], strpos($_FILES['recipt_img']['name'], '.'));
+                    $deposit_slip = $user_id .'_'.$sr_no . $extension;
+                    // move_uploaded_file($_FILES['recipt_img']['tmp_name'], 'images/trans_img/' . $deposit_slip);
+                    
+                    $data = [
+                        'sr_no'=> $sr_no,
+                        'user_id'=> $user_id,
+                        'payment_type'=> $payment_type,
+                        'currency'=> $currency,
+                        'amount'=> $amount,
+                        'rate'=> $rate,
+                        'deposit_fee'=> doubleval($amount)*0.02,
+                        'total_deposit'=> $previous_amount+$amount,
+                        'deposit_slip'=> $deposit_slip,
+                        'transection_id'=> $transection_id,
+                    ];
+
+                    $user_deposit_query = $pdo->prepare("INSERT INTO `user_deposits`(`sr_no`, `user_id`, `payment_type`, `currency`, `amount`, `rate`, `deposit_fee`, `total_deposit`, `deposit_slip`, `transection_id`) VALUES (:sr_no, :user_id, :payment_type,:currency,:amount,:rate,:deposit_fee,:total_deposit, :deposit_slip, :transection_id)")->execute($data);
+                    $user_deposit_query = null;
+
+                    $_SESSION['success_message'] = 'Deposited successfully';
+
+                    unset($_SESSION['deposit_mode']);
+                    unset($_SESSION['currency']);
+                    unset($_SESSION['amount']);
+                    header("Location:deposit.php");
+                    exit();
+                     
+                }else{
+                    $_SESSION['warning_message'] = 'please input the valid transection id!!!';
+                }
+
+
+            }else{
+                exit("You can't skip transection id and recipt image :)");
+            }
+
+        } else {
+            foreach ($errors as $error) {
+                $_SESSION['warning_message'] = $error . '<br/>';
+            }
+            echo "error";
+        }
+    }
+    
+
+?>
+
+<!--getting data from crypto api-->
+<?php
+$url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
+$coins = json_decode(file_get_contents($url), true);
 ?>
 </head>
 
@@ -23,44 +127,60 @@
 
             <!-- navigations -->
             <?php $thisPage = 'payment'; ?>
-            <?php include_once"inc/nav.php"; ?>
+            <?php include_once 'inc/nav.php'; ?>
             
             <div class="dashboard-content">
+
+            <!--success FLASH MESSAGE-->
+            <?php if (isset($_SESSION['success_message'])) { ?>
+                    <div class="alert alert-success" >
+                    <i class="fas fa-exclamation-circle"></i>
+                    <?php echo $_SESSION['success_message']; ?>
+                    </div>
+            <?php } ?>
+            <?php unset($_SESSION['success_message']); ?>
+            <!--success FLASH MESSAGE-->
+
+
+
+            <!--warning FLASH MESSAGE-->
+            <?php if (isset($_SESSION['warning_message'])) { ?>
+                    <div class="alert alert-warning" >
+                    <i class="fas fa-exclamation-circle"></i>
+                    <?php echo $_SESSION['warning_message']; ?>
+                    </div>
+            <?php } ?>
+            <?php unset($_SESSION['warning_message']); ?>
+            <!--warning FLASH MESSAGE-->
+
+            
+
                 <div class="main-page signup-page">
                     <div class="sign-u" style="background-color:#fff; padding:20px;">
-
                         <div class="sign-up1">
-                            <h4 style="font-size: 14px; ">You are to make new deposit of <strong> 10 BTC</strong> using your preferred
-                                mode of payment below.</h4><br>
+                            <!-- <pre>
+                                <?php print_r($data); ?>
+                            </pre> -->
+                            <?php
+                            foreach ($coins as $coin) {
+                                if ( $coin['id'] == $_SESSION['currency']) {
+                                    ?>
 
-                            <!---BTC ADDRESS--->
-                            <div class="panel panel-default" style="border:0px solid #fff;">
-                                <h4>
-                                    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#btc">
-                                        <strong>Bitcoin </strong>
-                                        <img src="images/btc.png" width="60px;" height="60px;">
-                                    </a>
-                                </h4>
-                                <div id="btc" class="panel-collapse collapse">
-                                    <div class="alert alert-success alert-dismissable">
-                                        <h4>
-                                            <strong>BTC Address :</strong> 
-                                        </h4>
-                                    </div>
+                                <h4 style="font-size: 14px; font-weight:normal;">You are to make new deposit of <strong> <?php echo $_SESSION['amount'].' '.$coin['symbol']; ?></strong> using your preferred mode of payment below.</h4>
+                                
+
+                                <div class="panel panel-default" style="border:0px solid #fff;">
+                                    <h4>
+                                        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#btc">
+                                            <strong><?php echo $coin['name']; ?> </strong>
+                                            <img src="<?php echo $coin['image']; ?>" width="60px;" height="60px;">
+                                        </a>
+                                    </h4>
                                 </div>
-                            </div>
-
-                            <!---ETH ADDRESS--->
-
-                            <!---LTC ADDRESS--->
-
-                            <!---BCH ADDRESS--->
-
-                            <!---DASH ADDRESS--->
-
-                            <!---XRP ADDRESS--->
-
-                            <!---ZCH ADDRESS--->
+                            <?php
+                                }
+                            }
+                            ?>
 
 
                             <div class="clearfix"></div>
@@ -73,19 +193,17 @@
                         <div class="clearfix"></div>
 
                     </div>
-                    <script>
-                        //document.frmTransaction.submit();
 
-                    </script>
-                    <form method="post" role="form" id="formABC" action="" style="background-color:#fff; padding:20px; margin-top:10px;" autocomplete="off">
+                    
+
+                    <form action="#" method="post"  style="background-color:#fff; padding:20px; margin-top:10px;" autocomplete="off" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="col-md-4">
                                 <label>Upload payment proof (Receipt) after payment:</label>
                                 <span style="color: red;" class="error"></span>
                             </div>
                             <div class="col-md-6">
-                                <input type="file" required="" class="file-upload-aws" accept="image/*">
-                                <input type="hidden" name="fileurl" value="">
+                                <input type="file" name="recipt_img" class="file-upload-aws" accept=".jpg,.png,.jpeg|image/*" required>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -98,20 +216,22 @@
                                 <label for="currencyName" data-toggle="tooltip" title="Bank transaction# OR receipt#" class="control-label">Transaction ID:</label>
                             </div>
                             <div class="col-md-6">
-                                <input class="form-control" type="text" id="trans_id" name="trans_id" required="" value="" onkeypress="return isNumberKey(this, event);">
+                                <input class="form-control" type="text" id="trans_id" name="trans_id" required>
+                                <small><p id="wrong_id" style="font-size: 12px;">Valid syntax of the transectoin ID is 12-18 digits and numbers</p></small>
                             </div>
+
                             <div class="col-md-2">
                             </div>
                             <div class="clearfix"></div>
                         </div>
 
-                        <div class="form-group">
 
-                            <div class="col-md-4">
-                                <label for="select" class="control-label">Payment Mode:</label>
-                            </div>
+                        <!-- this was the image of the extra bitcoin below  -->
+                                <!-- <div class="col-md-4">
+                                    <label for="select" class="control-label">Payment Mode:</label>
+                                </div>
 
-                            <div class="col-md-8">
+                                <div class="col-md-8">
 
 
                                 <label class="radio">
@@ -119,29 +239,33 @@
                                     <img src="images/btc.png" width="50px;">
                                 </label>
                                 <div class="clearfix"></div>
+                                </div>  -->
+
+                        <div class="form-group">
+
+                            <div class="col-md-4">
+
                             </div>
-                            <div class="form-group">
+                            <div class="col-md-8">
 
-                                <div class="col-md-4">
-
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="submit" id="btnSubmit" class="col-md-6 btn btn-default" value="Submit payment">
-
-                                    <div class="clearfix"></div>
-
-                                    <input type="hidden" name="amount" value="10">
-
-                                    <!--<input type="hidden" name="amountusd" value="">-->
-
-                                    <input type="hidden" name="plan_id" value="1">
-                                    <input type="hidden" name="deposit_mode" value="new">
-                                    <input type="hidden" name="currency" value="BTC">
-
-                                    <input type="hidden" name="_token" value=""><br>
-                                </div>
                                 <div class="clearfix"></div>
+
+                                <input type="hidden" name="amount" value="10">
+
+                                <!--<input type="hidden" name="amountusd" value="">-->
+
+                                <!-- <input type="hidden" name="plan_id" value="1">
+                                <input type="hidden" name="deposit_mode" value="new">
+                                <input type="hidden" name="currency" value="BTC">
+
+                                <input type="hidden" name="_token" value=""><br> -->
+
+                                <input type="submit" name="payment_submit" class="col-md-6 btn btn-default" value="Submit payment">
+
                             </div>
+                            <div class="clearfix"></div>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -149,13 +273,15 @@
             <!-- Content / End -->
             
             <!-- Copyrights -->
-            <?php include_once"inc/copyrights.php"; ?>
+            <?php include_once 'inc/copyrights.php'; ?>
                 
         </div>
         <!-- Dashboard / End -->
     </div>
     <!-- end Container Wrapper -->
-    <div class="modal fade" id="donateFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+
+    <!-- why the modal is here  -->
+    <!-- <div class="modal fade" id="donateFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content" style="margin-top: 93px;">
                 <div class="modal-header">
@@ -197,7 +323,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
 
 
 
@@ -211,7 +338,7 @@
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/bootstrap.min.html"></script>
     <script src="js/preloader.html"></script>
-    <script src="js/plugin.js"></script>
+    <!-- <script src="js/plugin.js"></script> -->
     <script src="js/main.js"></script>
     <script src="js/dashboard-custom.js"></script>
     <script src="js/jpanelmenu.min.js"></script>
@@ -223,7 +350,19 @@
         $(document).ready(function() {
             $('#example').DataTable();
         });
+    </script>
+    <script>
+        const transec_id =  document.getElementById('trans_id');
+        const wrong_id =  document.getElementById('wrong_id');
 
+        transec_id.addEventListener("keyup",function(e) {
+            const tId = e.target.value;
+            if(tId.match(/[a-zA-Z0-9]{12,18}/g) || tId.length==0){
+                wrong_id.style.color = "gray";
+            }else{
+                wrong_id.style.color = "red";
+            }
+        })
     </script>
 </body>
 

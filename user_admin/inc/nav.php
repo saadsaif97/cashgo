@@ -1,4 +1,14 @@
+<?php
+    // if (!isset($_SESSION['username'])) {
+    //     header('Location: login.php');
+    // } else {
+        $username = $_SESSION['username'];
+        $user_data = $pdo->query("SELECT * FROM `user_profile` WHERE `username`='{$username}'")->fetch(PDO::FETCH_ASSOC);
+        $user_img = $user_data['user_img'];
+        $user_id = $user_data['user_id'];
+    // }
 
+?>
             <!-- Responsive Navigation Trigger -->
             <a href="#" class="dashboard-responsive-nav-trigger"><i class="fa fa-reorder"></i> Dashboard Navigation</a>
 
@@ -19,11 +29,11 @@
                         <a href="profile.php">
                             <div class="profile-sec">
                                 <div class="dash-image">
-                                    <img  src="images/comment.jpg" alt="">
+                                    <img  src="images/user_img/<?php echo $user_img; ?>" alt="user photo">
                                 </div>
                                 <div class="dash-content">
-                                    <h4>Loural Teak</h4>
-                                    <span>Post Manager</span>
+                                    <h4><?php echo $username; ?></h4>
+                                    <span>Customer</span>
                                 </div>
                             </div>
                         </a>
@@ -86,7 +96,7 @@
                      <ul>
                         <li <?php echo 'index' == $thisPage ? "class='active'" : ''; ?> ><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 
-                        <li <?php echo 'deposite' == $thisPage ? "class='active'" : ''; ?> ><a href="deposite.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
+                        <li <?php echo 'deposite' == $thisPage ? "class='active'" : ''; ?> ><a href="deposit.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
                         
                         <li <?php echo 'donations' == $thisPage ? "class='active'" : ''; ?> ><a href="Donations.php"><i class="fas fa-donate"></i>Donations</a></li>
                         

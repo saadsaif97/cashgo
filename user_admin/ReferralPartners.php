@@ -1,12 +1,12 @@
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if(isset($_SESSION['username'])){
-        header("Location: index.php");
-    }else{
-        
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
     }
-?>    
+
+?>  
     
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
   <script>
@@ -30,7 +30,7 @@
 
             <!-- navigations -->
             <?php $thisPage = 'referralpartners'; ?>
-            <?php include_once"inc/nav.php"; ?>
+            <?php include_once 'inc/nav.php'; ?>
             
             
             <div class="dashboard-content">
@@ -60,6 +60,7 @@
     <li><a href="#">2st Level Referrals(0)</a></li>
     <li><a href="#">3st Level Referrals(0)</a></li>
   </ul>
+  
   <div class="panels">
     <article class="active-panel">
        <div class="table-reponsive box">
@@ -168,7 +169,7 @@
             <!-- Content / End -->
             
             <!-- Copyrights -->
-            <?php include_once"inc/copyrights.php"; ?>
+            <?php include_once 'inc/copyrights.php'; ?>
             
         </div>
         <!-- Dashboard / End -->

@@ -1,8 +1,9 @@
 <!--incuding the header-->
-<?php include_once 'inc/header.php'; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if (isset($_SESSION['username'])) {
-        header('Location: index.php');
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
     }
 
 ?>

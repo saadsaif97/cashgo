@@ -1,11 +1,12 @@
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if(isset($_SESSION['username'])){
-        header("Location: index.php");
-    }else{
-        
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
+    } else {
     }
+
 ?>
 </head>
 
@@ -22,7 +23,7 @@
 
             <!-- navigations -->
             <?php $thisPage = 'investmentplans'; ?>
-            <?php include_once"inc/nav.php"; ?>
+            <?php include_once 'inc/nav.php'; ?>
             
             <div class="dashboard-content">
                 <div class="row">
@@ -36,8 +37,8 @@
                             <div style="padding:20px; text-align:left; background-color: white;">
 
                                 <p>
-                         <font color="blue"><i class="fa fa-star"></i>
-                                    </font> Criteria For Join This Plan :
+                         <psan style="color='blue';"><i class="fa fa-star"></i>
+                                    </psan> Criteria For Join This Plan :
                                 </p>
                                        <p><svg class="svg-inline--fa  fa-w-16 fa-" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="null" role="img" xmlns="" viewBox="0 0 512 512" data-fa-i2svg="" style="width: 12px;">
                                         <g>
@@ -74,10 +75,10 @@
                                     : $4999</p>
                                 <hr>
                                 <p>
-                                    <font color="blue"><svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="" style="width: 16px;">
+                                    <span style="color=blue;"><svg class="svg-inline--fa fa-star fa-w-18" aria-hidden="true" focusable="false" data-prefix="fa" data-icon="star" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg="" style="width: 16px;">
                                             <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z" ></path>
                                         </svg><!-- <i class="fa fa-star"></i> -->
-                                    </font>Referal Bonuses :
+                                    </span>Referal Bonuses :
                                 </p>
 
                                 <hr>
@@ -858,7 +859,7 @@
             <!-- Content / End -->
             
             <!-- Copyrights -->
-            <?php include_once"inc/copyrights.php"; ?>
+            <?php include_once 'inc/copyrights.php'; ?>
             
         </div>
         <!-- Dashboard / End -->

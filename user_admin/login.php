@@ -1,8 +1,10 @@
-<!--incuding the database -->
-<?php include_once 'inc/user_profile_db.php'; ?>
+<!--incuding the header-->
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
     if (isset($_SESSION['username'])) {
         header('Location: index.php');
+    } else {
     }
 
 ?>
@@ -31,13 +33,16 @@
 
             //Store the result so we can check if the account exists in the database.
             if ($stmt->fetch()) {
-                $user_q = $pdo->query("SELECT `password` FROM `user_profile` WHERE `email`='{$email}'");
-                $db_pass = $user_q->fetchColumn();
+                $user_q = $pdo->query("SELECT * FROM `user_profile` WHERE `email`='{$email}'");
+                $row = $user_q->fetch(PDO::FETCH_ASSOC);
                 $user_q = null;
-
-                if (password_verify($password, $db_pass)) {
+                $username = $row['username'];
+                $user_id = $row['user_id'];
+                $user_pass = $row['password'];
+                if (password_verify($password, $user_pass)) {
                     $_SESSION['login_message'] = 'Logged in successfully';
                     $_SESSION['username'] = $username;
+                    $_SESSION['user_id'] = $user_id;
                     header('Location: index.php');
                 } else {
                     // Either password or email is wrong
@@ -81,13 +86,13 @@
                  </div>
         <?php } ?>
         <?php unset($_SESSION['warning_message']); ?>
-        <!--SUCCESS FLASH MESSAGE-->
+        <!--warning FLASH MESSAGE-->
 
          <h2>Login form</h2>
          
           <form action="#" method="post">
               <div class="input-group mb-3">
-                  <input type="email" class="form-control" name="email" placeholder="Email" id="email" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : ''; ?>" required>
+                  <input type="email" class="form-control" name="email" placeholder="Email" id="email"  required>
                   <div class="input-group-append">
                     <span class="input-group-text" id="basic-addon2"><i class="fas fa-envelope"></i></span>
                   </div>

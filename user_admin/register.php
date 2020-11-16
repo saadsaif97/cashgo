@@ -1,12 +1,9 @@
-<!--incuding the database -->
-<?php include_once"inc/user_profile_db.php"; ?>
-
 <!--incuding the header-->
-<?php include_once"inc/header.php"; ?>
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
 
-            
-    if(isset($_POST['register'])){
+    if (isset($_POST['register'])) {
         // Check if the data was submitted, isset() function will check if the data exists.
         if (!isset($_POST['username'], $_POST['password'], $_POST['email'])) {
             // Could not get the data that should have been sent.
@@ -17,79 +14,67 @@
             // One or more values are empty.
             exit('Please complete the registration form');
         }
-        
-        $username=$_POST['username'];
-        $password=$_POST['password'];
-        $cpass=$_POST['cpass'];
-        $email=$_POST['email'];
-        $contact=$_POST['contact'];
-        $country=$_POST['country'];
-        
+
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $cpass = $_POST['cpass'];
+        $email = $_POST['email'];
+        $contact = $_POST['contact'];
+        $country = $_POST['country'];
+
         //Email validation
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            
+
             // We need to check if the account with that username exists.
             if ($stmt = $pdo->prepare('SELECT * FROM `user_profile` WHERE email=?')) {
                 $stmt->execute([$email]);
 
                 //Store the result so we can check if the account exists in the database.
                 if ($stmt->fetch()) {
-                // Username already exists
-                    $_SESSION['warning_message']="User with this email address exists. Please register with other email address";
+                    // Username already exists
+                    $_SESSION['warning_message'] = 'User with this email address exists. Please register with other email address';
                 } else {
-                    
-                    if(preg_match_all("/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\.\/0-9]*$/", $contact)){
-                        
-                        if($password!=$cpass){
-                        
-                            $_SESSION['warning_message']="Please confirm your password correctly!";
-                        
-                        }else{
-                            //The hash of the password that can be stored in the database 
-                            $hash = password_hash($password,PASSWORD_DEFAULT); 
-                            
+                    if (preg_match_all("/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\.\/0-9]*$/", $contact)) {
+                        if ($password != $cpass) {
+                            $_SESSION['warning_message'] = 'Please confirm your password correctly!';
+                        } else {
+                            //The hash of the password that can be stored in the database
+                            $hash = password_hash($password, PASSWORD_DEFAULT);
+
 //                            $verify = password_verify($password, $hash);
 //                            echo $verify; first is the password from the user and other is the encrypted
-                            
-                                $last_user_q = $pdo->query("SELECT `id` FROM `user_profile` ORDER BY id DESC LIMIT 1");
-                                $recent_id = $last_user_q->fetchColumn();
-                                $last_user_q=null;
-                                $uid;
-                                $uid = time();
-                                $uid .= ++$recent_id;
-                                $uid = "TW".$uid;
-                            
-                            $sql = "INSERT INTO `user_profile` (username, password, email, country, contact, user_id) VALUES (?,?,?,?,?,?)";
-                            $stmt= $pdo->prepare($sql);
+
+                            $last_user_q = $pdo->query('SELECT `id` FROM `user_profile` ORDER BY id DESC LIMIT 1');
+                            $recent_id = $last_user_q->fetchColumn();
+                            $last_user_q = null;
+                            $uid;
+                            $uid = time();
+                            $uid .= ++$recent_id;
+                            $uid = 'TW' . $uid;
+
+                            $sql = 'INSERT INTO `user_profile` (username, password, email, country, contact, user_id) VALUES (?,?,?,?,?,?)';
+                            $stmt = $pdo->prepare($sql);
                             $stmt->execute([$username, $hash, $email, $country, $contact, $uid]);
-                            
-                            
-                            $_SESSION['success_message']="User registered successfully";
-                            header("Refresh:0");
-                            }
-                            $stmt=null;
-                        
-                    }else{
+
+                            $_SESSION['success_message'] = 'User registered successfully';
+                            header('Refresh:0');
+                        }
+                        $stmt = null;
+                    } else {
                         // Invalid phone number
-                        $_SESSION['warning_message']="Please fill provide the correct phone number";
+                        $_SESSION['warning_message'] = 'Please fill provide the correct phone number';
                     }
-                    
                 }
-                $stmt=null;
-                  
-                
+                $stmt = null;
             } else {
                 // Something is wrong with the sql statement, check to make sure user_profile table exists with all 3 fields.
-                $_SESSION['warning_message']="could not prepare the statement";
+                $_SESSION['warning_message'] = 'could not prepare the statement';
             }
-            $stmt=null;
-         
-
+            $stmt = null;
         } else {
             // EMAIL not valid
-            $_SESSION['email_invalid_message']="Email is invalid please use a valid email!";
+            $_SESSION['email_invalid_message'] = 'Email is invalid please use a valid email!';
         }
-
     }
 ?>
 </head>
@@ -102,7 +87,7 @@
        <div class="col col-10 offset-1 col-md-6 offset-md-3 col-lg-4 offset-lg-4">
            
         <!--SUCCESS FLASH MESSAGE-->
-        <?php if(isset($_SESSION['success_message'])): ?>
+        <?php if (isset($_SESSION['success_message'])): ?>
                  <div class="alert alert-success">
                  <i class="fas fa-check-circle"></i>
                  <?php echo $_SESSION['success_message']; ?>
@@ -112,7 +97,7 @@
         <!--SUCCESS FLASH MESSAGE-->
          
         <!--warning FLASH MESSAGE-->
-        <?php if(isset($_SESSION['warning_message'])): ?>
+        <?php if (isset($_SESSION['warning_message'])): ?>
                  <div class="alert alert-warning">
                  <i class="fas fa-exclamation-circle"></i>
                  <?php echo $_SESSION['warning_message']; ?>
@@ -136,14 +121,14 @@
                     <span class="input-group-text" id="basic-addon2"><i class="fas fa-envelope"></i></span>
                   </div>
                     <!--INVALID EMAIL FLASH MESSAGE-->
-                    <?php if(isset($_SESSION['email_invalid_message'])): ?>
+                    <?php if (isset($_SESSION['email_invalid_message'])): ?>
                              <div class="alert alert-warning">
                              <i class="fas fa-check-circle"></i>
                              <?php echo $_SESSION['email_invalid_message']; ?>
                              </div
                     <?php endif; ?>
                     <?php unset($_SESSION['email_invalid_message']); ?>
-                    <!--INVALID EMAIL FLASH MESSAGE-->
+                    <!-- EMAIL FLASH MESSAGE-->
               </div>
               <div class="input-group mb-3">
                   <input type="password" class="form-control" name="password" placeholder="Password" id="password" required>
@@ -171,11 +156,11 @@
                       <?php
                         $url = 'https://api.first.org/data/v1/countries';
                         $countries = json_decode(file_get_contents($url), true);
-                        $countries=$countries['data'];
-                        foreach($countries as $countryObj){
-                        ?>    
+                        $countries = $countries['data'];
+                        foreach ($countries as $countryObj) {
+                            ?>    
                             <option value='<?php echo $countryObj['country']; ?>' <?php echo (isset($_POST['country']) && $_POST['country'] === $countryObj['country']) ? 'selected' : ''; ?> ><?php echo $countryObj['country']; ?></option>;
-                        <?php    
+                        <?php
                         }
                         ?>
                         

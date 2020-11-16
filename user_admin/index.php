@@ -1,14 +1,17 @@
-<!--incuding the database -->
-<?php include_once 'inc/user_profile_db.php'; ?>
+<!--incuding the header-->
+<?php include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php'; ?>
 <?php
     if (!isset($_SESSION['username'])) {
         header('Location: login.php');
+    } else {
+        $username = $_SESSION['username'];
+        $user_data = $pdo->query("SELECT * FROM `user_profile` WHERE `username`='{$username}'")->fetch(PDO::FETCH_ASSOC);
+        $user_id = $user_data['user_id'];
     }
 
 ?>
 
-<!--incuding the header-->
-<?php include_once 'inc/header.php'; ?>
 
 <!--getting data from crypto api-->
 <?php
@@ -46,16 +49,15 @@ $coins = json_decode(file_get_contents($url), true);
                     <!--LOGIN FLASH MESSAGE-->
                     
                     
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr));">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); margin: 0 -15px;">
                        
-                        <div  style="font-size:18px; border-right: 1px solid #655c5c1a; color:#fff; background-color:#666; align-self:start;">
+                        <div  style="font-size:18px; border-right: 1px solid #655c5c1a; color:#fff; background-color:#666; ">
                             <h4 style="text-align:center; margin-top: 15px;">
                                 <label style="font-weight: 800; 
                             font-size: 11px;
                             color:white;
                             margin: 0px;
                             ">Today's Exchange Rates</label>
-
                                 <small style="color:white;"><?php echo date('j F Y'); ?></small>
                             </h4>
                         </div>
@@ -70,7 +72,6 @@ $coins = json_decode(file_get_contents($url), true);
                                 font-size: 12px;
                                 color: #444141e0;
                                 margin: 0px;">$ <?php echo $coin['current_price']; ?></label>
-
                                     <small><?php echo $coin['name']; ?></small>
                                 </h4>
                             </div>
@@ -87,41 +88,39 @@ $coins = json_decode(file_get_contents($url), true);
                         in COVID-19 Relief Fund</a>
                 </div>
                 <br>
-                <div class="" style="padding-top: 43px;">
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #908b8b6b; ">
+                <div style="padding-top: 43px; display:grid; grid-template-columns:repeat(4,1fr); width:100%; text-align:center;">
+                    <div style="background-color: white; border-right: 1px solid #908b8b6b; ">
                         <span>Your ID
                         </span>
                         <h4>
-                            <a href="#">B4U00193287</a>
+                            <a href="#"><?php echo $user_id; ?></a>
                         </h4>
                     </div>
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #908b8b6b; ">
+                    <div style="background-color: white; border-right: 1px solid #908b8b6b; ">
                         <span><a href=""> Investment Plan </a></span>
                         <h4><a href="">TIFFANY</a></h4>
                     </div>
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #908b8b6b; ">
-
+                    <div style="background-color: white; border-right: 1px solid #908b8b6b; ">
                         <span style="color:black;">Parent ID </span>
                         <br>
                         <h4 style="color:black;">
                             <a href="">B4U0001</a>
                         </h4>
                     </div>
-                    <div class="col-md-3 col-sm-6" style="background-color: white; ">
+                    <div style="background-color: white; ">
                         <span style="color:black;"><a href=""> Your Partners </a></span>
                         <br>
                         <h4 style="color:green;">0</h4>
                     </div>
                 </div>
-                <div style="text-align: center; padding-top: 89px;">
-
+                
+                <div style="text-align: center; padding-top: 70px; display:grid; grid-template-columns:repeat(4,1fr); text-align:center;">
                     <!-- Deposit Icon -->
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right:  1px solid #908b8b6b;">
+                    <div  style="background-color: white; border-right:  1px solid #908b8b6b;">
                         <div>
                             <h4>
                                 <span class="fa-stack">
                                 </span><br>
-
                                 <strong>
                                     <a href=""> DEPOSITED </a>
                                 </strong>
@@ -136,20 +135,14 @@ $coins = json_decode(file_get_contents($url), true);
                     </div>
 
                     <!-- Profit Icon -->
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #908b8b6b;">
+                    <div  style="background-color: white; border-right: 1px solid #908b8b6b;">
                         <div>
                             <h4>
-                                <span class="fa-stack">
-                                </span><br>
-
-                                <strong>
-                                    <a href="#">PROFIT</a>
-
-                                </strong>
+                                <span class="fa-stack"></span>
+                                <br>
+                                <strong><a href="#">PROFIT</a></strong>
                             </h4>
                         </div>
-
-
                         <div>
                             <h3>
                                 $0.00
@@ -158,47 +151,48 @@ $coins = json_decode(file_get_contents($url), true);
                     </div>
 
                     <!-- Ref. Bonus Icon -->
-                    <div class="col-md-3 col-sm-6 " style="background-color: white; border-right: 1px solid #908b8b6b;">
+                    <div  style="background-color: white; border-right: 1px solid #908b8b6b;">
                         <div>
                             <h4>
-                                <span class="fa-stack">
-                                </span><br>
-                                <strong>
-                                    <a href=""> REF. BONUS</a>
-                                </strong>
+                                <span class="fa-stack"></span>
+                                <br>
+                                <strong><a href="#">PROFIT</a></strong>
                             </h4>
                         </div>
                         <div>
                             <h3>
-
-                                $ 0.00
-
+                                $0.00
                             </h3>
                         </div>
                     </div>
 
                     <!-- Withdrawal Icon -->
-                    <div class="col-md-3 col-sm-6" style="background-color: white; ">
+                    <div  style="background-color: white; border-right: 1px solid #908b8b6b;">
                         <div>
                             <h4>
-                                <span class="fa-stack"></span><br>
-                                <strong>
-                                    <a href="">Withdrawals</a>
-                                </strong>
+                                <span class="fa-stack"></span>
+                                <br>
+                                <strong><a href="#">WITHDRAWLS</a></strong>
                             </h4>
                         </div>
                         <div>
-                            <h3>$0.00</h3>
+                            <h3>
+                                $0.00
+                            </h3>
                         </div>
-                    </div> </div>
-                <div style="padding-top: 147px; text-align: center;">
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #00000033;">
+                    </div>
+
+                </div>
+
+                <div style="padding-top: 70px; display:grid; grid-template-columns:repeat(4,1fr); text-align:center;">
+
+                    <div style="background-color: white; border-right: 1px solid #00000033;">
                         <h4 style="margin-top: 13px;">
                             $0.00
                             <br><small>Attracted Funds</small>
                         </h4>
                     </div>
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #00000033;">
+                    <div style="background-color: white; border-right: 1px solid #00000033;">
                         <h4 style="margin-top: 13px;">
                             $0.0000
                             <br><small>Last
@@ -207,132 +201,135 @@ $coins = json_decode(file_get_contents($url), true);
                     </div>
 
                     <!--$last_bonus-->
-                    <div class="col-md-3 col-sm-6" style="background-color: white; border-right: 1px solid #00000033;">
+                    <div style="background-color: white; border-right: 1px solid #00000033;">
                         <h4 style="margin-top: 13px;">$0.0000
                             <br>
-                            <small> Last
-                                Bonus</small>
+                            <small> Last Bonus</small>
                         </h4>
                     </div>
 
-                    <div class="col-md-3 col-sm-6" style="background-color: white;">
+                    <div style="background-color: white;">
                         <h4 style="margin-top: 13px;">
                             $ 0
                             <br>
                             <small> Sold Balance </small>
                         </h4>
                     </div>
+
                 </div>
-                <div class="row col-lg-12 widget-shadow" style="margin-top: 10px; margin-left: 0px;">
-    <div class="col-lg-6" style="float:left; margin-right:0px;  background-color:white;">
-			<div width="100%" style="text-align:center; ">
-				<div style="float:left; padding:5px; width:65%;">
-					<h4 class="title"><font align="left">Latest Deposits</font></h4>
-				</div>
-				<div style="float:right; padding:10px; width:35%;">
-									<a class="btn btn btn-sm btn-default" href="deposite.html">View All Deposits</a>	
-								</div>
-				
-			</div>	
-			<table id="myTable" class="table table-hover"> 
-				<thead> 
-					<tr> 
-						<th>ID</th>
-						<th>Amount</th>
-												<!--<th>Trans No/Type</th>-->
-						<th>Date</th>
-					</tr>
-				</thead> 
-				<tbody> 
-									</tbody> 
-			</table>
-		</div>
-		<div class="col-lg-6" style="float:right; margin-left=" 10px""="">
-			<div width="100%">
-			    <div style="float:left; padding:5px; width:65%;">
-					<h4 class="title"><font align="left"> Latest Withdrawals</font></h4>
-				</div>
-				<div style="float:right; padding:10px; width:35%;">
-										<a class="btn btn btn-sm btn-default" href="Withdraw.html">View All Withdrawals</a>	
-									</div>
-				
-			</div>
-			<table id="myTable" class="table table-hover" style="text-align:center;"> 
-				<thead> 
-					<tr> 
-						<th>ID</th>
-						<th>Amount</th>
-												<th>Type</th>
-						<th>Date</th>
-					</tr>
-				</thead> 
-				<tbody> 
-									</tbody> 
-			</table>
-		</div>
-	</div>
-           <div class="col-lg-12 widget-shadow" style="margin-right:0px;margin-top:10px; margin-left: 0px;  background-color:white;"> 
-	 
-			<div width="100%" style="text-align:center;">
-				<div style="float:left; padding:5px; width:65%;">
-					<h4 class="title"><font align="left">Latest Login History</font></h4>
-				</div>
-				<div style="float:right; padding:10px; width:35%;">
-				 
-					<a class="btn btn btn-sm btn-default" href="login-history.html">View All History</a>	
-				 
-				</div>
-				
-			</div>	
-			<table id="myTable" class="table table-hover"> 
-				<thead> 
-					<tr> 
-						<th>Sr.#</th>
-						<th>Ip</th>
-						<th>Location</th>
-						<th>Date</th>
-					</tr>
-				</thead>
-				 
-				<tbody> 
-															<tr>
-						
-						<th>1</th>
-				        <td>39.46.113.105</td>
-				        <td></td>
-				        <td>2020-10-17 15:43:34</td>
-					</tr>
-															<tr>
-						
-						<th>2</th>
-				        <td>39.46.71.30</td>
-				        <td>Pakistan</td>
-				        <td>2020-10-16 18:53:30</td>
-					</tr>
-															<tr>
-						
-						<th>3</th>
-				        <td>39.46.71.30</td>
-				        <td>Pakistan</td>
-				        <td>2020-10-16 13:43:12</td>
-					</tr>
-															<tr>
-						
-						<th>4</th>
-				        <td>39.46.21.140</td>
-				        <td></td>
-				        <td>2020-10-14 15:29:09</td>
-					</tr>
-															<tr>
-						
-						<th>5</th>
-				        <td>103.116.251.63</td>
-				        <td>Pakistan</td>
-				        <td>2020-10-14 02:16:25</td>
-					</tr>
-																			</tbody> 
-			</table>
-	</div>
+
+                <div class="row col-lg-12 widget-shadow" style="margin-top: 70px; margin-left: 0px;">
+                    <div class="col-lg-6" style="float:left; margin-right:0px;  background-color:white;">
+                        <div width="100%" style="text-align:center; ">
+                            <div style="float:left; padding:5px; width:65%;">
+                                <h4 class="title"><span style="text-align:left;">Latest Deposits</span></h4>
+                            </div>
+                            <div style="float:right; padding:10px; width:35%;">
+                                <a class="btn btn btn-sm btn-default" href="deposite.php">View All Deposits</a>	
+                            </div>
+                            
+                        </div>	
+                        <table id="myTable" class="table table-hover"> 
+                            <thead> 
+                                <tr> 
+                                    <th>ID</th>
+                                    <th>Amount</th>
+                                                            <!--<th>Trans No/Type</th>-->
+                                    <th>Date</th>
+                                </tr>
+                            </thead> 
+                            <tbody> 
+                            </tbody> 
+                        </table>
+                    </div>
+
+                    <div class="col-lg-6" style="float:right; margin-left=">
+                        <div width="100%">
+                            <div style="float:left; padding:5px; width:65%;">
+                                <h4 class="title">Latest Withdrawals</h4>
+                            </div>
+                            <div style="float:right; padding:10px; width:35%;">
+                                <a class="btn btn btn-sm btn-default" href="Withdraw.php">View All Withdrawals</a>	
+                            </div>
+                            
+                        </div>
+                        <table id="myTable" class="table table-hover" style="text-align:center;"> 
+                            <thead> 
+                                <tr> 
+                                    <th>ID</th>
+                                    <th>Amount</th>
+                                    <th>Type</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead> 
+                            <tbody> 
+                            </tbody> 
+                        </table>
+                    </div>
+                </div>
+
+
+
+                    <div class="col-lg-12 widget-shadow" style="margin-right:0px;margin-top:70px; margin-left: 0px;  background-color:white;"> 
+                
+                        <div width="100%" style="text-align:center;">
+                            <div style="float:left; padding:10px; width:65%;">
+                                <h4 class="title">Latest Login History</h4>
+                            </div>
+                            <div style="float:right; padding:10px; width:35%;">
+                                <a class="btn btn btn-sm btn-default" href="login-history.php">View All History</a>	
+                            </div>
+                            
+                        </div>	
+                        <table id="myTable" class="table table-hover"> 
+                            <thead> 
+                                <tr> 
+                                    <th>Sr.#</th>
+                                    <th>Ip</th>
+                                    <th>Location</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody> 
+                                                                        <tr>
+                                    
+                                    <th>1</th>
+                                    <td>39.46.113.105</td>
+                                    <td></td>
+                                    <td>2020-10-17 15:43:34</td>
+                                </tr>
+                                                                        <tr>
+                                    
+                                    <th>2</th>
+                                    <td>39.46.71.30</td>
+                                    <td>Pakistan</td>
+                                    <td>2020-10-16 18:53:30</td>
+                                </tr>
+                                                                        <tr>
+                                    
+                                    <th>3</th>
+                                    <td>39.46.71.30</td>
+                                    <td>Pakistan</td>
+                                    <td>2020-10-16 13:43:12</td>
+                                </tr>
+                                                                        <tr>
+                                    
+                                    <th>4</th>
+                                    <td>39.46.21.140</td>
+                                    <td></td>
+                                    <td>2020-10-14 15:29:09</td>
+                                </tr>
+                                                                        <tr>
+                                    
+                                    <th>5</th>
+                                    <td>103.116.251.63</td>
+                                    <td>Pakistan</td>
+                                    <td>2020-10-14 02:16:25</td>
+                                </tr>
+                                                                                        </tbody> 
+                        </table>
+                </div>
             </div>
             <!-- Content / End -->
             
@@ -356,7 +353,6 @@ $coins = json_decode(file_get_contents($url), true);
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugin.js"></script>
     <script src="js/main.js"></script>
-    <script src="../../../../canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script src="js/chart.js"></script>
     <script src="js/dashboard-custom.js"></script>
     <script src="js/jpanelmenu.min.js"></script>

@@ -1,5 +1,10 @@
 
 <?php
+ob_start();
+if(!isset($_COOKIE["PHPSESSID"]))
+{
+  session_start();
+}
 
 $db_host = "localhost";
 $db_user = "root";

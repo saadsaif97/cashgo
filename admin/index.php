@@ -1,24 +1,52 @@
 <?php include "../includes/db.php"; ?>
 
+
 <?php
 /*///////////////////////
 *   TITLE & TAGLINE HERE
 *////////////////////////
 //    updating the logo
-    if(isset($_POST['update_logo'])){
-        
-        $imagename=$_FILES["logo"]["name"]; 
+if (isset($_POST['update_logo']) && (!empty($_FILES['logo']['type']))) {
+    $errors = [];
+    $maxsize = 2097152;
 
-        //Get the content of the image and then add slashes to it 
-        $imagetmp=$_FILES['logo']['tmp_name'];
+    list($width,$height) = getimagesize($_FILES['logo']['tmp_name']);
 
-        //Insert the image name and image content in image_table
-        $query="UPDATE `home` SET `logo`='$imagename'";
+    $acceptable = [
+        'image/jpeg',
+        'image/jpg',
+        'image/png'
+    ];
+
+    if (($_FILES['logo']['size'] >= $maxsize) || ($_FILES['logo']['size'] == 0)) {
+        $errors[] = 'File too large. File must be less than 2 megabytes.';
+    }
+
+    if (($width > 200) || ($height > 60)) {
+        $errors[] = 'image dimensions must be within <strong>200 X 60 pixels</strong>.';
+    }
+
+    if ((!in_array($_FILES['logo']['type'], $acceptable)) && (!empty($_FILES['logo']['type']))) {
+        $errors[] = 'Invalid file type. Only JPG and PNG types are accepted.';
+    }
+
+    if (count($errors) === 0) {
+        $extension = substr($_FILES['logo']['name'], strpos($_FILES['logo']['name'], '.'));
+        $image_name = "logo" . $extension;
+        move_uploaded_file($_FILES['logo']['tmp_name'], '../assets/img/' . $image_name);
+
+        // Insert the image name and image content in image_table
+        $query="UPDATE `home` SET `logo`='$image_name'";
 
         mysqli_query($con,$query);
-        
-        move_uploaded_file($imagetmp, "../assets/img/$imagename");
-        
+
+        $_SESSION['success_message'] = 'Image updated successfully';
+        header("Refresh:0");
+    } else {
+        foreach ($errors as $error) {
+            $_SESSION['warning_message'] = $error . '<br/>';
+        }
+    }
     }
 //    updating the title
     if(isset($_POST['updateTitle'])){
@@ -47,21 +75,42 @@
         }
     }
 //============================
-    if(isset($_POST['submit_image'])){
-        
-        $imagename=$_FILES["myimage"]["name"]; 
 
-        //Get the content of the image and then add slashes to it 
-        $imagetmp=$_FILES['myimage']['tmp_name'];
-
-        //Insert the image name and image content in image_table
-        $query="UPDATE `home` SET `hero_img`='$imagename'";
-
-        mysqli_query($con,$query);
-        
-        move_uploaded_file($imagetmp, "../assets/img/$imagename");
-        
-    }
+    if (isset($_POST['submit_image']) && (!empty($_FILES['myimage']['type']))) {
+        $errors = [];
+        $maxsize = 2097152;
+        $acceptable = [
+            'image/jpeg',
+            'image/jpg',
+            'image/png'
+        ];
+    
+        if (($_FILES['myimage']['size'] >= $maxsize) || ($_FILES['myimage']['size'] == 0)) {
+            $errors[] = 'File too large. File must be less than 2 megabytes.';
+        }
+    
+        if ((!in_array($_FILES['myimage']['type'], $acceptable)) && (!empty($_FILES['myimage']['type']))) {
+            $errors[] = 'Invalid file type. Only JPG and PNG types are accepted.';
+        }
+    
+        if (count($errors) === 0) {
+            $extension = substr($_FILES['myimage']['name'], strpos($_FILES['myimage']['name'], '.'));
+            $image_name = "homepagetop" . $extension;
+            move_uploaded_file($_FILES['myimage']['tmp_name'], '../assets/img/' . $image_name);
+    
+            // Insert the image name and image content in image_table
+            $query="UPDATE `home` SET `hero_img`='$image_name'";
+    
+            mysqli_query($con,$query);
+    
+            $_SESSION['success_message'] = 'Image updated successfully';
+            header("Refresh:0");
+        } else {
+            foreach ($errors as $error) {
+                $_SESSION['warning_message'] = $error . '<br/>';
+            }
+        }
+        }
 
 
 /*/////////////////////////////
@@ -574,6 +623,26 @@
 ?>
 <?php $currentPage="home"; ?>
 <?php include "includes/header.php"; ?>
+
+<!--SUCCESS FLASH MESSAGE-->
+<?php if (isset($_SESSION['success_message'])) { ?>
+            <div class="alert alert-success mt-3">
+            <i class="fas fa-check-circle"></i>
+            <?php echo $_SESSION['success_message']; ?>
+            </div>
+<?php unset($_SESSION['success_message']); ?>
+<?php } ?>
+<!--SUCCESS FLASH MESSAGE-->
+    
+<!--warning FLASH MESSAGE-->
+<?php if (isset($_SESSION['warning_message'])) { ?>
+            <div class="alert alert-warning mt-3">
+            <i class="fas fa-exclamation-circle"></i>
+            <?php echo $_SESSION['warning_message']; ?>
+            </div>
+<?php unset($_SESSION['warning_message']); ?>
+<?php } ?>
+<!--warning FLASH MESSAGE-->
  
 <!--    UPDATE LOGO-->
      <div class="container my-3">
@@ -814,7 +883,7 @@
             <div class="row">
                 <div class="col">
                    
-                    <h4 class="text-center small-dark" data-aos="fade" data-aos-delay="100" style="font-weight: normal; margin:0; padding:0;"><?php echo $currentS3Line1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup></h4>
+                    <h4 class="text-center small-dark" data-aos="fade" data-aos-delay="100" style="font-weight: normal; margin:0; padding:0;"><?php echo $currentS3Line1; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup></h4>
                     <div  id="editor" style="display:none; backgound-color:#fff;">
                         <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_line1" id="s3_line1" style="width:100%;" rows="10"><?php echo $currentS3Line1; ?></textarea>
@@ -827,7 +896,7 @@
             <div class="row">
                 <div class="col">
                    
-                    <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="200" style="margin-bottom: 30px;"><strong><?php echo $currentS3Line2; ?></strong><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:#333; font-size:24px;"></i></a></sup></h1>
+                    <h1 class="text-center big-dark" data-aos="fade" data-aos-delay="200" style="margin-bottom: 30px;"><strong><?php echo $currentS3Line2; ?></strong><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup></h1>
                     <div  id="editor" style="display:none; backgound-color:#fff;">
                         <form action="#" method="post" class="mt-3" >
                             <textarea name="s3_line2" id="s3_line2" style="width:100%;" rows="10"><?php echo $currentS3Line2; ?></textarea>
@@ -948,7 +1017,7 @@
                             <textarea name="s3_content4" id="s3_content4" style="width:100%;" rows="10"><?php echo $currentS3Content4; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateS3C4" value="Update s3_content4">
                         </form>
-                    </div>
+                        </div>
                         <br>
                     </div>
                 </div>
@@ -976,28 +1045,31 @@
                     <hr>
 <!--                    testimonial 1-->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">link 1:</h6>
-                        <?php echo $currentT1L; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
-                            <input type="text" name="t1_link" id="t1_link" value="<?php echo $currentT1L; ?>">
-                            <input type="submit" class="btn btn-info btn-sm my-3" name="updateT1L" value="Update t1_link">
+                        <?php echo $currentT1L; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
+                        <input type="text" name="t1_link" id="t1_link" value="<?php echo $currentT1L; ?>">
+                                <input type="submit" class="btn btn-info btn-sm my-3" name="updateT1L" value="Update t1_link">
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 1:</h6>
-                        <?php echo $currentT1C; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT1C; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="t1_content" id="t1_content" style="width:100%;" rows="10"><?php echo $currentT1C; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT1C" value="Update t1_content">
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">name 1:</h6>
-                        <?php echo $currentT1N; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT1N; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="t1_name" id="t1_name" style="width:100%;" rows="10"><?php echo $currentT1N; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT1N" value="Update t1_name">
                         </form>
@@ -1005,28 +1077,31 @@
                     <hr>
 <!--                    testimonial 2-->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">link 2:</h6>
-                        <?php echo $currentT2L; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT2L; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <input type="text" name="t2_link" id="t2_link" value="<?php echo $currentT2L; ?>">
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT2L" value="Update t2_link">
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 2:</h6>
-                        <?php echo $currentT2C; ?>
-                     index   <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT2C; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="t2_content" id="t2_content" style="width:100%;" rows="10"><?php echo $currentT2C; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT2C" value="Update t2_content">
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">name 2:</h6>
-                        <?php echo $currentT2N; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT2N; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="t2_name" id="t2_name" style="width:100%;" rows="10"><?php echo $currentT2N; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT2N" value="Update t2_name">
                         </form>
@@ -1034,28 +1109,31 @@
                     <hr>
 <!--                    testimonial 3-->
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">link 3:</h6>
-                        <?php echo $currentT3L; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT3L; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <input type="text" name="t3_link" id="t3_link" value="<?php echo $currentT3L; ?>">
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT3L" value="Update t3_link">
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">content 3:</h6>
-                        <?php echo $currentT3C; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT3C; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="t3_content" id="t3_content" style="width:100%;" rows="10"><?php echo $currentT3C; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT3C" value="Update t3_content">
                         </form>
                     </div>
                     <div>
-                        <i class="fa fa-edit icon" style="color:#17a2b8; font-size:24px;"></i>
                         <h6 style="display:inline;">name 3:</h6>
-                        <?php echo $currentT3N; ?>
-                        <form action="#" method="post" class="mt-3" style="display:none;">
+                        <?php echo $currentT3N; ?><sup><a id="editorBtn"><i class="fa fa-edit icon" style="color:skyblue; font-size:24px;"></i></a></sup>
+                    </div>
+                    <div  id="editor" style="display:none; backgound-color:#fff;">
+                        <form action="#" method="post" class="mt-3" >
                             <textarea name="t3_name" id="t3_name" style="width:100%;" rows="10"><?php echo $currentT3N; ?></textarea>
                             <input type="submit" class="btn btn-info btn-sm my-3" name="updateT3N" value="Update t3_name">
                         </form>
