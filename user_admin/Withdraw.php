@@ -144,7 +144,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                         <th>Portfolio#</th>
                                         <th>Amount</th>
                                         <th>Currency</th>
-                                        <th>Rate</th>
+                                        <th>Rate / Unit</th>
                                         <th>Transfer Fee</th>
                                         <th>Donation</th>
                                         <th>Withdrawal Mode</th>

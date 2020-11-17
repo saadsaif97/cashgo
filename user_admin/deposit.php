@@ -66,7 +66,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                 <th>Payment Type</th>
                                 <th>Currency</th>
                                 <th>Amount</th>
-                                <th>Rate</th>
+                                <th>Rate / Unit</th>
                                 <th>Deposit Fee</th>
                                 <th>Total Deposit</th>
                                 <th>Status</th>
