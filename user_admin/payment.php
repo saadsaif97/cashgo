@@ -5,8 +5,11 @@ include_once 'inc/user_profile_db.php'; ?>
     if (!isset($_SESSION['username'])) {
         header('Location: login.php');
     }
-
 ?>
+
+<!-- including the coin api -->
+<?php include_once "inc/coins_api.php";  ?>
+
 <?php 
     if(isset($_GET['myform'])){
 
@@ -49,7 +52,11 @@ include_once 'inc/user_profile_db.php'; ?>
             $currency = $_SESSION['currency'];
             $amount = $_SESSION['amount'];
             $deposite_fee = floatval($amount);
-            $rate = "1";
+            foreach($coins as $coin){
+            if($coin['id']==$currency){
+                $rate=$coin['current_price']." $";
+            }
+            }
             $user_id = $_SESSION['user_id'];// getting user id from the seesion set after login
             $previous_amount = $pdo->query("SELECT SUM(amount) FROM `user_deposits` WHERE `user_id`='$user_id' ")->fetchColumn();
             $sr_no = $pdo->query("SELECT `sr_no` FROM `user_deposits` WHERE `user_id`='$user_id' ORDER BY `sr_no` DESC LIMIT 1")->fetchColumn() +1;
@@ -69,7 +76,7 @@ include_once 'inc/user_profile_db.php'; ?>
                         'currency'=> $currency,
                         'amount'=> $amount,
                         'rate'=> $rate,
-                        'deposit_fee'=> doubleval($amount)*0.02,
+                        'deposit_fee'=> (doubleval($amount)*0.02)." $currency",
                         'total_deposit'=> $previous_amount+$amount,
                         'deposit_slip'=> $deposit_slip,
                         'transection_id'=> $transection_id,
@@ -106,11 +113,7 @@ include_once 'inc/user_profile_db.php'; ?>
 
 ?>
 
-<!--getting data from crypto api-->
-<?php
-$url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-$coins = json_decode(file_get_contents($url), true);
-?>
+
 </head>
 
 <body>
@@ -158,9 +161,6 @@ $coins = json_decode(file_get_contents($url), true);
                 <div class="main-page signup-page">
                     <div class="sign-u" style="background-color:#fff; padding:20px;">
                         <div class="sign-up1">
-                            <!-- <pre>
-                                <?php print_r($data); ?>
-                            </pre> -->
                             <?php
                             foreach ($coins as $coin) {
                                 if ( $coin['id'] == $_SESSION['currency']) {

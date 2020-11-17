@@ -5,8 +5,9 @@ include_once 'inc/user_profile_db.php'; ?>
     if (!isset($_SESSION['username'])) {
         header('Location: login.php');
     }
-
 ?>
+<!-- including the coin api -->
+<?php include_once "inc/coins_api.php";  ?>
 
 <?php 
   if(isset($_POST['withdraw'])){
@@ -14,8 +15,12 @@ include_once 'inc/user_profile_db.php'; ?>
     $user_id = $_SESSION['user_id'];// getting user id from the seesion set after login
     $sr_no = $pdo->query("SELECT `sr_no` FROM `user_withdrawls` WHERE `user_id`='$user_id' ORDER BY `sr_no` DESC LIMIT 1")->fetchColumn() +1;
     $amount = $_POST['amount'];
-    $rate = "1";
     $currency = $_POST['currency'];
+    foreach($coins as $coin){
+      if($coin['id']==$currency){
+        $rate=$coin['current_price']." $";
+      }
+    }
     $transfer_fee = doubleval($amount)*0.02; 
     $donation = $_POST['cashgo_donation'];
     $withdraw_mode = $_POST['withdraw_mode'];
@@ -36,6 +41,8 @@ include_once 'inc/user_profile_db.php'; ?>
         if(!preg_match("/^((0?\.((0[1-9])|\d{2}))|([1-9]\d*(\.\d{2})?))$/",$donation)){
           $_SESSION['warning_message'] = 'Please fill in the correct donation amount!';
         }else{
+          
+
           $data = [
             'sr_no'=> $sr_no,
             'user_id'=> $user_id,
@@ -137,6 +144,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                         <th>Portfolio#</th>
                                         <th>Amount</th>
                                         <th>Currency</th>
+                                        <th>Rate</th>
                                         <th>Transfer Fee</th>
                                         <th>Donation</th>
                                         <th>Withdrawal Mode</th>
@@ -146,18 +154,15 @@ include_once 'inc/user_profile_db.php'; ?>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                  <?php 
-                                    $all_withdrawls = $pdo->query("SELECT * FROM `user_withdrawls`")->fetchAll(PDO::FETCH_ASSOC);
-                                  ?>
+                                  <?php $all_withdrawls = $pdo->query("SELECT * FROM `user_withdrawls`")->fetchAll(PDO::FETCH_ASSOC); ?>
                                   
-                                  <?php 
-                                      for ($i=0; $i < count($all_withdrawls); $i++) {
-                                  ?>
+                                  <?php for ($i=0; $i < count($all_withdrawls); $i++) { ?>
                                       <tr>
                                         <td><?php echo $all_withdrawls[$i]['sr_no']; ?></td>
                                         <td><?php echo $all_withdrawls[$i]['portfolio_no'] ? $all_withdrawls[$i]['portfolio_no'] : "null" ; ?></td>
                                         <td><?php echo $all_withdrawls[$i]['amount']; ?></td>
                                         <td><?php echo $all_withdrawls[$i]['currency']; ?></td>
+                                        <td><?php echo $all_withdrawls[$i]['rate']; ?></td>
                                         <td><?php echo $all_withdrawls[$i]['transfer_fee']; ?></td>
                                         <td><?php echo $all_withdrawls[$i]['donation'] ? $all_withdrawls[$i]['donation'] : "__" ; ?>
                                         <td><?php echo $all_withdrawls[$i]['withdraw_mode']; ?></td>
@@ -168,9 +173,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                         <td style="color:<?php echo $st_color; ?>"><?php echo $all_withdrawls[$i]['status']; ?></td>
                                         <td><?php echo $all_withdrawls[$i]['create_date']; ?></td>
                                     </tr>
-                                  <?php
-                                    }
-                                  ?>
+                                  <?php } ?>
 
                                 </tbody>
                             </table>
@@ -189,7 +192,7 @@ include_once 'inc/user_profile_db.php'; ?>
     </div>
     <!-- end Container Wrapper -->
 <!--    modal-->
-    <div class="modal fade" id="donateFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+  <div class="modal fade" id="donateFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="position:absolute; z-index:1000000;">
   <div class="modal-dialog" role="document">
     <div class="modal-content" style="margin-top: 93px;">
       <div class="modal-header">
@@ -208,8 +211,9 @@ include_once 'inc/user_profile_db.php'; ?>
             </select>
           </div>
           <div class="form-group">
+            <p id="unitPrice" style="color: orangered;"></p>
             <label for="currency" class="control-label">Select Withdrawal Currency*:</label>
-            <select required id="currency" name="currency" required>
+            <select required id="currency" name="currency" onchange="showValue()"  required>
                 <option value=""> --select-- </option>
                 <option value="bitcoin"> btc (BitCoin) </option>
                 <option value="ethereum"> eth (Ethereum) </option>
@@ -229,6 +233,7 @@ include_once 'inc/user_profile_db.php'; ?>
             </select>
           </div>
           <div class="form-group">
+            <p id="totalPrice" style="color: orangered;"></p>
             <label for="amount" class="control-label">Amount* :</label>
             <input type="text" name="amount" id="amount" placeholder="Enter amount here" required>
             <small>
@@ -275,7 +280,38 @@ include_once 'inc/user_profile_db.php'; ?>
         $(document).ready(function() {
             $('#example').DataTable();
         });
+    </script>
+    <script>
+      function showValue() {
+        let currency = document.getElementById("currency");
+        let unitPrice = document.getElementById("unitPrice");
+        let totalPrice = document.getElementById("totalPrice");
+        let amount = document.getElementById("amount");
+        $.ajax({
+          url: "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false",
+          method: "GET",
+          dataType: "json"
+        }).done(function(data) {
 
+          data.forEach((coin,i)=>{
+            if(coin.id==currency.value && currency.value){
+              unitPrice.innerHTML = "Current price of "+currency.value+" is "+coin.current_price+" $";
+            }
+          })
+
+          amount.addEventListener("keyup",function(e) {
+              data.forEach((coin,i)=>{
+                if(coin.id==currency.value && amount.value.length>0 && amount.value.match(/^((0?\.((0[1-9])|\d{2}))|([1-9]\d*(\.\d{2})?))$/gm)){
+                  totalPrice.innerHTML = amount.value+" "+currency.value+" equals "+(amount.value*coin.current_price)+" $";
+                }else if(amount.value.length=0 || !amount.value.match(/^((0?\.((0[1-9])|\d{2}))|([1-9]\d*(\.\d{2})?))$/gm)){
+                  totalPrice.innerHTML = "";
+                }
+              });
+              
+          })
+
+        });
+      }
     </script>
     <script>
       let message = document.getElementById("message");

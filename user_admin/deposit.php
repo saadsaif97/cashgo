@@ -8,7 +8,7 @@ include_once 'inc/user_profile_db.php'; ?>
 
 ?>
 <?php 
-  $all_deposits = $pdo->query("SELECT * FROM `user_deposits`")->fetchAll(PDO::FETCH_ASSOC);
+  $all_deposits = $pdo->query("SELECT * FROM `user_deposits` ")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 </head>
 
