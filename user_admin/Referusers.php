@@ -91,10 +91,11 @@ include_once 'inc/user_profile_db.php'; ?>
                                 </div>
                             </div>
                         </form>
-                        <strong style="position: relative; left: 12px; top: -35px;
-    position: relative;">You can also do this by sharing your referral link:
-                            <button class="btn btn-primary" style="float: right; position: relative;
-    left: -28px;">copy</button><br>
+                        <strong style="position: relative; left: 12px; top: -35px; position: relative;">You can also do this by sharing your referral link:
+                            <p>
+                                http://localhost/cashgo/user_admin/register.php?ref_id=<?php echo $user_id ?>
+                            </p>
+                            <button class="btn btn-primary" style="float: right; position: relative; left: -28px;">copy</button><br>
                             <div class="col-md-8 col-sm-6" id="div1">
                             </div>
                             <div class="col-md-2 col-sm-6">

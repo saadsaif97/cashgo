@@ -38,26 +38,77 @@ include_once 'inc/user_profile_db.php'; ?>
                         if ($password != $cpass) {
                             $_SESSION['warning_message'] = 'Please confirm your password correctly!';
                         } else {
-                            //The hash of the password that can be stored in the database
-                            $hash = password_hash($password, PASSWORD_DEFAULT);
 
-//                            $verify = password_verify($password, $hash);
-//                            echo $verify; first is the password from the user and other is the encrypted
+                            
+                            if(isset($_GET['ref_id'])){//if used the referral id
 
-                            $last_user_q = $pdo->query('SELECT `id` FROM `user_profile` ORDER BY id DESC LIMIT 1');
-                            $recent_id = $last_user_q->fetchColumn();
-                            $last_user_q = null;
-                            $uid;
-                            $uid = time();
-                            $uid .= ++$recent_id;
-                            $uid = 'TW' . $uid;
+                                $ref_id=$_GET['ref_id'];
 
-                            $sql = 'INSERT INTO `user_profile` (username, password, email, country, contact, user_id) VALUES (?,?,?,?,?,?)';
-                            $stmt = $pdo->prepare($sql);
-                            $stmt->execute([$username, $hash, $email, $country, $contact, $uid]);
+                                // check total references already exist
+                                $ref_level = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$ref_id}' ")->rowCount();
+                                
+                                // user from db
+                                $user_in_db = $pdo->query("SELECT `user_id` FROM `user_profile` WHERE `user_id`='{$ref_id}' ")->fetchColumn();
+                                if($user_in_db){// user exists and referral level lessthan 3
 
-                            $_SESSION['success_message'] = 'User registered successfully';
-                            header('Refresh:0');
+                                    //The hash of the password that can be stored in the database
+                                    $hash = password_hash($password, PASSWORD_DEFAULT);
+
+                                    //$verify = password_verify($password, $hash);
+                                    //echo $verify; first is the password from the user and other is the encrypted
+                                    $last_user_q = $pdo->query('SELECT `id` FROM `user_profile` ORDER BY id DESC LIMIT 1');
+                                    $recent_id = $last_user_q->fetchColumn();
+                                    $last_user_q = null;
+                                    $uid;
+                                    $uid = time();
+                                    $uid .= ++$recent_id;
+                                    $uid = 'TW' . $uid;
+                                    $parent_id = $user_in_db;
+                                    
+                                    // inserting the user in the user table
+                                    $sql = 'INSERT INTO `user_profile` (username, password, email, country, contact, user_id, parent_id) VALUES (?,?,?,?,?,?,?)';
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute([$username, $hash, $email, $country, $contact, $uid, $parent_id]);
+                                    
+                                    // inserting the user in the referral table
+                                    $sql = 'INSERT INTO `user_referrals` (user_id,ref_id,ref_level) VALUES (?,?,?)';
+                                    $stmt = $pdo->prepare($sql);
+                                    $stmt->execute([$uid, $user_in_db, $ref_level+1]);
+        
+                                    $_SESSION['success_message'] = 'User registered successfully';
+                                    header('Refresh:0');
+                                    exit();
+                                    
+                                }else{
+                                    // Invalid phone number
+                                    $_SESSION['warning_message'] = 'Invalid referral Id';
+                                }
+
+                            }else{//if not used the referral id
+
+                                //The hash of the password that can be stored in the database
+                                $hash = password_hash($password, PASSWORD_DEFAULT);
+
+                                //$verify = password_verify($password, $hash);
+                                //echo $verify; first is the password from the user and other is the encrypted
+                                $last_user_q = $pdo->query('SELECT `id` FROM `user_profile` ORDER BY id DESC LIMIT 1');
+                                $recent_id = $last_user_q->fetchColumn();
+                                $last_user_q = null;
+                                $uid;
+                                $uid = time();
+                                $uid .= ++$recent_id;
+                                $uid = 'TW' . $uid;
+    
+                                // inserting the user in the user table
+                                $sql = 'INSERT INTO `user_profile` (username, password, email, country, contact, user_id) VALUES (?,?,?,?,?,?)';
+                                $stmt = $pdo->prepare($sql);
+                                $stmt->execute([$username, $hash, $email, $country, $contact, $uid]);
+    
+                                $_SESSION['success_message'] = 'User registered successfully';
+                                header('Refresh:0');
+                                exit();
+                            }
+
                         }
                         $stmt = null;
                     } else {
@@ -78,7 +129,6 @@ include_once 'inc/user_profile_db.php'; ?>
     }
 ?>
 </head>
-
 <body>
     
     <div class="conteiner" style="display:grid; align-items:center; min-height:100vh;">
@@ -107,7 +157,44 @@ include_once 'inc/user_profile_db.php'; ?>
         <!--SUCCESS FLASH MESSAGE-->
 
          <h2>Registeration form</h2>
-         
+         <?php 
+            $ref_id=$_GET['ref_id'];
+            $refs = $pdo->query("SELECT * FROM `user_referrals` WHERE `ref_id`='{$ref_id}' ")->fetchAll(PDO::FETCH_ASSOC);
+            $n=[];
+            foreach ($refs as $ref) {
+                if(in_array($ref['ref_id'],$n)){
+                    continue;
+                }else{
+                    echo $ref['ref_id'] . ' refered members:<br/>';
+                    echo getRefs($refs, $ref['ref_id']);
+                    echo '<br/><br/>';
+                }   
+                array_push($n,$ref['ref_id']);
+            }
+            function getRefs($array, $parent = 0, $level = 0) {
+                $referedMembers = '';
+                foreach ($array as $entry) {
+                    if ($entry['ref_id'] === $parent) {
+                        $referedMembers .= '- ' . $entry['user_id'] . '<br/>';
+                        $referedMembers .= getRefs($array, $entry['id'], $level+1);
+                    }
+                }
+                return $referedMembers;
+            }
+            // function get_referral_level($ref_id){
+            //     if()
+            // }
+            $user_in_db = $pdo->query("SELECT `user_id` FROM `user_profile` WHERE `user_id`='{$ref_id}' ")->fetchColumn();
+            // if($user_in_db && ($ref_level <= 3)){
+            //     echo "less than 3 user exists and level is: ";
+            //     echo $ref_level;
+            // }elseif($user_in_db && ($ref_level > 3)){
+            //     echo "referral level exceeds and level is: ";
+            //     echo $ref_level;
+            // }else{
+            //     echo "user does not exists";
+            // }
+         ?>
           <form action="#" method="post">
               <div class="input-group mb-3">
                   <input type="text" class="form-control" name="username" placeholder="Username" id="username" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES) : ''; ?>" required>
@@ -140,6 +227,13 @@ include_once 'inc/user_profile_db.php'; ?>
                   <input type="password" class="form-control" name="cpass" placeholder="Confirm password" id="cpass" required>
                   <div class="input-group-append">
                       <span class="input-group-text" id="basic-addon2"><i class="fas fa-lock"></i></span>
+                  </div>
+              </div>
+              <label for="ref">Referral Id:</label>
+              <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="ref" placeholder="Referral Id (if any)" id="ref" value="<?php echo isset($_GET['ref_id']) ? htmlspecialchars($_GET['ref_id'], ENT_QUOTES) : ''; ?>" required>
+                  <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"><i class="fas fa-user-friends"></i></span>
                   </div>
               </div>
               <div class="input-group mb-3">

@@ -67,7 +67,7 @@ include_once 'inc/user_profile_db.php'; ?>
 
                     $extension = substr($_FILES['recipt_img']['name'], strpos($_FILES['recipt_img']['name'], '.'));
                     $deposit_slip = $user_id .'_'.$sr_no . $extension;
-                    // move_uploaded_file($_FILES['recipt_img']['tmp_name'], 'images/trans_img/' . $deposit_slip);
+                    move_uploaded_file($_FILES['recipt_img']['tmp_name'], 'images/trans_img/' . $deposit_slip);
                     
                     $data = [
                         'sr_no'=> $sr_no,

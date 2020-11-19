@@ -44,10 +44,14 @@ include_once 'inc/user_profile_db.php'; ?>
             $user_img_update = $pdo->prepare("UPDATE `user_profile` SET `user_img`='$image_name' WHERE id='$id' ")->execute();
 
             $_SESSION['success_message'] = 'Image updated successfully';
+            header("Refresh:0");
+            exit();
         } else {
             foreach ($errors as $error) {
                 $_SESSION['warning_message'] = $error . '<br/>';
             }
+            header("Refresh:0");
+            exit();
         }
     }
 ?>
@@ -606,7 +610,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                 <div class="card-body">
                                     <form method="post" action="#" enctype="multipart/form-data" style="text-align:center;">
                                         <small>.jpg, .jpeg or .png only</small>
-                                        <input type="file" name="user_image" id="user_image">
+                                        <input type="file" name="user_image" id="user_image" accept=".jpg,.png,.jpeg|image/*">
                                         <input type="submit" name="uImage" class="mt-3 btn btn-sm btn-primary" value="Update image">
                                     </form>
                                 </div>

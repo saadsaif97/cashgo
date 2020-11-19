@@ -21,7 +21,7 @@ include_once 'inc/user_profile_db.php'; ?>
         $rate=$coin['current_price']." $";
       }
     }
-    $transfer_fee = doubleval($amount)*0.02; 
+    $transfer_fee = (doubleval($amount)*0.02)." $currency"; 
     $donation = $_POST['cashgo_donation'];
     $withdraw_mode = $_POST['withdraw_mode'];
     $fund_type = $_POST['fund_type'];

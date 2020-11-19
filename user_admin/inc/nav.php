@@ -29,7 +29,8 @@
                         <a href="profile.php">
                             <div class="profile-sec">
                                 <div class="dash-image">
-                                    <img  src="images/user_img/<?php echo $user_img; ?>" alt="user photo">
+                                    <?php ($user_img === ("https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?d=mp&f=y")) ? ($img_variable="$user_img") : ($img_variable="images/user_img/$user_img"); ?>
+                                    <img  src=<?php echo $img_variable; ?> alt="user photo">
                                 </div>
                                 <div class="dash-content">
                                     <h4><?php echo $username; ?></h4>
@@ -92,11 +93,12 @@
                 </div>
             </div>
             <div class="dashboard-nav">
+           
                 <div class="dashboard-nav-inner">
                      <ul>
                         <li <?php echo 'index' == $thisPage ? "class='active'" : ''; ?> ><a href="index.php"><i class="sl sl-icon-settings"></i> Dashboard</a></li>
 
-                        <li <?php echo 'deposite' == $thisPage ? "class='active'" : ''; ?> ><a href="deposit.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
+                        <li <?php echo 'deposit' == $thisPage ? "class='active'" : ''; ?> ><a href="deposit.php"><i class="sl sl-icon-plus"></i> Deposits</a></li>
                         
                         <li <?php echo 'donations' == $thisPage ? "class='active'" : ''; ?> ><a href="Donations.php"><i class="fas fa-donate"></i>Donations</a></li>
                         
