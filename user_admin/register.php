@@ -73,7 +73,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                     // inserting the user in the referral table
                                     $sql = 'INSERT INTO `user_referrals` (user_id,ref_id,ref_level) VALUES (?,?,?)';
                                     $stmt = $pdo->prepare($sql);
-                                    $stmt->execute([$uid, $user_in_db, $ref_level+1]);
+                                    $stmt->execute([$uid, $user_in_db, $ref_level]);
         
                                     $_SESSION['success_message'] = 'User registered successfully';
                                     header('Refresh:0');
@@ -156,45 +156,36 @@ include_once 'inc/user_profile_db.php'; ?>
         <?php unset($_SESSION['warning_message']); ?>
         <!--SUCCESS FLASH MESSAGE-->
 
-         <h2>Registeration form</h2>
-         <?php 
-            $ref_id=$_GET['ref_id'];
-            $refs = $pdo->query("SELECT * FROM `user_referrals` WHERE `ref_id`='{$ref_id}' ")->fetchAll(PDO::FETCH_ASSOC);
-            $n=[];
-            foreach ($refs as $ref) {
-                if(in_array($ref['ref_id'],$n)){
-                    continue;
-                }else{
-                    echo $ref['ref_id'] . ' refered members:<br/>';
-                    echo getRefs($refs, $ref['ref_id']);
-                    echo '<br/><br/>';
-                }   
-                array_push($n,$ref['ref_id']);
-            }
-            function getRefs($array, $parent = 0, $level = 0) {
-                $referedMembers = '';
-                foreach ($array as $entry) {
-                    if ($entry['ref_id'] === $parent) {
-                        $referedMembers .= '- ' . $entry['user_id'] . '<br/>';
-                        $referedMembers .= getRefs($array, $entry['id'], $level+1);
-                    }
-                }
-                return $referedMembers;
-            }
-            // function get_referral_level($ref_id){
-            //     if()
-            // }
-            $user_in_db = $pdo->query("SELECT `user_id` FROM `user_profile` WHERE `user_id`='{$ref_id}' ")->fetchColumn();
-            // if($user_in_db && ($ref_level <= 3)){
-            //     echo "less than 3 user exists and level is: ";
-            //     echo $ref_level;
-            // }elseif($user_in_db && ($ref_level > 3)){
-            //     echo "referral level exceeds and level is: ";
-            //     echo $ref_level;
-            // }else{
-            //     echo "user does not exists";
-            // }
-         ?>
+        <h2>Registeration form</h2>
+        <?php
+        $ref_id=$_GET['ref_id'];
+
+        $first_level=[];
+        $second_level=[];
+        $third_level=[];
+        $depth=0;
+        $all_childs = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$ref_id}' ")->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($all_childs as $key => $child) { array_push($first_level,$child['user_id']); }
+        foreach ($first_level as $key => $child) {
+            $all_childs_second = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$child}' ")->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($all_childs_second as $key => $child) { array_push($second_level,$child['user_id']); }
+        }
+        foreach ($second_level as $key => $child) {
+            $all_childs_third = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$child}' ")->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($all_childs_third as $key => $child) { array_push($third_level,$child['user_id']); }
+        }
+        if(count($first_level)>0){ $depth=1; }
+        if(count($second_level)>0){ $depth=2; }
+        if(count($third_level)>0){ $depth=3; }
+        echo $depth;
+        ?>
+        <p>Parent: <?php echo $ref_id; ?></p>
+        <p>first_level children:</p>
+        <pre> <?php print_r($first_level); ?> </pre>
+        <p>second_level children:</p>
+        <pre> <?php print_r($second_level); ?> </pre>
+        <p>third_level children:</p>
+        <pre> <?php print_r($third_level); ?> </pre>
           <form action="#" method="post">
               <div class="input-group mb-3">
                   <input type="text" class="form-control" name="username" placeholder="Username" id="username" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES) : ''; ?>" required>
