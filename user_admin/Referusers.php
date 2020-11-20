@@ -2,9 +2,9 @@
 <?php include_once 'inc/header.php';
 include_once 'inc/user_profile_db.php'; ?>
 <?php
-    if (!isset($_SESSION['username'])) {
-        header('Location: login.php');
-    }
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+}
 
 ?>
 </head>
@@ -23,7 +23,7 @@ include_once 'inc/user_profile_db.php'; ?>
             <!-- navigations -->
             <?php $thisPage = 'referusers'; ?>
             <?php include_once 'inc/nav.php'; ?>
-            
+
             <div class="dashboard-content">
                 <h3 class="title1">Refer users to B4U Global</h3>
                 <div class="main-page signup-page" style="background-color: white;">
@@ -92,10 +92,10 @@ include_once 'inc/user_profile_db.php'; ?>
                             </div>
                         </form>
                         <strong style="position: relative; left: 12px; top: -35px; position: relative;">You can also do this by sharing your referral link:
-                            <p>
+                            <p id="ref_link">
                                 http://localhost/cashgo/user_admin/register.php?ref_id=<?php echo $user_id ?>
                             </p>
-                            <button class="btn btn-primary" style="float: right; position: relative; left: -28px;">copy</button><br>
+                            <button class="btn btn-primary" onclick="copyLink()" style="float: right; position: relative; left: -28px;">copy</button><br>
                             <div class="col-md-8 col-sm-6" id="div1">
                             </div>
                             <div class="col-md-2 col-sm-6">
@@ -108,10 +108,10 @@ include_once 'inc/user_profile_db.php'; ?>
             </div>
 
             <!-- Content / End -->
-            
+
             <!-- Copyrights -->
             <?php include_once 'inc/copyrights.php'; ?>
-            
+
         </div>
         <!-- Dashboard / End -->
     </div>
@@ -133,6 +133,21 @@ include_once 'inc/user_profile_db.php'; ?>
     <script src="js/dashboard-custom.js"></script>
     <script src="js/jpanelmenu.min.js"></script>
     <script src="js/counterup.min.js"></script>
+    <script>
+        function copyLink() {
+            /* Get the text field */
+            var text = document.getElementById("ref_link").innerText;
+            var elem = document.createElement("textarea");
+            document.body.appendChild(elem);
+            elem.value = text;
+            elem.select();
+            document.execCommand("copy");
+            document.body.removeChild(elem);
+
+            /* Alert the copied text */
+            alert("Copied:\n" + text);
+        }
+    </script>
 </body>
 
 </html>

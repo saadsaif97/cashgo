@@ -22,6 +22,7 @@ include_once 'inc/user_profile_db.php'; ?>
         $_SESSION['deposit_mode'] = $_GET['deposit_mode'];
         $_SESSION['currency'] = $_GET['currency'];
         $_SESSION['amount'] = $_GET['amount'];
+        $_SESSION['plan'] = $_GET['plan'];
     }
 
 ?>
@@ -51,6 +52,7 @@ include_once 'inc/user_profile_db.php'; ?>
             $payment_type = $_SESSION['deposit_mode'];
             $currency = $_SESSION['currency'];
             $amount = $_SESSION['amount'];
+            $plan = $_SESSION['plan'];
             $deposite_fee = floatval($amount);
             foreach($coins as $coin){
             if($coin['id']==$currency){
@@ -60,6 +62,7 @@ include_once 'inc/user_profile_db.php'; ?>
             $user_id = $_SESSION['user_id'];// getting user id from the seesion set after login
             $previous_amount = $pdo->query("SELECT SUM(amount) FROM `user_deposits` WHERE `user_id`='$user_id' ")->fetchColumn();
             $sr_no = $pdo->query("SELECT `sr_no` FROM `user_deposits` WHERE `user_id`='$user_id' ORDER BY `sr_no` DESC LIMIT 1")->fetchColumn() +1;
+            
 
             if($transection_id && (!empty($_FILES['recipt_img']['type']))){
 
@@ -76,13 +79,14 @@ include_once 'inc/user_profile_db.php'; ?>
                         'currency'=> $currency,
                         'amount'=> $amount,
                         'rate'=> $rate,
+                        'plan'=> $plan,
                         'deposit_fee'=> (doubleval($amount)*0.02)." $currency",
                         'total_deposit'=> $previous_amount+$amount,
                         'deposit_slip'=> $deposit_slip,
                         'transection_id'=> $transection_id,
                     ];
 
-                    $user_deposit_query = $pdo->prepare("INSERT INTO `user_deposits`(`sr_no`, `user_id`, `payment_type`, `currency`, `amount`, `rate`, `deposit_fee`, `total_deposit`, `deposit_slip`, `transection_id`) VALUES (:sr_no, :user_id, :payment_type,:currency,:amount,:rate,:deposit_fee,:total_deposit, :deposit_slip, :transection_id)")->execute($data);
+                    $user_deposit_query = $pdo->prepare("INSERT INTO `user_deposits`(`sr_no`, `user_id`, `payment_type`, `currency`, `amount`, `rate`, `plan`,`deposit_fee`, `total_deposit`, `deposit_slip`, `transection_id`) VALUES (:sr_no, :user_id, :payment_type,:currency,:amount,:rate,:plan,:deposit_fee,:total_deposit, :deposit_slip, :transection_id)")->execute($data);
                     $user_deposit_query = null;
 
                     $_SESSION['success_message'] = 'Deposited successfully';
@@ -90,6 +94,7 @@ include_once 'inc/user_profile_db.php'; ?>
                     unset($_SESSION['deposit_mode']);
                     unset($_SESSION['currency']);
                     unset($_SESSION['amount']);
+                    unset($_SESSION['plan']);
                     header("Location:deposit.php");
                     exit();
                      

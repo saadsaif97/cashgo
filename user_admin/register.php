@@ -44,12 +44,9 @@ include_once 'inc/user_profile_db.php'; ?>
 
                                 $ref_id=$_GET['ref_id'];
 
-                                // check total references already exist
-                                $ref_level = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$ref_id}' ")->rowCount();
-                                
                                 // user from db
                                 $user_in_db = $pdo->query("SELECT `user_id` FROM `user_profile` WHERE `user_id`='{$ref_id}' ")->fetchColumn();
-                                if($user_in_db){// user exists and referral level lessthan 3
+                                if($user_in_db){// user exists 
 
                                     //The hash of the password that can be stored in the database
                                     $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -71,16 +68,16 @@ include_once 'inc/user_profile_db.php'; ?>
                                     $stmt->execute([$username, $hash, $email, $country, $contact, $uid, $parent_id]);
                                     
                                     // inserting the user in the referral table
-                                    $sql = 'INSERT INTO `user_referrals` (user_id,ref_id,ref_level) VALUES (?,?,?)';
+                                    $sql = 'INSERT INTO `user_referrals` (user_id,ref_id) VALUES (?,?)';
                                     $stmt = $pdo->prepare($sql);
-                                    $stmt->execute([$uid, $user_in_db, $ref_level]);
+                                    $stmt->execute([$uid, $user_in_db]);
         
                                     $_SESSION['success_message'] = 'User registered successfully';
                                     header('Refresh:0');
                                     exit();
                                     
                                 }else{
-                                    // Invalid phone number
+                                    // Invalid referral id
                                     $_SESSION['warning_message'] = 'Invalid referral Id';
                                 }
 
@@ -157,35 +154,6 @@ include_once 'inc/user_profile_db.php'; ?>
         <!--SUCCESS FLASH MESSAGE-->
 
         <h2>Registeration form</h2>
-        <?php
-        $ref_id=$_GET['ref_id'];
-
-        $first_level=[];
-        $second_level=[];
-        $third_level=[];
-        $depth=0;
-        $all_childs = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$ref_id}' ")->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($all_childs as $key => $child) { array_push($first_level,$child['user_id']); }
-        foreach ($first_level as $key => $child) {
-            $all_childs_second = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$child}' ")->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($all_childs_second as $key => $child) { array_push($second_level,$child['user_id']); }
-        }
-        foreach ($second_level as $key => $child) {
-            $all_childs_third = $pdo->query("SELECT `user_id` FROM `user_referrals` WHERE `ref_id`='{$child}' ")->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($all_childs_third as $key => $child) { array_push($third_level,$child['user_id']); }
-        }
-        if(count($first_level)>0){ $depth=1; }
-        if(count($second_level)>0){ $depth=2; }
-        if(count($third_level)>0){ $depth=3; }
-        echo $depth;
-        ?>
-        <p>Parent: <?php echo $ref_id; ?></p>
-        <p>first_level children:</p>
-        <pre> <?php print_r($first_level); ?> </pre>
-        <p>second_level children:</p>
-        <pre> <?php print_r($second_level); ?> </pre>
-        <p>third_level children:</p>
-        <pre> <?php print_r($third_level); ?> </pre>
           <form action="#" method="post">
               <div class="input-group mb-3">
                   <input type="text" class="form-control" name="username" placeholder="Username" id="username" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES) : ''; ?>" required>

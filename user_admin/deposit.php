@@ -1,14 +1,21 @@
 <!--incuding the header-->
-<?php include_once 'inc/header.php';
-include_once 'inc/user_profile_db.php'; ?>
+<?php
+/**
+ * THIS FILE CONTAINS THE TWO DATABASES
+ *    ONE FOR USER INFO
+ *    OTHER TO FETCH PLANS
+*/
+include_once 'inc/header.php';
+include_once 'inc/user_profile_db.php';
+include_once 'inc/plan_db.php'; ?>
 <?php
     if (!isset($_SESSION['username'])) {
         header('Location: login.php');
     }
-
 ?>
 <?php 
-  $all_deposits = $pdo->query("SELECT * FROM `user_deposits` ")->fetchAll(PDO::FETCH_ASSOC);
+  $user_id = $_SESSION['user_id'];
+  $all_deposits = $pdo->query("SELECT * FROM `user_deposits` WHERE `user_id`='$user_id' ")->fetchAll(PDO::FETCH_ASSOC);
 ?>
 </head>
 
@@ -23,7 +30,7 @@ include_once 'inc/user_profile_db.php'; ?>
     <div id="container-wrapper">
         <!-- Dashboard -->
         <div id="dashboard">
-
+        
 
         <!--success FLASH MESSAGE-->
         <?php if (isset($_SESSION['success_message'])) { ?>
@@ -67,6 +74,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                 <th>Currency</th>
                                 <th>Amount</th>
                                 <th>Rate / Unit</th>
+                                <th>Selected plan</th>
                                 <th>Deposit Fee</th>
                                 <th>Total Deposit</th>
                                 <th>Status</th>
@@ -85,6 +93,7 @@ include_once 'inc/user_profile_db.php'; ?>
                                 <td><?php echo $all_deposits[$i]['currency']; ?></td>
                                 <td><?php echo $all_deposits[$i]['amount']; ?></td>
                                 <td><?php echo $all_deposits[$i]['rate']; ?></td>
+                                <td><?php echo $all_deposits[$i]['plan']; ?></td>
                                 <td><?php echo $all_deposits[$i]['deposit_fee']; ?></td>
                                 <td><?php echo $all_deposits[$i]['total_deposit']; ?></td>
                                 <?php 
@@ -101,7 +110,6 @@ include_once 'inc/user_profile_db.php'; ?>
 
                         </tbody>
                     </table>
-                    
                 </div>
             </div>
 
@@ -142,6 +150,12 @@ include_once 'inc/user_profile_db.php'; ?>
                 <option value="ripple"> xpr (Ripple) </option>
                 <option value="dash"> dash (Dash) </option>
                 <option value="zcash"> zec (Zcash) </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="plan" class="control-label">Select Investment Plan*:</label>
+            <select required id="plan" name="plan">
+              <?php foreach ($all_plans as $key => $plan) { $plan = $plan['title']; echo "<option value='$plan'> $plan </option>"; } ?>
             </select>
           </div>
           <div class="form-group">
