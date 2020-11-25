@@ -1,11 +1,10 @@
 <?php
 ob_start();
-    if(!isset($_SESSION)) 
-    { 
-        session_start(); 
-    } 
+if (!isset($_SESSION)) {
+    session_start();
+}
 ?>
-<?php $currentPage="plans"; ?>
+<?php $currentPage = "plans"; ?>
 <?php include "includes/header.php"; ?>
 
 
@@ -14,69 +13,67 @@ ob_start();
         <?php include "includes/topNav.php"; ?>
         <h1 class="text-center" data-aos="fade" data-aos-delay="50" id="small" style="font-weight: 600;color: rgb(255,255,255);font-size: 32px;font-family: Montserrat, sans-serif;height: 1px;margin-top: 110px;">PLANS</h1>
         <div class="container text-center" style="margin-top: 6rem;"><button class="btn btn-primary" type="button" style="margin: 10px;background-color: #3aadaa;border: none;">HOME</button><button class="btn btn-primary" type="button" style="margin: 10px;background-color: #98b446;border: none;">PAGES</button>
-            <button
-                class="btn btn-primary" type="button" style="margin: 10px;background-color: #fd6420;border: none;">TIMETABLE</button>
+            <button class="btn btn-primary" type="button" style="margin: 10px;background-color: #fd6420;border: none;">TIMETABLE</button>
         </div>
     </section>
-    
+
     <section>
         <div class="container" style="padding: 20px 0;">
-           
-           <h2 style="font-weight:bolder; text-align:center;">Investment Plans</h2>
-           
+
+            <h2 style="font-weight:bolder; text-align:center;">Investment Plans</h2>
+
             <div class="my_grid" style="display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); grid-gap:20px; padding: 20px 0;">
-                
+
                 <?php
-                    $query="SELECT * FROM `plan_card`";
-                    $q_res=mysqli_query($con,$query);
-                    if(!$q_res){
-                        die("query failed ".mysqli_error($con));
-                    }
-                    while($row=mysqli_fetch_assoc($q_res)){
-                    $title=$row['title'];
-                    $content=$row['content'];
-                    $my_rows=$row['my_rows'];
-                    $card_image=$row['img_name'];
+                $query = "SELECT * FROM `plan_card` ORDER BY `id` ASC";
+                $q_res = mysqli_query($con, $query);
+                if (!$q_res) {
+                    die("query failed " . mysqli_error($con));
+                }
+                while ($row = mysqli_fetch_assoc($q_res)) {
+                    $title = $row['title'];
+                    $content = $row['content'];
+                    $my_rows = $row['my_rows'];
+                    $card_image = $row['img_name'];
                 ?>
-                
-                <div class="plan_card" data-aos="fade" data-aos-delay="600">
-                    <div>
-                        <img src="assets/img/cards_img/<?php echo $card_image; ?>" style="width: 100%;height: auto;" alt="<?php echo $title; ?>">
+
+                    <div class="plan_card" data-aos="fade" data-aos-delay="600">
+                        <div>
+                            <img src="assets/img/cards_img/<?php echo $card_image; ?>" style="width: 100%;height: auto;" alt="<?php echo $title; ?>">
+                        </div>
+                        <div class="plan_card_body" style="padding: 20px 15px;">
+                            <h4 style="font-weight:bolder;"><?php echo $title; ?></h4>
+                            <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;"><?php echo $content; ?></p>
+                            <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
+                            <table class="plan_table">
+                                <tr>
+                                    <th>Investment Bonus</th>
+                                    <th>Profit Bonus</th>
+                                </tr>
+                                <?php echo $my_rows; ?>
+                            </table>
+                        </div>
                     </div>
-                    <div class="plan_card_body" style="padding: 20px 15px;">
-                        <h4 style="font-weight:bolder;"><?php echo $title; ?></h4>
-                        <p style="color: #666666;margin: 10px 0;font-size: 14px; text-align:left; font-weight:normal;"><?php echo $content; ?></p>
-                        <h5 style="font-weight:bolder;">Referal Bonuses:</h5>
-                        <table class="plan_table">
-                            <tr>
-                                <th>Investment Bonus</th>
-                                <th>Profit Bonus</th>
-                            </tr>
-                            <?php echo $my_rows; ?>
-                        </table>
-                    </div>
-                </div>
-                
+
                 <?php
-                    }
+                }
                 ?>
-                
-                
-                
-                
-                
+
+
+
+
+
             </div>
         </div>
     </section>
-    
- 
-   
+
+
+
 
     <div class="footer-basic" style="background-color: #002632;">
         <footer>
             <div class="social"><a href="#"><i class="icon ion-social-instagram" style="color: rgb(255,255,255);"></i></a><a href="#"><i class="icon ion-social-google" style="color: rgb(255,255,255);"></i></a><a href="#"><i class="icon ion-social-twitter" style="color: rgb(255,255,255);"></i></a>
-                <a
-                    href="#"><i class="icon ion-social-facebook" style="color: rgb(255,255,255);"></i></a>
+                <a href="#"><i class="icon ion-social-facebook" style="color: rgb(255,255,255);"></i></a>
             </div>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#" style="color: rgb(255,255,255);">Home</a></li>

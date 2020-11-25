@@ -21,7 +21,6 @@
         }, true)
     })
     document.querySelector("a.current").parentElement.style.backgroundColor = '#fff';
-
 </script>
 <script>
     tinymce.init({
@@ -33,15 +32,12 @@
         tinycomments_mode: 'embedded',
         tinycomments_author: 'Author name',
     });
-
 </script>
 <script>
-    
     setTimeout(function() {
         let alert = document.querySelector(".alert");
-            alert.remove();
+        alert.remove();
     }, 3000);
-    
 </script>
 
 

@@ -1,8 +1,7 @@
 
 <?php
 ob_start();
-if(!isset($_COOKIE["PHPSESSID"]))
-{
+if (session_status() == PHP_SESSION_NONE) {
   session_start();
 }
 
@@ -11,9 +10,9 @@ $db_user = "root";
 $db_pass = "";
 $db_name = "cashgo_admin";
 
-$con = mysqli_connect($db_host,$db_user,$db_pass,$db_name);
-if(!$con){
-    die("database not connected ". mysqli_error($con));
+$con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
+if (!$con) {
+  die("database not connected " . mysqli_error($con));
 }
 
 ?>

@@ -1,0 +1,16 @@
+<!-- <?php
+            if (isset($_POST['add_comment'])) {
+                $post_id = $_GET['id'];
+                $comment = $_POST['comment'];
+                $cmnt_author = $_SESSION['username'];
+                $comment_add_query = "INSERT INTO `post_comments`(`post_id`, `comment`, `cmnt_author`) VALUES ('$post_id','$comment','$cmnt_author')";
+                $comment_add_res = mysqli_query($con, $comment_add_query);
+                if (!$comment_add_res) {
+                    die("query failed " . mysqli_error($con));
+                } else {
+                    $_SESSION['success_message'] = 'Comment added successfully.';
+                    header("Refresh:0");
+                    exit();
+                }
+            }
+            ?> -->

@@ -1,151 +1,154 @@
-body{
-    overflow-x: hidden;
+body {
+  overflow-x: hidden;
 }
 
-.btn:hover{
-    color: #fff;
+.btn:hover {
+  color: #fff;
 }
 
-.small{
-    font-weight: 300;
-    color: rgb(255,255,255);
-    font-size: 20px;
-    font-family: Montserrat, sans-serif;
-    height: 1px;
-    margin-top: 110px;
+.small {
+  font-weight: 300;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-family: Montserrat, sans-serif;
+  height: 1px;
+  margin-top: 110px;
 }
 
-.big{
-    padding-top: 5px;
-    padding-bottom: 5px;
-    font-weight: 500;
-    color: rgb(255,255,255);
-    font-family: Montserrat, sans-serif;
-    font-size: 60px;
-    line-height: 50px;
+.big {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 500;
+  color: rgb(255, 255, 255);
+  font-family: Montserrat, sans-serif;
+  font-size: 60px;
+  line-height: 50px;
 }
 
-.kolom-a{
-    background-color: #3aadaa;
-    height: auto;
+.kolom-a {
+  background-color: #3aadaa;
+  height: auto;
 }
 
-.icon{
-    font-size: 60px;
-    color: rgb(255,255,255);
+.icon {
+  font-size: 60px;
+  color: rgb(255, 255, 255);
 }
 
-.separator-fitur{
-    background-color: rgb(255,255,255);
+.separator-fitur {
+  background-color: rgb(255, 255, 255);
 }
 
-.heading-fitur{
-    color: rgb(255,255,255);
-    font-size: 27px;
-    font-weight: bold;
-    font-family: Montserrat, sans-serif;
+.heading-fitur {
+  color: rgb(255, 255, 255);
+  font-size: 27px;
+  font-weight: bold;
+  font-family: Montserrat, sans-serif;
 }
 
-.paragraf-fitur{
-    color: rgb(255,255,255);
-    font-size: 14px;
-    line-height: 27px;
-    font-family: Montserrat, sans-serif;
+.paragraf-fitur {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  line-height: 27px;
+  font-family: Montserrat, sans-serif;
 }
 
-.separator-fitur{
-    background-color: rgb(255,255,255);
+.separator-fitur {
+  background-color: rgb(255, 255, 255);
 }
 
-.small-dark{
-    color: #666666;
-    font-size: 25px;
-    font-family: Montserrat, sans-serif;
-    font-style: normal;
-    padding-bottom: 2rem;
+.small-dark {
+  color: #666666;
+  font-size: 25px;
+  font-family: Montserrat, sans-serif;
+  font-style: normal;
+  padding-bottom: 2rem;
 }
 
-.big-dark{
-    color: rgb(0,38,50);
-    font-size: 70px;
-    font-weight: 500;
-    font-family: Montserrat, sans-serif;
+.big-dark {
+  color: rgb(0, 38, 50);
+  font-size: 70px;
+  font-weight: 500;
+  font-family: Montserrat, sans-serif;
 }
 
-.small-text{
-    max-width: 780px;
-    margin: 0 auto;
-    font-size: 20px;
-    font-family: Montserrat, sans-serif;
-    color: rgb(102,102,102);
-    font-weight: 300;
+.small-text {
+  max-width: 780px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-family: Montserrat, sans-serif;
+  color: rgb(102, 102, 102);
+  font-weight: 300;
 }
 
-.btn{
-    background-color: #3aadaa;
-    font-family: Montserrat, sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    color: #fff;
+.btn {
+  background-color: #3aadaa;
+  font-family: Montserrat, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
 }
 
-#feature{
-    filter: blur(0px) brightness(100%);
-     background-repeat: no-repeat;
-     width: 100%;
-     height: 700px;
-     background-position: center;
-     background-size: cover;
+#feature {
+  filter: blur(0px) brightness(100%);
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 700px;
+  background-position: center;
+  background-size: cover;
 }
 
-.lite-list{
-    color: rgba(255,255,255,0.75);
-    font-size: 20px;
-    padding-left: 24px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.lite-list {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 20px;
+  padding-left: 24px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-.color-div{
-    padding-top: 15px;
-    padding-bottom: 15px;
+.color-div {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.card-title{
-    color: rgb(255,255,255);
-    font-size: 24px;
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    margin-bottom: 0;
+.card-title {
+  color: rgb(255, 255, 255);
+  font-size: 24px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  margin-bottom: 0;
 }
 
-.card-b-t{
-    margin-bottom: 0;
-    color: #666666;
-    font-size: 20px;
-    font-weight: 500;
+.card-b-t {
+  margin-bottom: 0;
+  color: #666666;
+  font-size: 20px;
+  font-weight: 500;
 }
 
-.card-s-t{
-    margin-bottom: 0;
-    color: #666666;
-    font-size: 16px;
-    font-weight: 300;
+.card-s-t {
+  margin-bottom: 0;
+  color: #666666;
+  font-size: 16px;
+  font-weight: 300;
 }
 
-#news{
-    width: 100%;
-    height: auto;
-    padding-top: 50px;
-    padding-bottom: 50px;
+#news {
+  width: 100%;
+  height: auto;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
-.ion-social-instagram,.ion-social-google,.ion-social-twitter,.ion-social-facebook{
-    font-size: 24px;
+.ion-social-instagram,
+.ion-social-google,
+.ion-social-twitter,
+.ion-social-facebook {
+  font-size: 24px;
 }
 
-.form-control2{
-    margin: 20px 0;
+.form-control2 {
+  margin: 20px 0;
 }
 
 /*
@@ -183,47 +186,47 @@ input[type="text" ]::placeholder, input[type="email"]::placeholder, input[type="
 }
 */
 
-.form-control-btn{
-    width: 100%;
-    text-align: center;
-    margin: 2rem 0 0 0;
+.form-control-btn {
+  width: 100%;
+  text-align: center;
+  margin: 2rem 0 0 0;
 }
 
-.border1{
-    border: 2px solid #3aadaa;
+.border1 {
+  border: 2px solid #3aadaa;
 }
 
-.border2{
-    border: 2px solid #98b446;
+.border2 {
+  border: 2px solid #98b446;
 }
 
-.border3{
-    border: 2px solid #f1b22f;
+.border3 {
+  border: 2px solid #f1b22f;
 }
 
-.border4{
-    border: 2px solid #fd6420;
+.border4 {
+  border: 2px solid #fd6420;
 }
 
-.name{
-    font-family: Montserrat, sans-serif;
-    color: #fff;
+.name {
+  font-family: Montserrat, sans-serif;
+  color: #fff;
 }
 
-.b-post{
-    margin: 1rem auto;
+.b-post {
+  margin: 1rem auto;
 }
 
-.text-warning{
-    font-size: 20px;
+.text-warning {
+  font-size: 20px;
 }
 
-.chat-name{
-    font-size: 26px;
+.chat-name {
+  font-size: 26px;
 }
 
-.form-div{
-    margin: 1rem auto;
+.form-div {
+  margin: 1rem auto;
 }
 
 /*
@@ -235,199 +238,160 @@ input[type="text" ]::placeholder, input[type="email"]::placeholder, input[type="
 }
 */
 
-textarea{
-    width: 100%;
-    border: 2px solid #d6d6d6;
-    height: 100%;
+textarea {
+  width: 100%;
+  border: 2px solid #d6d6d6;
+  height: 100%;
 }
 
-.descrip{
-    font-size: 12px;
-    text-align: left;
-    font-weight: 300;
+.descrip {
+  font-size: 12px;
+  text-align: left;
+  font-weight: 300;
 }
 
-p.title{
-    color: #666666;
-    font-family: Montserrat, sans-serif!important;
-    font-size: 15px;
-    text-align: left;
-
+p.title {
+  color: #666666;
+  font-family: Montserrat, sans-serif !important;
+  font-size: 15px;
+  text-align: left;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 @media only screen and (max-width: 768px) {
-    #hero{
-        height: 1300px!important;
-        background-repeat: no-repeat;
-    }
-    .kolom-a{
-        margin: 1rem auto;
-    }
-    .l-card{
-        margin: 1rem auto;
-    }
-    .n-card{
-        margin: 1rem auto;
-    }
+  #hero {
+    height: 1300px !important;
+    background-repeat: no-repeat;
   }
-
-
-
-
-
-
-
-
-
-
+  .kolom-a {
+    margin: 1rem auto;
+  }
+  .l-card {
+    margin: 1rem auto;
+  }
+  .n-card {
+    margin: 1rem auto;
+  }
+}
 
 /* MY STYLING STARTS HERE*/
 /***************/
 /*basic styling*/
 /*starts here*/
 
-body{
-    font-family: 'Poppins', sans-serif !important;
+body {
+  font-family: "Poppins", sans-serif !important;
 }
 
-h1{ font-size: 48px !important; }
-h2{ font-size: 40px !important; }
-h3{ font-size: 32px !important; }
-h4{ font-size: 24px !important; }
-h5{ font-size: 16px !important; }
-h6{ font-size: 12px !important; }
+h1 {
+  font-size: 48px !important;
+}
+h2 {
+  font-size: 40px !important;
+}
+h3 {
+  font-size: 32px !important;
+}
+h4 {
+  font-size: 24px !important;
+}
+h5 {
+  font-size: 16px !important;
+}
+h6 {
+  font-size: 12px !important;
+}
 
-p{
-    font-size: 16px !important;
+p {
+  font-size: 16px !important;
 }
 
 /*basic styling*/
 /*ends here*/
 /***************/
 
-
 /***************/
 /*first navbar*/
 /*starts here*/
-#navbar-hover{
-    align-items: stretch;
-    align-self: stretch;
+#navbar-hover {
+  align-items: stretch;
+  align-self: stretch;
 }
 
-#navbar-hover > .nav-item{
-    position: relative;
-/*    padding-top: 15px;*/
+#navbar-hover > .nav-item {
+  position: relative;
+  /*    padding-top: 15px;*/
 }
 
 @media only screen and (max-width: 991px) {
-    #navbar-hover > .nav-item:not(:first-child){
+  #navbar-hover > .nav-item:not(:first-child) {
     margin-top: 20px;
-}
   }
-
-#navbar-hover > .nav-item > a{
-    font-weight: bolder;
-    transition: all ease-in-out .3s;
 }
 
-#navbar-hover > .nav-item:hover > a{
-    color: coral;
+#navbar-hover > .nav-item > a {
+  font-weight: bolder;
+  transition: all ease-in-out 0.3s;
+}
+
+#navbar-hover > .nav-item:hover > a {
+  color: coral;
 }
 #navbar-hover > .nav-item:after {
-    transition: all ease-in-out .3s;
-    background-color: coral;
-    position: absolute;
-    bottom: -18px;
-    content: "";
-    display: block;
-    height: 2px;
-    width: 0;
+  transition: all ease-in-out 0.3s;
+  background-color: coral;
+  position: absolute;
+  bottom: -18px;
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
 }
 #navbar-hover > .nav-item:hover:after {
-    width: 100%;
+  width: 100%;
 }
 
-a.active{
-    color: coral !important;
+a.active {
+  color: coral !important;
 }
-}
-
 
 /*first navbar*/
 /*ends here*/
 /***************/
 
-
-
-
-
-
-
-
-
 a.disabled {
   pointer-events: none;
 }
 
-
-
 /*=================*/
 /*PLAN TABLE STYLING*/
 
-table.plan_table{
-    width: 100%;
+table.plan_table {
+  box-sizing: border-box;
+  width: 100%;
 }
-.plan_table th{
-    color: #554b4b;
+.plan_table th {
+  color: #554b4b;
+}
+.plan_table tr {
+  display: flex;
+  justify-content: space-between;
 }
 
-.plan_table tr td{
-    padding: 5px;
+.plan_table tr td {
+  width: 100%;
+  padding: 5px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
 }
-.plan_table tr:nth-child(even){
-    background-color: #d9d9d9;
+.plan_table tr:nth-child(even) {
+  background-color: #d9d9d9;
 }
-.plan_table tr td span{
-    color: green;
-    font-size: 0.9rem;
-    margin-left: 5px;
+.plan_table tr td span {
+  color: green;
+  font-size: 0.9rem;
+  margin-left: 5px;
 }
 
 /*PLAN TABLE STYLING*/
 /*=================*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

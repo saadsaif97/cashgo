@@ -27,8 +27,17 @@ table.plan_table {
   color: #554b4b;
 }
 
+.plan_table tr {
+  display: flex;
+  justify-content: space-between;
+}
+
 .plan_table tr td {
+  width: 100%;
   padding: 5px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 .plan_table tr:nth-child(even) {
   background-color: #d9d9d9;

@@ -6,6 +6,12 @@
 h1 {
   font-size: 60px !important;
 }
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 40px !important;
+  }
+}
 h2 {
   font-size: 40px !important;
 }
@@ -136,9 +142,17 @@ table.plan_table {
 .plan_table th {
   color: #554b4b;
 }
+.plan_table tr {
+  display: flex;
+  justify-content: space-between;
+}
 
 .plan_table tr td {
+  width: 100%;
   padding: 5px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: space-between;
 }
 .plan_table tr:nth-child(even) {
   background-color: #d9d9d9;
@@ -150,4 +164,19 @@ table.plan_table {
 }
 
 /*PLAN TABLE STYLING*/
+/*=================*/
+
+/*=================*/
+/*reply chevron*/
+.up {
+  transform: rotate(180deg);
+}
+/*reply chevron*/
+/*=================*/
+/*=================*/
+/*reply box*/
+.open_reply_box {
+  display: block !important;
+}
+/*reply box*/
 /*=================*/

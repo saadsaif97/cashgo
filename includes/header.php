@@ -54,11 +54,11 @@
     <link rel="stylesheet" href="assets/css/testimonialSlider-1.css">
     <link rel="stylesheet" href="assets/css/testimonialSlider.css">
     <link rel="stylesheet" href="assets/css/Timer-darkknight145.css">
-    
+
 
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/custom-styling.css">
-    
+
     <link rel="stylesheet" href="assets/css/calender.css">
 
 
